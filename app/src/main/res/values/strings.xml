@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AlcoholEstimator</string>
+    <string name="enter_data">Enter your data</string>
 </resources>
