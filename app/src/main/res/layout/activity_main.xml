@@ -9,12 +9,41 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="409dp"
+        android:layout_height="203dp"
+        android:fontFamily="More Fonts..."
+        android:gravity="center"
         android:text="@string/enter_data"
+        android:textColor="#000000"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutHorizontal01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+<!--        style="?android:attr/buttonBarButtonStyle">-->
+
+
+        <Button
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/female"/>
+<!--            style="?android:attr/buttonBarButtonStyle"/>-->
+
+        <Button
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/male" />
+<!--            style="?android:attr/buttonBarButtonStyle"/>-->
+    </LinearLayout>
 
 </LinearLayout>
