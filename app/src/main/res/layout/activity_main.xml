@@ -26,24 +26,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal" >
-<!--        style="?android:attr/buttonBarButtonStyle">-->
 
-
-        <Button
-            android:id="@+id/female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/female"/>
-<!--            style="?android:attr/buttonBarButtonStyle"/>-->
 
         <Button
             android:id="@+id/male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/male" />
-<!--            style="?android:attr/buttonBarButtonStyle"/>-->
+            android:text="@string/male"
+             />
+
+        <Button
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/female"
+             />
     </LinearLayout>
 
 </LinearLayout>
