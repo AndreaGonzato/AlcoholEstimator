@@ -4,6 +4,7 @@
     android:id="@+id/LinearLayout01"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -19,8 +20,8 @@
     <LinearLayout
         android:id="@+id/LinearLayoutHorizontal01"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" >
+        android:layout_height="203dp"
+        android:orientation="horizontal">
 
 
         <android.widget.Button
@@ -40,6 +41,23 @@
             android:background="#CC6594"
             android:fontFamily="@font/roboto_black"
             android:text="@string/female" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/weight"
+        android:gravity="center"
+        android:fontFamily="@font/roboto_black"
+        android:textSize="30sp"/>
+
+    <NumberPicker
+        android:id="@+id/weightPicker"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
 
 </LinearLayout>

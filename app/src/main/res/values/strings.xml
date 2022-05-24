@@ -3,4 +3,5 @@
     <string name="enter_data">Enter your data</string>
     <string name="male">male</string>
     <string name="female">female</string>
+    <string name="weight">Weight</string>
 </resources>
