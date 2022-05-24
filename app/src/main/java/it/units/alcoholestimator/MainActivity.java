@@ -35,12 +35,14 @@ public class MainActivity extends AppCompatActivity {
         numberPicker.setMaxValue(200);
         numberPicker.setMinValue(10);
         numberPicker.setValue(70);
+        numberPicker.setWrapSelectorWheel(false);
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int oldValue, int newValue) {
                 Log.i("TEST", String.valueOf(newValue));
             }
         });
+
 
     }
 
