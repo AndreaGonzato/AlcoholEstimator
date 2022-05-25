@@ -6,7 +6,6 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -28,18 +27,17 @@ public class MainActivity extends AppCompatActivity {
     private Button saveButton;
 
     // constants
-    private static final float INCREASE_FACTOR_FOR_SEX_SELECTED = 2.0f;
+    private static final float WEIGHT_FOR_SEX_SELECTED = 2.0f;
     private static final int SCALAR_PIXEL_SIZE_FOR_PRESSED_BUTTON_SEX = 25;
     private static final int SCALAR_PIXEL_SIZE_FOR_UNPRESSED_BUTTON_SEX = 14;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         // remove the action bar
         Objects.requireNonNull(getSupportActionBar()).hide();
-
-        setContentView(R.layout.activity_main);
 
         maleButton = findViewById(R.id.male);
         saveButton = findViewById(R.id.saveButton);
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams paramsForMaleButton = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
-                        INCREASE_FACTOR_FOR_SEX_SELECTED
+                        WEIGHT_FOR_SEX_SELECTED
                 );
                 maleButton.setLayoutParams(paramsForMaleButton);
 
@@ -89,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams paramsForFemaleButton = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
-                        INCREASE_FACTOR_FOR_SEX_SELECTED
+                        WEIGHT_FOR_SEX_SELECTED
                 );
                 femaleButton.setLayoutParams(paramsForFemaleButton);
 

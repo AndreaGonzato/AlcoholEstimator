@@ -4,12 +4,23 @@
     android:id="@+id/mainVericalLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".DashboardActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/introEstimatedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hello" />
+        android:text="@string/intro_estimated_blood_alcohol_content"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/alcoholContentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 g/l"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"/>
 </LinearLayout>
