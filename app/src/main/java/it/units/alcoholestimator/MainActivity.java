@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 import it.units.alcoholestimator.logic.Gender;
 import it.units.alcoholestimator.logic.User;
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         maleButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 User.setGender(Gender.MALE);
-                Log.i("TEST", "is male");
             }
         });
 
@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (User.getGender() != null){
                     startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+                }else {
+                    Toast.makeText(getApplicationContext(), "select your sex to continue", Toast.LENGTH_SHORT).show();
                 }
             }
         });
