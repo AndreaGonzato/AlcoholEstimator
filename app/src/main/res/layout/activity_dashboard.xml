@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainVericalLinearLayout"
     android:layout_width="match_parent"
@@ -19,8 +20,25 @@
         android:id="@+id/alcoholContentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@id/introEstimatedTextView"
         android:text="0 g/l"
         android:textSize="25sp"
         android:textColor="@color/black"
-        android:layout_marginTop="15dp"/>
-</LinearLayout>
+        android:layout_marginTop="25dp"/>
+
+    <FrameLayout
+        android:id="@+id/frameLayoutWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/navigationView"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/nav_menu"
+        app:itemTextColor="@color/black"
+        app:itemIconTint="@color/black"/>
+</RelativeLayout>
