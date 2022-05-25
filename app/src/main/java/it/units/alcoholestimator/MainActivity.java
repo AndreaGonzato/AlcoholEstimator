@@ -1,12 +1,12 @@
 package it.units.alcoholestimator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.Toast;
@@ -40,10 +40,33 @@ public class MainActivity extends AppCompatActivity {
         maleButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 User.setGender(Gender.MALE);
+
+                int originalWidthButton = getScreenWidth()/2;
+                // increase the width of the selected button
+                maleButton.setWidth((int) (originalWidthButton * 1.2f));
+                femaleButton.setWidth((int) (originalWidthButton / 1.2f));
+                // put a border on the selected button
+                maleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.male_button_with_border));
+                femaleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.color.femalePink));
+
             }
         });
 
-        femaleButton.setOnClickListener(v -> User.setGender(Gender.FEMALE));
+        femaleButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                User.setGender(Gender.FEMALE);
+
+                int originalWidthButton = getScreenWidth()/2;
+                // increase the width of the selected button
+                maleButton.setWidth((int) (originalWidthButton / 1.2f));
+                femaleButton.setWidth((int) (originalWidthButton * 1.2f));
+                // put a border on the selected button
+                femaleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.female_button_with_border));
+                maleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.color.manBlue));
+
+
+            }
+        });
 
         numberPicker = (NumberPicker) findViewById(R.id.weightPicker);
         numberPicker.setMaxValue(200);
@@ -70,6 +93,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public static int getScreenWidth() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
+    }
+
+    public static int getScreenHeight() {
+        return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
 }
