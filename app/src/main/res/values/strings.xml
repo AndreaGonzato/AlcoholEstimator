@@ -6,4 +6,5 @@
     <string name="weight">Weight</string>
     <string name="kg">kg</string>
     <string name="save">save</string>
+    <string name="toast_first_select_sex">select your sex to continue</string>
 </resources>

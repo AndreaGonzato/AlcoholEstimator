@@ -18,7 +18,7 @@ import it.units.alcoholestimator.logic.User;
 
 public class MainActivity extends AppCompatActivity {
 
-    // TODO when this class is almost finish decide what to do with the field. can i make it local var?
+    // TODO when this class is almost finish decide what to do with the fields. Can i make it local var?
     private NumberPicker numberPicker;
     private Button maleButton;
     private Button femaleButton;
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 if (User.getGender() != null){
                     startActivity(new Intent(MainActivity.this, DashboardActivity.class));
                 }else {
-                    Toast.makeText(getApplicationContext(), "select your sex to continue", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.toast_first_select_sex), Toast.LENGTH_SHORT).show();
                 }
             }
         });
