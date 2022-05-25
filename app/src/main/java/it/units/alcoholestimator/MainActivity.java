@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int oldValue, int newValue) {
-
+                // update the user weight
+                User.setWeight(newValue);
             }
         });
 
