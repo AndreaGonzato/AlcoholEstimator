@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private Button femaleButton;
     private Button saveButton;
 
+    // constants
     private static final float INCREASE_FACTOR_FOR_SEX_SELECTED = 2.0f;
     private static final int SCALAR_PIXEL_SIZE_FOR_PRESSED_BUTTON_SEX = 25;
     private static final int SCALAR_PIXEL_SIZE_FOR_UNPRESSED_BUTTON_SEX = 14;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
