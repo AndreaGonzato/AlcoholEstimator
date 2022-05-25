@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -26,7 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private Button femaleButton;
     private Button saveButton;
 
-    private static final float INCREASE_FACTOR_FOR_SEX_SELECTED = 1.3f;
+    private static final float INCREASE_FACTOR_FOR_SEX_SELECTED = 2.0f;
+    private static final int SCALAR_PIXEL_SIZE_FOR_PRESSED_BUTTON_SEX = 25;
+    private static final int SCALAR_PIXEL_SIZE_FOR_UNPRESSED_BUTTON_SEX = 14;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
                 );
                 femaleButton.setLayoutParams(paramsForFemaleButton);
 
+                // increase the size text of the pressed button and decrease the other one
+                maleButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, SCALAR_PIXEL_SIZE_FOR_PRESSED_BUTTON_SEX);
+                femaleButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, SCALAR_PIXEL_SIZE_FOR_UNPRESSED_BUTTON_SEX);
+
                 // put a border on the selected button
                 maleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.male_button_with_border));
                 femaleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.color.femalePink));
@@ -84,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
                         INCREASE_FACTOR_FOR_SEX_SELECTED
                 );
                 femaleButton.setLayoutParams(paramsForFemaleButton);
+
+                // increase the size text of the pressed button and decrease the other one
+                femaleButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, SCALAR_PIXEL_SIZE_FOR_PRESSED_BUTTON_SEX);
+                maleButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, SCALAR_PIXEL_SIZE_FOR_UNPRESSED_BUTTON_SEX);
 
                 // put a border on the selected button
                 femaleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.female_button_with_border));
