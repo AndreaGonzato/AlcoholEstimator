@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private Button femaleButton;
     private Button saveButton;
 
+    private static final float INCREASE_FACTOR_FOR_SEX_SELECTED = 1.3f;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
                 int originalWidthButton = getScreenWidth()/2;
                 // increase the width of the selected button
-                maleButton.setWidth((int) (originalWidthButton * 1.2f));
-                femaleButton.setWidth((int) (originalWidthButton / 1.2f));
+                maleButton.setWidth((int) (originalWidthButton * INCREASE_FACTOR_FOR_SEX_SELECTED));
+                femaleButton.setWidth(getScreenWidth() - maleButton.getWidth());
                 // put a border on the selected button
                 maleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.male_button_with_border));
                 femaleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.color.femalePink));
@@ -58,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
                 int originalWidthButton = getScreenWidth()/2;
                 // increase the width of the selected button
-                maleButton.setWidth((int) (originalWidthButton / 1.2f));
-                femaleButton.setWidth((int) (originalWidthButton * 1.2f));
+                femaleButton.setWidth((int) (originalWidthButton * INCREASE_FACTOR_FOR_SEX_SELECTED));
+                maleButton.setWidth(getScreenWidth() - femaleButton.getWidth());
                 // put a border on the selected button
                 femaleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.female_button_with_border));
                 maleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.color.manBlue));
