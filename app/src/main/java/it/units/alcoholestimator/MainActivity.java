@@ -6,8 +6,10 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
@@ -43,13 +45,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 User.setGender(Gender.MALE);
 
-                int originalWidthButton = getScreenWidth()/2;
-                // increase the width of the selected button
-                maleButton.setWidth((int) (originalWidthButton * INCREASE_FACTOR_FOR_SEX_SELECTED));
-                femaleButton.setWidth(getScreenWidth() - maleButton.getWidth());
+                LinearLayout.LayoutParams paramsForMaleButton = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        INCREASE_FACTOR_FOR_SEX_SELECTED
+                );
+                maleButton.setLayoutParams(paramsForMaleButton);
+
+                LinearLayout.LayoutParams paramsForFemaleButton = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        1.0f
+                );
+                femaleButton.setLayoutParams(paramsForFemaleButton);
+
                 // put a border on the selected button
                 maleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.male_button_with_border));
                 femaleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.color.femalePink));
+
 
             }
         });
@@ -58,10 +71,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 User.setGender(Gender.FEMALE);
 
-                int originalWidthButton = getScreenWidth()/2;
-                // increase the width of the selected button
-                femaleButton.setWidth((int) (originalWidthButton * INCREASE_FACTOR_FOR_SEX_SELECTED));
-                maleButton.setWidth(getScreenWidth() - femaleButton.getWidth());
+                LinearLayout.LayoutParams paramsForMaleButton = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        1.0f
+                );
+                maleButton.setLayoutParams(paramsForMaleButton);
+
+                LinearLayout.LayoutParams paramsForFemaleButton = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        INCREASE_FACTOR_FOR_SEX_SELECTED
+                );
+                femaleButton.setLayoutParams(paramsForFemaleButton);
+
                 // put a border on the selected button
                 femaleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.female_button_with_border));
                 maleButton.setBackground(ContextCompat.getDrawable(getBaseContext(), R.color.manBlue));

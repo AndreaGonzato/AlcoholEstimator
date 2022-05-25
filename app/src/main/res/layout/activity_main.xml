@@ -19,14 +19,13 @@
     <LinearLayout
         android:id="@+id/LinearLayoutHorizontal01"
         android:layout_width="match_parent"
-        android:layout_height="203dp"
+        android:layout_height="80dp"
         android:orientation="horizontal">
-
 
         <android.widget.Button
             android:id="@+id/male"
+            android:layout_height="match_parent"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
             android:layout_weight="1"
             android:background="@color/manBlue"
             android:text="@string/male"
@@ -35,7 +34,7 @@
         <android.widget.Button
             android:id="@+id/female"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/femalePink"
             android:text="@string/female" />
@@ -49,7 +48,8 @@
         android:text="@string/weight"
         android:textColor="@color/black"
         android:gravity="center"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:layout_marginTop="50dp"/>
 
     <RelativeLayout
         android:id="@+id/horizontalPickerLayout"
