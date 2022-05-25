@@ -18,6 +18,7 @@ import it.units.alcoholestimator.logic.User;
 
 public class MainActivity extends AppCompatActivity {
 
+    // TODO when this class is almost finish decide what to do with the field. can i make it local var?
     private NumberPicker numberPicker;
     private Button maleButton;
     private Button femaleButton;
