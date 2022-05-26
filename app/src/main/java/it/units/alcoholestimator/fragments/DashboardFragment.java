@@ -2,6 +2,8 @@ package it.units.alcoholestimator.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,10 +14,10 @@ import it.units.alcoholestimator.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link dashboardFragment#newInstance} factory method to
+ * Use the {@link DashboardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class dashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +28,7 @@ public class dashboardFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public dashboardFragment() {
+    public DashboardFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +41,8 @@ public class dashboardFragment extends Fragment {
      * @return A new instance of fragment dashboardFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static dashboardFragment newInstance(String param1, String param2) {
-        dashboardFragment fragment = new dashboardFragment();
+    public static DashboardFragment newInstance(String param1, String param2) {
+        DashboardFragment fragment = new DashboardFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,5 +64,14 @@ public class dashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // write the code here
+        // TODO remove this block of comment
+        // button = findbyID(....)
     }
 }
