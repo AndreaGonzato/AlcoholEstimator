@@ -27,30 +27,30 @@ public class DashboardActivity extends AppCompatActivity {
         // remove the action bar
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        // load the DashboardFragment as default fragment
         Fragment dashboardFragment = new DashboardFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, dashboardFragment).commit();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.toString()){
-                    case "add a drink":
-                        Fragment addDrinkFragment = new AddDrinkFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, addDrinkFragment).commit();
-                        break;
-                    case "dashboard":
-                        Fragment dashboardFragment = new DashboardFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, dashboardFragment).commit();
-                        break;
-                    case "settings":
-                        Fragment settingsFragment = new SettingsFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, settingsFragment).commit();
-                        break;
-                }
-                return true;
+        bottomNavigationView.setOnItemSelectedListener(menuItem -> {
+            switch (menuItem.toString()){
+                case "add a drink":
+                    Fragment addDrinkFragment = new AddDrinkFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, addDrinkFragment).commit();
+                    break;
+                case "dashboard":
+                    Fragment dashboardFragment1 = new DashboardFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, dashboardFragment1).commit();
+                    break;
+                case "settings":
+                    Fragment settingsFragment = new SettingsFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, settingsFragment).commit();
+                    break;
+                default:
+                    throw new IllegalArgumentException("No menuItem with such name: "+ menuItem.toString());
             }
+            return true;
         });
 
 
