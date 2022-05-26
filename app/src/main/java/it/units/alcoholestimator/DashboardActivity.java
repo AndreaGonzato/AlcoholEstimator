@@ -16,6 +16,7 @@ import java.util.Objects;
 import it.units.alcoholestimator.fragments.AddDrinkFragment;
 import it.units.alcoholestimator.fragments.DashboardFragment;
 import it.units.alcoholestimator.fragments.SettingsFragment;
+import it.units.alcoholestimator.logic.User;
 
 public class DashboardActivity extends AppCompatActivity {
 

@@ -20,6 +20,7 @@ import it.units.alcoholestimator.logic.User;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int DEFAULT_WEIGHT = 70;
     // TODO when this class is almost finish decide what to do with the fields. Can i make it local var?
     private NumberPicker numberPicker;
     private Button maleButton;
@@ -106,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
         numberPicker = (NumberPicker) findViewById(R.id.weightPicker);
         numberPicker.setMaxValue(200);
         numberPicker.setMinValue(10);
-        numberPicker.setValue(70);
+        numberPicker.setValue(DEFAULT_WEIGHT);
+        User.setWeight(DEFAULT_WEIGHT);
         numberPicker.setWrapSelectorWheel(false);
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
