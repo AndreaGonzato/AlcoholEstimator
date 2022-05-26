@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        numberPicker = (NumberPicker) findViewById(R.id.weightPicker);
+        numberPicker = findViewById(R.id.weightPicker);
         numberPicker.setMaxValue(200);
         numberPicker.setMinValue(10);
         numberPicker.setValue(DEFAULT_WEIGHT);
