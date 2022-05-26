@@ -13,4 +13,5 @@
     <string name="dashboard">dashboard</string>
     <string name="add_a_drink">add a drink</string>
     <string name="settings">settings</string>
+    <string name="default_blood_alcohol_content">0 g/l</string>
 </resources>
