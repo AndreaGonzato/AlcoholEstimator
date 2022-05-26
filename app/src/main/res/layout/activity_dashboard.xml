@@ -9,22 +9,13 @@
     android:orientation="vertical"
     tools:context=".DashboardActivity">
 
-    <TextView
-        android:id="@+id/introEstimatedTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/intro_estimated_blood_alcohol_content"
-        android:layout_marginTop="15dp"/>
+    <fragment
+        android:name="it.units.alcoholestimator.fragments.dashboardFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/alcoholContentTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/introEstimatedTextView"
-        android:text="0 g/l"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="25dp"/>
+
+
 
     <FrameLayout
         android:id="@+id/frameLayoutWrapper"
