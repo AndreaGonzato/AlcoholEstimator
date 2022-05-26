@@ -35,7 +35,7 @@ public class DashboardActivity extends AppCompatActivity {
                         Log.i("TEST", "We are gonna in settings");
                         break;
                 }
-                return false;
+                return true;
             }
         });
 
