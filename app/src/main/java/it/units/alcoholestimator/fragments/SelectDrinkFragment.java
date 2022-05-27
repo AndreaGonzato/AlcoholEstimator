@@ -20,10 +20,10 @@ import it.units.alcoholestimator.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddDrinkFragment#newInstance} factory method to
+ * Use the {@link SelectDrinkFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddDrinkFragment extends Fragment {
+public class SelectDrinkFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +34,7 @@ public class AddDrinkFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AddDrinkFragment() {
+    public SelectDrinkFragment() {
         // Required empty public constructor
     }
 
@@ -47,8 +47,8 @@ public class AddDrinkFragment extends Fragment {
      * @return A new instance of fragment AddDrinkFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddDrinkFragment newInstance(String param1, String param2) {
-        AddDrinkFragment fragment = new AddDrinkFragment();
+    public static SelectDrinkFragment newInstance(String param1, String param2) {
+        SelectDrinkFragment fragment = new SelectDrinkFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,7 +69,7 @@ public class AddDrinkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_drink, container, false);
+        return inflater.inflate(R.layout.fragment_select_drink, container, false);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

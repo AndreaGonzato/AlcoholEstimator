@@ -1,22 +1,17 @@
 package it.units.alcoholestimator;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
 
-import it.units.alcoholestimator.fragments.AddDrinkFragment;
+import it.units.alcoholestimator.fragments.SelectDrinkFragment;
 import it.units.alcoholestimator.fragments.DashboardFragment;
 import it.units.alcoholestimator.fragments.SettingsFragment;
-import it.units.alcoholestimator.logic.User;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -37,7 +32,7 @@ public class DashboardActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(menuItem -> {
             switch (menuItem.toString()){
                 case "add a drink":
-                    Fragment addDrinkFragment = new AddDrinkFragment();
+                    Fragment addDrinkFragment = new SelectDrinkFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, addDrinkFragment).commit();
                     break;
                 case "dashboard":
