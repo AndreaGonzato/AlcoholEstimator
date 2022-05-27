@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
-            android:text="Drink"
+            android:text="@string/drink_title"
             android:textColor="#000"
             android:textSize="20sp" />
 
@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="18dip"
-                android:text="Alcohol content"
+                android:text="@string/alcohol_content_title"
                 android:textColor="#000"
                 android:textSize="20sp" />
 
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="18dip"
-                android:text="Size"
+                android:text="@string/size_title"
                 android:textColor="#000"
                 android:textSize="20sp" />
     </TableRow>
@@ -41,36 +41,40 @@
         android:layout_height="match_parent">
 
         <android.widget.Button
+            android:id="@+id/lightBeerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="18dip"
-            android:text="Light beer"
-            android:textColor="@color/black"
-            android:textAllCaps="false"
             android:background="@color/white"
+            android:padding="18dip"
+            android:text="@string/light_beer"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            />
+
+        <android.widget.Button
+            android:id="@+id/lightBeerAlcoholButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:padding="18dip"
+            android:text="@string/_4_percentage"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/lightBeerSizeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="18dip"
-            android:text="4%"
-            android:textColor="@color/black"
-            android:textAllCaps="false"
             android:background="@color/white"
-            android:textSize="12sp" />
-
-        <android.widget.Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:padding="18dip"
-            android:text="500ml"
-            android:textColor="@color/black"
+            android:text="@string/_500ml"
             android:textAllCaps="false"
-            android:background="@color/white"
+            android:textColor="@color/black"
             android:textSize="12sp" />
 
 
@@ -91,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
-            android:text="Regular beer"
+            android:text="@string/regular_beer"
             android:textColor="@color/black"
             android:textAllCaps="false"
             android:background="@color/white"
@@ -102,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
-            android:text="5%"
+            android:text="@string/_5_percentage"
             android:textColor="@color/black"
             android:textAllCaps="false"
             android:background="@color/white"
@@ -113,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
-            android:text="500ml"
+            android:text="@string/_500ml"
             android:textColor="@color/black"
             android:textAllCaps="false"
             android:background="@color/white"
@@ -134,7 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
-            android:text="Strong beer"
+            android:text="@string/strong_beer"
             android:textColor="@color/black"
             android:textAllCaps="false"
             android:background="@color/white"
@@ -145,7 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
-            android:text="8%"
+            android:text="@string/_8_percentage"
             android:textColor="@color/black"
             android:textAllCaps="false"
             android:background="@color/white"
@@ -156,7 +160,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
-            android:text="500ml"
+            android:text="@string/_500ml"
             android:textColor="@color/black"
             android:textAllCaps="false"
             android:background="@color/white"

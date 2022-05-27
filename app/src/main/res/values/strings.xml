@@ -14,4 +14,14 @@
     <string name="add_a_drink">add a drink</string>
     <string name="settings">settings</string>
     <string name="default_blood_alcohol_content">0 g/l</string>
+    <string name="light_beer">Light beer</string>
+    <string name="_4_percentage">4%</string>
+    <string name="_500ml">500ml</string>
+    <string name="_8_percentage">8%</string>
+    <string name="strong_beer">Strong beer</string>
+    <string name="_5_percentage">5%</string>
+    <string name="regular_beer">Regular beer</string>
+    <string name="alcohol_content_title">Alcohol content</string>
+    <string name="size_title">Size</string>
+    <string name="drink_title">Drink</string>
 </resources>
