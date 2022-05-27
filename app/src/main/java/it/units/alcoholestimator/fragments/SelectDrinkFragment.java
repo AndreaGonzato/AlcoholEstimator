@@ -9,7 +9,6 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,9 +86,9 @@ public class SelectDrinkFragment extends Fragment {
             public void onClick(View view) {
                 Fragment addDrinkFragment = new AddDrinkFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString(AddDrinkFragment.DRINK_TYPE_KEY, "light Beer");
-                bundle.putString(AddDrinkFragment.ALCOHOL_CONTENT_KEY, "4%");
-                bundle.putString(AddDrinkFragment.DRINK_SIZE_KEY, "500 ml");
+                bundle.putString(AddDrinkFragment.DRINK_TYPE_KEY, getString(R.string.light_beer));
+                bundle.putString(AddDrinkFragment.ALCOHOL_CONTENT_KEY, getString(R.string._4_percentage));
+                bundle.putString(AddDrinkFragment.DRINK_SIZE_KEY, getString(R.string._500ml));
                 addDrinkFragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.mainFragment, addDrinkFragment)
