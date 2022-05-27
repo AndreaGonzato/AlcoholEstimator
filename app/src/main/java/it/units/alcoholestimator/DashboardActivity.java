@@ -32,8 +32,8 @@ public class DashboardActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(menuItem -> {
             switch (menuItem.toString()){
                 case "add a drink":
-                    Fragment addDrinkFragment = new SelectDrinkFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, addDrinkFragment).commit();
+                    Fragment selectDrinkFragment = new SelectDrinkFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, selectDrinkFragment).commit();
                     break;
                 case "dashboard":
                     Fragment dashboardFragment1 = new DashboardFragment();

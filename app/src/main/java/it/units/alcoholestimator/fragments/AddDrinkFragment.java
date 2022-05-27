@@ -1,30 +1,21 @@
 package it.units.alcoholestimator.fragments;
 
-import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
-import java.util.Arrays;
 
 import it.units.alcoholestimator.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SelectDrinkFragment#newInstance} factory method to
+ * Use the {@link AddDrinkFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SelectDrinkFragment extends Fragment {
+public class AddDrinkFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +26,7 @@ public class SelectDrinkFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SelectDrinkFragment() {
+    public AddDrinkFragment() {
         // Required empty public constructor
     }
 
@@ -48,8 +39,8 @@ public class SelectDrinkFragment extends Fragment {
      * @return A new instance of fragment AddDrinkFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SelectDrinkFragment newInstance(String param1, String param2) {
-        SelectDrinkFragment fragment = new SelectDrinkFragment();
+    public static AddDrinkFragment newInstance(String param1, String param2) {
+        AddDrinkFragment fragment = new AddDrinkFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,27 +61,6 @@ public class SelectDrinkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_select_drink, container, false);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        Button[] lightBeerButtons = new Button[3];
-        lightBeerButtons[0] = requireView().findViewById(R.id.lightBeerButton);
-        lightBeerButtons[1] = requireView().findViewById(R.id.lightBeerAlcoholButton);
-        lightBeerButtons[2] = requireView().findViewById(R.id.lightBeerSizeButton);
-        Arrays.stream(lightBeerButtons).forEach(button -> button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment addDrinkFragment = new AddDrinkFragment();
-                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.mainFragment, addDrinkFragment);
-                fragmentTransaction.commit();
-            }
-        }));
-
+        return inflater.inflate(R.layout.fragment_add_drink, container, false);
     }
 }
