@@ -16,7 +16,7 @@
     <string name="default_blood_alcohol_content">0 g/l</string>
     <string name="light_beer">Light beer</string>
     <string name="_4_percentage">4%</string>
-    <string name="_500ml">500ml</string>
+    <string name="_500ml">500 ml</string>
     <string name="_8_percentage">8%</string>
     <string name="strong_beer">Strong beer</string>
     <string name="_5_percentage">5%</string>
@@ -24,4 +24,17 @@
     <string name="alcohol_content_title">Alcohol content</string>
     <string name="size_title">Size</string>
     <string name="drink_title">Drink</string>
+    <string name="_9_percentage">9%</string>
+    <string name="spriz">Spriz</string>
+    <string name="_300ml">300 ml</string>
+    <string name="wine">Wine</string>
+    <string name="_12_percentage">12%</string>
+    <string name="_200ml">200 ml</string>
+    <string name="generic_cocktail">Generic cocktail</string>
+    <string name="_13_percentage">13%</string>
+    <string name="_150ml">150 ml</string>
+    <string name="shot">Shot</string>
+    <string name="_40_percentage">40%</string>
+    <string name="_40ml">40 ml</string>
+    <string name="other">Other</string>
 </resources>
