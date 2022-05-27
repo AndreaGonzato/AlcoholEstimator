@@ -2,8 +2,11 @@ package it.units.alcoholestimator.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +20,14 @@ import it.units.alcoholestimator.R;
  */
 public class AddDrinkFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public static final String DRINK_TYPE_KEY = "DRINK_TYPE";
+    public static final String ALCOHOL_CONTENT_KEY = "ALCOHOL_CONTENT";
+    public static final String DRINK_SIZE_KEY = "DRINK_SIZE";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String drinkType;
+    private String alcoholContent;
+    private String drinkSize;
 
     public AddDrinkFragment() {
         // Required empty public constructor
@@ -36,14 +39,16 @@ public class AddDrinkFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
+     * @param param3 Parameter 3.
      * @return A new instance of fragment AddDrinkFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddDrinkFragment newInstance(String param1, String param2) {
+    public static AddDrinkFragment newInstance(String param1, String param2, String param3) {
         AddDrinkFragment fragment = new AddDrinkFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(DRINK_TYPE_KEY, param1);
+        args.putString(ALCOHOL_CONTENT_KEY, param2);
+        args.putString(DRINK_SIZE_KEY, param3);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,8 +57,9 @@ public class AddDrinkFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            drinkType = getArguments().getString(DRINK_TYPE_KEY);
+            alcoholContent = getArguments().getString(ALCOHOL_CONTENT_KEY);
+            drinkSize = getArguments().getString(DRINK_SIZE_KEY);
         }
     }
 
@@ -62,5 +68,12 @@ public class AddDrinkFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_drink, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Log.i("TEST data:", drinkType + " " + alcoholContent + " "+ drinkSize);
     }
 }

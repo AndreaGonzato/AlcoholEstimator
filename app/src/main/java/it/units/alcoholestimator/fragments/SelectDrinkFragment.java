@@ -86,6 +86,11 @@ public class SelectDrinkFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment addDrinkFragment = new AddDrinkFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(AddDrinkFragment.DRINK_TYPE_KEY, "light Beer");
+                bundle.putString(AddDrinkFragment.ALCOHOL_CONTENT_KEY, "4%");
+                bundle.putString(AddDrinkFragment.DRINK_SIZE_KEY, "500 ml");
+                addDrinkFragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.mainFragment, addDrinkFragment)
                                     .setReorderingAllowed(true)
