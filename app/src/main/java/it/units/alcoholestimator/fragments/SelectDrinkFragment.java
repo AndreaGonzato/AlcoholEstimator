@@ -87,7 +87,9 @@ public class SelectDrinkFragment extends Fragment {
             public void onClick(View view) {
                 Fragment addDrinkFragment = new AddDrinkFragment();
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.mainFragment, addDrinkFragment);
+                fragmentTransaction.replace(R.id.mainFragment, addDrinkFragment)
+                                    .setReorderingAllowed(true)
+                                    .addToBackStack(null);
                 fragmentTransaction.commit();
             }
         }));
