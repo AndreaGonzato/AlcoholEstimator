@@ -40,31 +40,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <android.widget.Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
             android:text="Light beer"
-            android:textColor="#000"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:background="@color/white"
             android:textSize="12sp" />
 
-        <TextView
+        <android.widget.Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
             android:text="4%"
-            android:textColor="#000"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:background="@color/white"
             android:textSize="12sp" />
 
-        <TextView
+        <android.widget.Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
             android:text="500ml"
-            android:textColor="#000"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:background="@color/white"
             android:textSize="12sp" />
 
 
@@ -80,31 +86,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <android.widget.Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
             android:text="Regular beer"
-            android:textColor="#000"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:background="@color/white"
             android:textSize="12sp" />
 
-        <TextView
+        <android.widget.Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
             android:text="5%"
-            android:textColor="#000"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:background="@color/white"
             android:textSize="12sp" />
 
-        <TextView
+        <android.widget.Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
             android:text="500ml"
-            android:textColor="#000"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:background="@color/white"
             android:textSize="12sp" />
     </TableRow>
 
@@ -117,31 +129,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <android.widget.Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
             android:text="Strong beer"
-            android:textColor="#000"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:background="@color/white"
             android:textSize="12sp" />
 
-        <TextView
+        <android.widget.Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
             android:text="8%"
-            android:textColor="#000"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:background="@color/white"
             android:textSize="12sp" />
 
-        <TextView
+        <android.widget.Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="18dip"
             android:text="500ml"
-            android:textColor="#000"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:background="@color/white"
             android:textSize="12sp" />
     </TableRow>
 
