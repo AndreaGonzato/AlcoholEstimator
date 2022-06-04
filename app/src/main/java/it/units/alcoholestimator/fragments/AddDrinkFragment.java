@@ -6,10 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.preference.EditTextPreference;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import it.units.alcoholestimator.R;
 
@@ -73,6 +75,10 @@ public class AddDrinkFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        EditText drinkDescriptionEditText = requireView().findViewById(R.id.drinkDescriptionEditText);
+        drinkDescriptionEditText.setText(drinkType);
+
 
         Log.i("TEST data:", drinkType + " " + alcoholContent + " "+ drinkSize);
     }

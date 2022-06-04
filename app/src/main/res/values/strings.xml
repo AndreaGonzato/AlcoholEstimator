@@ -37,4 +37,6 @@
     <string name="_40_percentage">40%</string>
     <string name="_40ml">40 ml</string>
     <string name="other">Other</string>
+    <string name="volume_ml">Volume (ml)</string>
+    <string name="drink_description">Drink description</string>
 </resources>
