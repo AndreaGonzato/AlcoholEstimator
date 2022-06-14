@@ -29,7 +29,8 @@ public class AddDrinkFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String drinkType;
     private String alcoholContent;
-    private String drinkSize;
+    private String drinkSizeString;
+    private int drinkSize;
 
     public AddDrinkFragment() {
         // Required empty public constructor
@@ -61,7 +62,8 @@ public class AddDrinkFragment extends Fragment {
         if (getArguments() != null) {
             drinkType = getArguments().getString(DRINK_TYPE_KEY);
             alcoholContent = getArguments().getString(ALCOHOL_CONTENT_KEY);
-            drinkSize = getArguments().getString(DRINK_SIZE_KEY);
+            drinkSizeString = getArguments().getString(DRINK_SIZE_KEY).replace(" ml", "").trim();
+            drinkSize = Integer.parseInt(drinkSizeString);
         }
     }
 
@@ -78,6 +80,9 @@ public class AddDrinkFragment extends Fragment {
 
         EditText drinkDescriptionEditText = requireView().findViewById(R.id.drinkDescriptionEditText);
         drinkDescriptionEditText.setText(drinkType);
+
+        EditText drinkSizeEditText = requireView().findViewById(R.id.editTextNumberSize);
+        drinkSizeEditText.setText(drinkSizeString);
 
 
         Log.i("TEST data:", drinkType + " " + alcoholContent + " "+ drinkSize);
