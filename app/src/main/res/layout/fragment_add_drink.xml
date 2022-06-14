@@ -64,6 +64,31 @@
             app:layout_constraintHorizontal_bias="0.1"
             android:autofillHints="500" />
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/alcohol_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/editTextNumberSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"/>
+
+        <EditText
+            android:id="@+id/editTextNumberAlcoholContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintHorizontal_bias="0.1"
+            android:autofillHints="5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

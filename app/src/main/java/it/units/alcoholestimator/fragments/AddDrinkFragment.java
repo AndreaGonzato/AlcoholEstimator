@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.preference.EditTextPreference;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +27,8 @@ public class AddDrinkFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String drinkType;
-    private String alcoholContent;
+    private String alcoholContentString;
+    private int alcoholContent;
     private String drinkSizeString;
     private int drinkSize;
 
@@ -61,7 +61,8 @@ public class AddDrinkFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             drinkType = getArguments().getString(DRINK_TYPE_KEY);
-            alcoholContent = getArguments().getString(ALCOHOL_CONTENT_KEY);
+            alcoholContentString = getArguments().getString(ALCOHOL_CONTENT_KEY).replace("%", "").trim();
+            alcoholContent = Integer.parseInt(alcoholContentString);
             drinkSizeString = getArguments().getString(DRINK_SIZE_KEY).replace(" ml", "").trim();
             drinkSize = Integer.parseInt(drinkSizeString);
         }
@@ -83,6 +84,9 @@ public class AddDrinkFragment extends Fragment {
 
         EditText drinkSizeEditText = requireView().findViewById(R.id.editTextNumberSize);
         drinkSizeEditText.setText(drinkSizeString);
+
+        EditText alcoholContentEditText = requireView().findViewById(R.id.editTextNumberAlcoholContent);
+        alcoholContentEditText.setText(alcoholContentString);
 
 
         Log.i("TEST data:", drinkType + " " + alcoholContent + " "+ drinkSize);
