@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
-            android:gravity="left"
+            android:gravity="start"
             android:padding="18dip"
             android:text="@string/light_beer"
             android:textAllCaps="false"
@@ -91,11 +91,12 @@
         android:layout_height="match_parent">
 
         <android.widget.Button
+            android:id="@+id/regularBeerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
-            android:gravity="left"
+            android:gravity="start"
             android:padding="18dip"
             android:text="@string/regular_beer"
             android:textAllCaps="false"
@@ -103,6 +104,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/regularBeerAlcoholButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -114,6 +116,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/regularBeerSizeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -135,11 +138,12 @@
         android:layout_height="match_parent">
 
         <android.widget.Button
+            android:id="@+id/strongBeerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
-            android:gravity="left"
+            android:gravity="start"
             android:padding="18dip"
             android:text="@string/strong_beer"
             android:textAllCaps="false"
@@ -147,6 +151,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/strongBeerAlcoholButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -158,6 +163,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/strongBeerSizeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -180,11 +186,12 @@
         android:layout_height="match_parent">
 
         <android.widget.Button
+            android:id="@+id/sprizButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
-            android:gravity="left"
+            android:gravity="start"
             android:padding="18dip"
             android:text="@string/spriz"
             android:textAllCaps="false"
@@ -192,6 +199,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/sprizAlcoholButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -203,6 +211,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/sprizSizeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -225,11 +234,12 @@
         android:layout_height="match_parent">
 
         <android.widget.Button
+            android:id="@+id/wineButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
-            android:gravity="left"
+            android:gravity="start"
             android:padding="18dip"
             android:text="@string/wine"
             android:textAllCaps="false"
@@ -237,6 +247,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/wineAlcoholButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -248,6 +259,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/wineSizeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -269,11 +281,12 @@
         android:layout_height="match_parent">
 
         <android.widget.Button
+            android:id="@+id/generalCocktailButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
-            android:gravity="left"
+            android:gravity="start"
             android:padding="18dip"
             android:text="@string/generic_cocktail"
             android:textAllCaps="false"
@@ -281,6 +294,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/generalCocktailAlcoholButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -292,6 +306,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/generalCocktailSizeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -313,11 +328,12 @@
         android:layout_height="match_parent">
 
         <android.widget.Button
+            android:id="@+id/shotButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
-            android:gravity="left"
+            android:gravity="start"
             android:padding="18dip"
             android:text="@string/shot"
             android:textAllCaps="false"
@@ -325,6 +341,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/shotAlcoholButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -336,6 +353,7 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/shotSizeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -357,11 +375,12 @@
         android:layout_height="match_parent">
 
         <android.widget.Button
+            android:id="@+id/otherButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
-            android:gravity="left"
+            android:gravity="start"
             android:padding="18dip"
             android:text="@string/other"
             android:textAllCaps="false"
@@ -369,23 +388,25 @@
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/otherAlcoholButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
             android:padding="18dip"
-            android:text="x%"
+            android:text="@string/x_percentage"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
         <android.widget.Button
+            android:id="@+id/otherSizeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
             android:padding="18dip"
-            android:text="x ml"
+            android:text="@string/x_ml"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="12sp" />
