@@ -81,14 +81,20 @@ public class SelectDrinkFragment extends Fragment {
         lightBeerButtons[0] = requireView().findViewById(R.id.lightBeerButton);
         lightBeerButtons[1] = requireView().findViewById(R.id.lightBeerAlcoholButton);
         lightBeerButtons[2] = requireView().findViewById(R.id.lightBeerSizeButton);
-        Arrays.stream(lightBeerButtons).forEach(button -> button.setOnClickListener(new View.OnClickListener() {
+        setListenerToActivateFragmentOnClick(lightBeerButtons, getString(R.string.light_beer), getString(R.string._4_percentage), getString(R.string._500ml));
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void setListenerToActivateFragmentOnClick(Button[] buttons, String drinkType, String alcoholContent, String drinkSize) {
+        Arrays.stream(buttons).forEach(button -> button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment addDrinkFragment = new AddDrinkFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString(AddDrinkFragment.DRINK_TYPE_KEY, getString(R.string.light_beer));
-                bundle.putString(AddDrinkFragment.ALCOHOL_CONTENT_KEY, getString(R.string._4_percentage));
-                bundle.putString(AddDrinkFragment.DRINK_SIZE_KEY, getString(R.string._500ml));
+                bundle.putString(AddDrinkFragment.DRINK_TYPE_KEY, drinkType);
+                bundle.putString(AddDrinkFragment.ALCOHOL_CONTENT_KEY, alcoholContent);
+                bundle.putString(AddDrinkFragment.DRINK_SIZE_KEY, drinkSize);
                 addDrinkFragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.mainFragment, addDrinkFragment)
@@ -97,6 +103,5 @@ public class SelectDrinkFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         }));
-
     }
 }
