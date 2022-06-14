@@ -81,27 +81,31 @@ public class SelectDrinkFragment extends Fragment {
         lightBeerButtons[0] = requireView().findViewById(R.id.lightBeerButton);
         lightBeerButtons[1] = requireView().findViewById(R.id.lightBeerAlcoholButton);
         lightBeerButtons[2] = requireView().findViewById(R.id.lightBeerSizeButton);
-        setListenerToActivateFragmentOnClick(lightBeerButtons, getString(R.string.light_beer), getString(R.string._4_percentage), getString(R.string._500ml));
+        setOnClickListenerToActivateFragment(lightBeerButtons, getString(R.string.light_beer), getString(R.string._4_percentage), getString(R.string._500ml));
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void setListenerToActivateFragmentOnClick(Button[] buttons, String drinkType, String alcoholContent, String drinkSize) {
+    private void setOnClickListenerToActivateFragment(Button[] buttons, String drinkType, String alcoholContent, String drinkSize) {
         Arrays.stream(buttons).forEach(button -> button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment addDrinkFragment = new AddDrinkFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString(AddDrinkFragment.DRINK_TYPE_KEY, drinkType);
-                bundle.putString(AddDrinkFragment.ALCOHOL_CONTENT_KEY, alcoholContent);
-                bundle.putString(AddDrinkFragment.DRINK_SIZE_KEY, drinkSize);
-                addDrinkFragment.setArguments(bundle);
-                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.mainFragment, addDrinkFragment)
-                                    .setReorderingAllowed(true)
-                                    .addToBackStack(null);
-                fragmentTransaction.commit();
+                replaceCurrentFragmentWithAddDrinkFragment(drinkType, alcoholContent, drinkSize);
             }
         }));
+    }
+
+    private void replaceCurrentFragmentWithAddDrinkFragment(String drinkType, String alcoholContent, String drinkSize) {
+        Fragment addDrinkFragment = new AddDrinkFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(AddDrinkFragment.DRINK_TYPE_KEY, drinkType);
+        bundle.putString(AddDrinkFragment.ALCOHOL_CONTENT_KEY, alcoholContent);
+        bundle.putString(AddDrinkFragment.DRINK_SIZE_KEY, drinkSize);
+        addDrinkFragment.setArguments(bundle);
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainFragment, addDrinkFragment)
+                            .setReorderingAllowed(true)
+                            .addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
