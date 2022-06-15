@@ -36,12 +36,10 @@
     <string name="shot">Shot</string>
     <string name="_40_percentage">40%</string>
     <string name="_40ml">40 ml</string>
-    <string name="other">Other</string>
     <string name="volume_ml">Volume (ml)</string>
     <string name="drink_description">Drink description</string>
     <string name="drink_type">Drink type</string>
     <string name="enter_a_drink_description">enter a drink description</string>
     <string name="alcohol_content">Alcohol content (%)</string>
-    <string name="_x_percentage">x%</string>
-    <string name="_x_ml">x ml</string>
+    <string name="custom_drink">Custom drink</string>
 </resources>

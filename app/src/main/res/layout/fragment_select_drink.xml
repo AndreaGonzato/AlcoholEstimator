@@ -375,41 +375,18 @@
         android:layout_height="match_parent">
 
         <android.widget.Button
-            android:id="@+id/otherButton"
+            android:id="@+id/customDrinkButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_weight="1"
             android:background="@color/white"
-            android:gravity="start"
+            android:gravity="center"
             android:padding="18dip"
-            android:text="@string/other"
+            android:text="@string/custom_drink"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
-        <android.widget.Button
-            android:id="@+id/otherAlcoholButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:padding="18dip"
-            android:text="@string/_x_percentage"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <android.widget.Button
-            android:id="@+id/otherSizeButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:padding="18dip"
-            android:text="@string/_x_ml"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
     </TableRow>
 
     <View
