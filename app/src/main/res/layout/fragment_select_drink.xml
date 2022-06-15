@@ -394,7 +394,7 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:padding="18dip"
-            android:text="@string/x_percentage"
+            android:text="@string/_x_percentage"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -406,7 +406,7 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:padding="18dip"
-            android:text="@string/x_ml"
+            android:text="@string/_x_ml"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="12sp" />

@@ -81,19 +81,52 @@ public class SelectDrinkFragment extends Fragment {
         lightBeerButtons[0] = requireView().findViewById(R.id.lightBeerButton);
         lightBeerButtons[1] = requireView().findViewById(R.id.lightBeerAlcoholButton);
         lightBeerButtons[2] = requireView().findViewById(R.id.lightBeerSizeButton);
-        setOnClickListenerToActivateFragment(lightBeerButtons, getString(R.string.light_beer), getString(R.string._4_percentage), getString(R.string._500ml));
+        Arrays.stream(lightBeerButtons).forEach(button -> button.setOnClickListener(v -> replaceCurrentFragmentWithAddDrinkFragment(getString(R.string.light_beer), getString(R.string._4_percentage), getString(R.string._500ml))));
+
+        Button[] regularBeerButtons = new Button[3];
+        regularBeerButtons[0] = requireView().findViewById(R.id.regularBeerButton);
+        regularBeerButtons[1] = requireView().findViewById(R.id.regularBeerAlcoholButton);
+        regularBeerButtons[2] = requireView().findViewById(R.id.regularBeerSizeButton);
+        Arrays.stream(regularBeerButtons).forEach(button -> button.setOnClickListener(v -> replaceCurrentFragmentWithAddDrinkFragment(getString(R.string.regular_beer), getString(R.string._5_percentage), getString(R.string._500ml))));
+
+        Button[] strongBeerButtons = new Button[3];
+        strongBeerButtons[0] = requireView().findViewById(R.id.strongBeerButton);
+        strongBeerButtons[1] = requireView().findViewById(R.id.strongBeerAlcoholButton);
+        strongBeerButtons[2] = requireView().findViewById(R.id.strongBeerSizeButton);
+        Arrays.stream(strongBeerButtons).forEach(button -> button.setOnClickListener(v -> replaceCurrentFragmentWithAddDrinkFragment(getString(R.string.strong_beer), getString(R.string._8_percentage), getString(R.string._500ml))));
+
+        Button[] sprizButtons = new Button[3];
+        sprizButtons[0] = requireView().findViewById(R.id.sprizButton);
+        sprizButtons[1] = requireView().findViewById(R.id.sprizAlcoholButton);
+        sprizButtons[2] = requireView().findViewById(R.id.sprizSizeButton);
+        Arrays.stream(sprizButtons).forEach(button -> button.setOnClickListener(v -> replaceCurrentFragmentWithAddDrinkFragment(getString(R.string.spriz), getString(R.string._9_percentage), getString(R.string._300ml))));
+
+        Button[] wineButtons = new Button[3];
+        wineButtons[0] = requireView().findViewById(R.id.wineButton);
+        wineButtons[1] = requireView().findViewById(R.id.wineAlcoholButton);
+        wineButtons[2] = requireView().findViewById(R.id.wineSizeButton);
+        Arrays.stream(wineButtons).forEach(button -> button.setOnClickListener(v -> replaceCurrentFragmentWithAddDrinkFragment(getString(R.string.wine), getString(R.string._12_percentage), getString(R.string._200ml))));
+
+        Button[] generalCocktailButtons = new Button[3];
+        generalCocktailButtons[0] = requireView().findViewById(R.id.generalCocktailButton);
+        generalCocktailButtons[1] = requireView().findViewById(R.id.generalCocktailAlcoholButton);
+        generalCocktailButtons[2] = requireView().findViewById(R.id.generalCocktailSizeButton);
+        Arrays.stream(generalCocktailButtons).forEach(button -> button.setOnClickListener(v -> replaceCurrentFragmentWithAddDrinkFragment(getString(R.string.generic_cocktail), getString(R.string._13_percentage), getString(R.string._150ml))));
+
+        Button[] shotButtons = new Button[3];
+        shotButtons[0] = requireView().findViewById(R.id.shotButton);
+        shotButtons[1] = requireView().findViewById(R.id.shotAlcoholButton);
+        shotButtons[2] = requireView().findViewById(R.id.shotSizeButton);
+        Arrays.stream(shotButtons).forEach(button -> button.setOnClickListener(v -> replaceCurrentFragmentWithAddDrinkFragment(getString(R.string.shot), getString(R.string._40_percentage), getString(R.string._40ml))));
+
+        Button[] otherButtons = new Button[3];
+        otherButtons[0] = requireView().findViewById(R.id.otherButton);
+        otherButtons[1] = requireView().findViewById(R.id.otherAlcoholButton);
+        otherButtons[2] = requireView().findViewById(R.id.otherSizeButton);
+        Arrays.stream(otherButtons).forEach(button -> button.setOnClickListener(v -> replaceCurrentFragmentWithAddDrinkFragment(getString(R.string.other), getString(R.string._x_percentage), getString(R.string._x_ml))));
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void setOnClickListenerToActivateFragment(Button[] buttons, String drinkType, String alcoholContent, String drinkSize) {
-        Arrays.stream(buttons).forEach(button -> button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                replaceCurrentFragmentWithAddDrinkFragment(drinkType, alcoholContent, drinkSize);
-            }
-        }));
-    }
 
     private void replaceCurrentFragmentWithAddDrinkFragment(String drinkType, String alcoholContent, String drinkSize) {
         Fragment addDrinkFragment = new AddDrinkFragment();

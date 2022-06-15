@@ -42,6 +42,6 @@
     <string name="drink_type">Drink type</string>
     <string name="enter_a_drink_description">enter a drink description</string>
     <string name="alcohol_content">Alcohol content (%)</string>
-    <string name="x_percentage">x%</string>
-    <string name="x_ml">x ml</string>
+    <string name="_x_percentage">x%</string>
+    <string name="_x_ml">x ml</string>
 </resources>
