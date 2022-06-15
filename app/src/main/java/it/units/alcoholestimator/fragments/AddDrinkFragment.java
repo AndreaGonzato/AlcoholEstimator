@@ -65,9 +65,7 @@ public class AddDrinkFragment extends Fragment {
             alcoholContent = Integer.parseInt(alcoholContentString);
             drinkSizeString = getArguments().getString(DRINK_SIZE_KEY).replace(" ml", "").trim();
             drinkSize = Integer.parseInt(drinkSizeString);
-            Log.i("TEST", "inside if onCreate");
         }
-        Log.i("TEST", "outside if onCreate");
     }
 
     @Override
@@ -90,7 +88,5 @@ public class AddDrinkFragment extends Fragment {
         EditText alcoholContentEditText = requireView().findViewById(R.id.editTextNumberAlcoholContent);
         alcoholContentEditText.setText(alcoholContentString);
 
-
-        Log.i("TEST data:", drinkType + " " + alcoholContent + " "+ drinkSize);
     }
 }
