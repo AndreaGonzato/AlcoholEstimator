@@ -119,14 +119,10 @@ public class SelectDrinkFragment extends Fragment {
         shotButtons[2] = requireView().findViewById(R.id.shotSizeButton);
         Arrays.stream(shotButtons).forEach(button -> button.setOnClickListener(v -> replaceCurrentFragmentWithAddDrinkFragment(getString(R.string.shot), getString(R.string._40_percentage), getString(R.string._40ml))));
 
+
         Button customDrinkButton = requireView().findViewById(R.id.customDrinkButton);
         customDrinkButton.setOnClickListener(v -> {
                     Fragment addDrinkFragment = new AddDrinkFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString(AddDrinkFragment.DRINK_TYPE_KEY, getString(R.string.custom_drink));
-                    bundle.putString(AddDrinkFragment.ALCOHOL_CONTENT_KEY, "3%"); // TODO do not pass a value
-                    bundle.putString(AddDrinkFragment.DRINK_SIZE_KEY, "50 ml"); // TODO do not pass a value
-                    addDrinkFragment.setArguments(bundle);
                     FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.mainFragment, addDrinkFragment)
                             .setReorderingAllowed(true)

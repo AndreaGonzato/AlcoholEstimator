@@ -37,7 +37,7 @@
             app:layout_constraintHorizontal_bias="0.1"
             android:inputType="textPersonName"
             android:autofillHints="Drink type"
-            android:hint="@string/enter_a_drink_description"/>
+            android:hint="@string/enter_drink_name"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -62,7 +62,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             app:layout_constraintHorizontal_bias="0.1"
-            android:autofillHints="500" />
+            android:autofillHints="500"
+            android:hint="@string/enter_size_dink"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -87,7 +88,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             app:layout_constraintHorizontal_bias="0.1"
-            android:autofillHints="5" />
+            android:autofillHints="5"
+            android:hint="@string/enter_alcohol_content"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

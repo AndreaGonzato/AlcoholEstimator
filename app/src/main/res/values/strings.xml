@@ -39,7 +39,9 @@
     <string name="volume_ml">Volume (ml)</string>
     <string name="drink_description">Drink description</string>
     <string name="drink_type">Drink type</string>
-    <string name="enter_a_drink_description">enter a drink description</string>
     <string name="alcohol_content">Alcohol content (%)</string>
     <string name="custom_drink">Custom drink</string>
+    <string name="enter_drink_name">enter drink name</string>
+    <string name="enter_size_dink">enter size dink</string>
+    <string name="enter_alcohol_content">enter alcohol content</string>
 </resources>

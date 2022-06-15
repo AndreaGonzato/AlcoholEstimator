@@ -52,7 +52,6 @@ public class AddDrinkFragment extends Fragment {
         args.putString(DRINK_TYPE_KEY, param1);
         args.putString(ALCOHOL_CONTENT_KEY, param2);
         args.putString(DRINK_SIZE_KEY, param3);
-        Log.i("TEST", "inside newInstance");
         fragment.setArguments(args);
         return fragment;
     }
