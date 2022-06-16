@@ -382,7 +382,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:padding="18dip"
-            android:text="@string/custom_drink"
+            android:text="@string/add_custom_drink"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="12sp" />
