@@ -106,16 +106,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.15"/>
 
-        <CalendarView
-            android:id="@+id/calendarView"
+        <android.widget.Button
+            android:id="@+id/datePickerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:layout_constraintTop_toBottomOf="@id/textView5"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            style="?android:spinnerStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@id/textView5"
+            app:layout_constraintHorizontal_bias="0.1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
