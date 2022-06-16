@@ -44,4 +44,5 @@
     <string name="enter_size_dink">enter size dink</string>
     <string name="enter_alcohol_content">enter alcohol content</string>
     <string name="add_custom_drink">Add custom drink</string>
+    <string name="drink_finished_at">Drink finished at</string>
 </resources>
