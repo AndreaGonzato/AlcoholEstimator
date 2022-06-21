@@ -130,11 +130,6 @@ public class AddDrinkFragment extends Fragment {
             }
         });
 
-        Log.i("TEST date: ", "y: "+year +" m: "+month+" d: "+day);
-        Log.i("TEST time: ", "h: "+hour +" m: "+minute);
-
-        
-
     }
 
     private void setCurrentTime() {
