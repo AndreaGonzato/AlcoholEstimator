@@ -130,6 +130,15 @@ public class AddDrinkFragment extends Fragment {
             }
         });
 
+        Button addDrinkButton = requireView().findViewById(R.id.addDrinkButton);
+        addDrinkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO store record on cloud
+
+            }
+        });
+
     }
 
     private void setCurrentTime() {
