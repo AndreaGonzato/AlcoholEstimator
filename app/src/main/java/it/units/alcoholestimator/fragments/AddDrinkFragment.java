@@ -36,10 +36,9 @@ public class AddDrinkFragment extends Fragment {
     public static final String DRINK_SIZE_KEY = "DRINK_SIZE";
 
     private DatePickerDialog datePickerDialog;
-    private Button dateButton;
     private int year, month, day;
     private Button timeButton;
-    int hour, minute;
+    private int hour, minute;
 
     // TODO: Rename and change types of parameters
     private String drinkType;
@@ -108,12 +107,7 @@ public class AddDrinkFragment extends Fragment {
         Button dateButton = requireView().findViewById(R.id.datePickerButton);
         dateButton.setText(getTodayDate());
 
-        dateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                datePickerDialog.show();
-            }
-        });
+        dateButton.setOnClickListener(view1 -> datePickerDialog.show());
 
         timeButton = requireView().findViewById(R.id.timePickerButton);
         setCurrentTime();
@@ -136,8 +130,8 @@ public class AddDrinkFragment extends Fragment {
             }
         });
 
-        Log.i("TEST date: ", "y: "+year +" m:"+month+" d: "+day);
-        Log.i("TEST time: ", "h: "+hour +" m:"+minute);
+        Log.i("TEST date: ", "y: "+year +" m: "+month+" d: "+day);
+        Log.i("TEST time: ", "h: "+hour +" m: "+minute);
 
         
 
@@ -172,16 +166,15 @@ public class AddDrinkFragment extends Fragment {
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(getContext(), style, dateSetListener, year, month, day);
-        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
     }
 
     private String getTodayDate(){
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
         month = month + 1;
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day, month, year);
     }
 
