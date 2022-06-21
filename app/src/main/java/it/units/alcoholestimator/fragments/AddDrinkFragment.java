@@ -2,6 +2,7 @@ package it.units.alcoholestimator.fragments;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,8 +16,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.logic.Month;
@@ -34,6 +37,9 @@ public class AddDrinkFragment extends Fragment {
 
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+    private int year, month, day;
+    private Button timeButton;
+    int hour, minute;
 
     // TODO: Rename and change types of parameters
     private String drinkType;
@@ -108,8 +114,40 @@ public class AddDrinkFragment extends Fragment {
                 datePickerDialog.show();
             }
         });
+
+        timeButton = requireView().findViewById(R.id.timePickerButton);
+        setCurrentTime();
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        hour = selectedHour;
+                        minute = selectedMinute;
+                        timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
+                    }
+                };
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), onTimeSetListener, hour, minute, true);
+
+                timePickerDialog.setTitle("Select Time");
+                timePickerDialog.show();
+            }
+        });
+
+        Log.i("TEST date: ", "y: "+year +" m:"+month+" d: "+day);
+        Log.i("TEST time: ", "h: "+hour +" m:"+minute);
+
         
 
+    }
+
+    private void setCurrentTime() {
+        Calendar calendar = Calendar.getInstance();
+        hour = calendar.get(Calendar.HOUR_OF_DAY);
+        minute = calendar.get(Calendar.MINUTE);
+        timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
     }
 
     private void initDatePicker()
@@ -127,9 +165,9 @@ public class AddDrinkFragment extends Fragment {
         };
 
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
 
         int style = AlertDialog.THEME_HOLO_LIGHT;
 

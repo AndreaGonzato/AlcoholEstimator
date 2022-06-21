@@ -10,4 +10,7 @@
     <color name="manBlue">#347DC1</color>
     <color name="femalePink">#CC6594</color>
     <color name="blueGoogle">#4285F4</color>
+    <color name="darkGray">#333533</color>
+    <color name="lightGray">#EEE</color>
+
 </resources>
