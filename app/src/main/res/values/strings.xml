@@ -46,4 +46,5 @@
     <string name="add_custom_drink">Add custom drink</string>
     <string name="drink_finished_at">Drink finished at</string>
     <string name="add_drink">Add Drink</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
