@@ -1,8 +1,11 @@
 package it.units.alcoholestimator.logic;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
 public class User {
     private static Gender gender;
     private static int weight;
+    private static GoogleSignInAccount googleSignInAccount;
 
     public static void setGender(Gender gender) {
         User.gender = gender;
@@ -13,10 +16,10 @@ public class User {
     }
 
     public static Gender getGender() {
-        return gender;
+        return User.gender;
     }
 
     public static int getWeight() {
-        return weight;
+        return User.weight;
     }
 }

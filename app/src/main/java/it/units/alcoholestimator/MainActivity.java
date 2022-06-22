@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private Button saveButton;
 
     private static final int RC_SIGN_IN = 9001;
-    private GoogleSignInClient googleSignInClient;
+    private static GoogleSignInClient googleSignInClient;
 
     // constants
     private static final float WEIGHT_FOR_SEX_SELECTED = 2.0f;
@@ -229,4 +229,11 @@ public class MainActivity extends AppCompatActivity {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
+    public static GoogleSignInClient getGoogleSignInClient() {
+        return googleSignInClient;
+    }
+
+    public static void setGoogleSignInClient(GoogleSignInClient googleSignInClient) {
+        MainActivity.googleSignInClient = googleSignInClient;
+    }
 }
