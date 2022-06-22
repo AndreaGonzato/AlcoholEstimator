@@ -6,11 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -88,12 +92,15 @@ public class SettingsFragment extends Fragment {
     }
 
     private void signOut() {
-        MainActivity.getGoogleSignInClient().signOut()
+        // TODO there is a problem here
+        User.getGoogleSignInClient().signOut()
                 .addOnCompleteListener((Executor) this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        // ...
+                        Log.i("TEST", "signOut completed inside listener");
                     }
                 });
+
+        Log.i("TEST", "signOut completed outside listener");
     }
 }

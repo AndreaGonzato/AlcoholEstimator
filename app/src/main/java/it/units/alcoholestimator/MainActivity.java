@@ -2,6 +2,7 @@ package it.units.alcoholestimator;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -23,9 +24,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.Objects;
+import java.util.concurrent.Executor;
 
 import it.units.alcoholestimator.logic.Gender;
 import it.units.alcoholestimator.logic.User;
@@ -64,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             // user has already log in
             Log.i("TEST", "welcome again");
             Log.i("TEST", ""+account.getEmail());
+            // TODO decide if user has already log in to start a new activity
+            // startActivity(new Intent(MainActivity.this, DashboardActivity.class));
         }
     }
 
@@ -190,8 +195,10 @@ public class MainActivity extends AppCompatActivity {
     private void signIn() {
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+        User.setGoogleSignInClient(googleSignInClient);
 
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -229,11 +236,5 @@ public class MainActivity extends AppCompatActivity {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
-    public static GoogleSignInClient getGoogleSignInClient() {
-        return googleSignInClient;
-    }
 
-    public static void setGoogleSignInClient(GoogleSignInClient googleSignInClient) {
-        MainActivity.googleSignInClient = googleSignInClient;
-    }
 }
