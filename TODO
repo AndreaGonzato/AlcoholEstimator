@@ -1,0 +1,6 @@
+FireBase
+Cro una Users collection
+Per ognbi user creo dei documenti diversi(drinks)
+
+Le collection sono l'equivalente delle tabelle nei relazionali
+I documenti sono l'equivalente dei records nei DB relazionali
