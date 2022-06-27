@@ -2,11 +2,16 @@ package it.units.alcoholestimator;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -60,13 +65,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(GoogleSignInAccount account) {
-        if(account == null){
+        if(account == null || !User.isIsSignedIn()){
             // first time that the user is doing the log in
             Log.i("TEST", "welcome for the first time");
         }else {
             // user has already log in
             Log.i("TEST", "welcome again");
-            Log.i("TEST", ""+account.getEmail());
+            Log.i("TEST", "" + account.getEmail());
             // TODO decide if user has already log in to start a new activity
             // startActivity(new Intent(MainActivity.this, DashboardActivity.class));
         }
@@ -91,13 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-        GoogleSignInOptions googleOptions =
-                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestEmail()
-                        .build();
+        GoogleSignInOptions googleOptions = MainActivity.getGoogleSignInOptions();
         googleSignInClient = GoogleSignIn.getClient(this, googleOptions);
 
         maleButton = findViewById(R.id.male);
@@ -192,10 +191,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @NonNull
+    public static GoogleSignInOptions getGoogleSignInOptions() {
+        return new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestEmail()
+                        .build();
+    }
+
     private void signIn() {
+        User.setIsSignedIn(true);
         Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-        User.setGoogleSignInClient(googleSignInClient);
+        startActivityIntent.launch(signInIntent);
+        //startActivityForResult(signInIntent, RC_SIGN_IN);
 
     }
 
@@ -236,5 +243,23 @@ public class MainActivity extends AppCompatActivity {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
+    public Context getContex(){
+        return this.getContex();
+    }
+
+    ActivityResultLauncher<Intent> startActivityIntent = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode()==RESULT_CANCELED){
+                    Log.i("IMPORTANT", "CANCELED Intent");
+                        User.setIsSignedIn(false);
+                    }else {
+                        User.setIsSignedIn(true);
+                    }
+                }
+
+            });
 
 }

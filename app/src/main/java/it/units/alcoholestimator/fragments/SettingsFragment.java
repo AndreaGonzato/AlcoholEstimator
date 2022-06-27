@@ -1,5 +1,7 @@
 package it.units.alcoholestimator.fragments;
 
+import android.app.Activity;
+import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.concurrent.Executor;
 
+import it.units.alcoholestimator.DashboardActivity;
 import it.units.alcoholestimator.MainActivity;
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.logic.User;
@@ -93,7 +96,12 @@ public class SettingsFragment extends Fragment {
 
     private void signOut() {
         // TODO there is a problem here
-        User.getGoogleSignInClient().signOut()
+        User.setIsSignedIn(false);
+        Activity activity = getActivity();
+        GoogleSignInOptions googleOptions = MainActivity.getGoogleSignInOptions();
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(activity, googleOptions);
+
+        googleSignInClient.signOut()
                 .addOnCompleteListener((Executor) this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
