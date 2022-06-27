@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         User.setIsSignedIn(true);
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityIntent.launch(signInIntent);
-        //startActivityForResult(signInIntent, RC_SIGN_IN);
+        //startActivityForResult(signInIntent, RC_SIGN_IN); // TODO remove this line
 
     }
 
@@ -237,9 +237,6 @@ public class MainActivity extends AppCompatActivity {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
-    public Context getContex(){
-        return this.getContex();
-    }
 
     ActivityResultLauncher<Intent> startActivityIntent = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
