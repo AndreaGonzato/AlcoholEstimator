@@ -25,6 +25,7 @@ import java.util.concurrent.Executor;
 import it.units.alcoholestimator.DashboardActivity;
 import it.units.alcoholestimator.MainActivity;
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.logic.SignIn;
 import it.units.alcoholestimator.logic.User;
 
 /**
@@ -98,7 +99,7 @@ public class SettingsFragment extends Fragment {
         // TODO there is a problem here
         User.setIsSignedIn(false);
         Activity activity = getActivity();
-        GoogleSignInOptions googleOptions = MainActivity.getGoogleSignInOptions();
+        GoogleSignInOptions googleOptions = SignIn.getGoogleSignInOptions();
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(activity, googleOptions);
 
         googleSignInClient.signOut()

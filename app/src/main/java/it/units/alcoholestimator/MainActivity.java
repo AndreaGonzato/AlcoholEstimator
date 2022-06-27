@@ -36,6 +36,7 @@ import java.util.Objects;
 import java.util.concurrent.Executor;
 
 import it.units.alcoholestimator.logic.Gender;
+import it.units.alcoholestimator.logic.SignIn;
 import it.units.alcoholestimator.logic.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        GoogleSignInOptions googleOptions = MainActivity.getGoogleSignInOptions();
+        GoogleSignInOptions googleOptions = SignIn.getGoogleSignInOptions();
         googleSignInClient = GoogleSignIn.getClient(this, googleOptions);
 
         maleButton = findViewById(R.id.male);
@@ -189,13 +190,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    @NonNull
-    public static GoogleSignInOptions getGoogleSignInOptions() {
-        return new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestEmail()
-                        .build();
     }
 
     private void signIn() {
