@@ -251,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
                         User.setIsSignedIn(true);
 
                         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+                        assert account != null;
                         User.setEmail(account.getEmail());
                         DatabaseManager.addUser(User.getEmail(), User.getGender(), User.getWeight());
                     }
