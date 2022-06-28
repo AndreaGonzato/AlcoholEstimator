@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.logic.DatabaseManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,8 +72,12 @@ public class DashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // write the code here
-        // TODO remove this block of comment
-        // button = findbyID(....)
+        Button fetchDrinksButton = requireView().findViewById(R.id.fetchDrinksButton);
+        fetchDrinksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseManager.fetchUserDrinks();
+            }
+        });
     }
 }

@@ -141,8 +141,7 @@ public class AddDrinkFragment extends Fragment {
                 // TODO get current value of the input data (manage the custom drink add)
                 Date date = new GregorianCalendar(year, month - 1, day, hour, minute).getTime();
                 Log.i("TEST", "drinkType:"+drinkType+ " alcoholContent:"+alcoholContent+" drinkSize:"+drinkSize +" date:"+date);
-                // Date currentDate = new Date(System.currentTimeMillis());
-                //DatabaseManager.addFriend("Riccardo", "Saltarel", currentDate);
+                DatabaseManager.addDrink(drinkType, alcoholContent, drinkSize, date);
 
             }
         });

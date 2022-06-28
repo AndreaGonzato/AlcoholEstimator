@@ -28,6 +28,8 @@ public class DatabaseManager {
     public static final String EMAIL_KEY = "email";
     public static final String GENDER_KEY = "gender";
     public static final String WEIGHT_KEY = "weight";
+    public static final String USERS = "users";
+    public static final String DRINKS = "drinks";
 
     public static FirebaseFirestore getDatabase(){
         return FirebaseFirestore.getInstance();
@@ -41,12 +43,14 @@ public class DatabaseManager {
         user.put(WEIGHT_KEY, weight);
 
         // Add a new document with a generated ID
-        getDatabase().collection("user")
+        getDatabase().collection(USERS)
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        User.setId(documentReference.getId());
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -66,7 +70,7 @@ public class DatabaseManager {
         drink.put(DATE_KEY, date);
 
         // Add a new document with a generated ID
-        getDatabase().collection("drinks")
+        getDatabase().collection(USERS+"/" + User.getId() + "/" + DRINKS)
                 .add(drink)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -82,33 +86,8 @@ public class DatabaseManager {
                 });
     }
 
-    public static void addFriend(String name, String surname, Date date){
-        // Create a new user with a first and last name
-        Map<String, Object> friend = new HashMap<>();
-        friend.put("name", name);
-        friend.put("surname", surname);
-        friend.put("born", date);
-
-        // Add a new document with a generated ID
-        getDatabase().collection("friends")
-                .add(friend)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
-    }
-
-    public static void readData(String collectionPath){
-        //eg collectionPath = "users"
-        getDatabase().collection(collectionPath)
+    public static void fetchUserDrinks(){
+        getDatabase().collection(USERS+"/"+User.getId()+"/"+DRINKS)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
