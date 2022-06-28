@@ -94,6 +94,8 @@ public class DatabaseManager {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                Date date = (Date) document.get(DATE_KEY);
+                                // TODO fetch only date of the previous 24 hours
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {
@@ -101,6 +103,16 @@ public class DatabaseManager {
                         }
                     }
                 });
+    }
+
+    public static boolean isRecent(Date date){
+        // TODO continue here, check that it work
+        Date now = new Date();
+        if (now.getTime() - date.getTime() < 86400000L){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 
