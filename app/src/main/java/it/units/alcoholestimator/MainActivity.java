@@ -35,6 +35,7 @@ import com.google.android.gms.tasks.Task;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
+import it.units.alcoholestimator.logic.DatabaseManager;
 import it.units.alcoholestimator.logic.Gender;
 import it.units.alcoholestimator.logic.SignIn;
 import it.units.alcoholestimator.logic.User;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             // user has already log in
             Log.i("TEST", "welcome again");
             Log.i("TEST", "" + account.getEmail());
+            User.setEmail(account.getEmail()); // TODO is not in the best place this line
             // TODO decide if user has already log in to start a new activity
             // startActivity(new Intent(MainActivity.this, DashboardActivity.class));
         }
@@ -196,7 +198,6 @@ public class MainActivity extends AppCompatActivity {
         User.setIsSignedIn(true);
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityIntent.launch(signInIntent);
-        //startActivityForResult(signInIntent, RC_SIGN_IN); // TODO remove this line
 
     }
 
@@ -248,6 +249,10 @@ public class MainActivity extends AppCompatActivity {
                         User.setIsSignedIn(false);
                     }else {
                         User.setIsSignedIn(true);
+
+                        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+                        User.setEmail(account.getEmail());
+                        DatabaseManager.addUser(User.getEmail(), User.getGender(), User.getWeight());
                     }
                 }
 

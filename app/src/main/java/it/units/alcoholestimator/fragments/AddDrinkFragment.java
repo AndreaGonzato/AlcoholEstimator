@@ -19,9 +19,12 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.logic.DatabaseManager;
 import it.units.alcoholestimator.logic.Month;
 
 /**
@@ -134,7 +137,12 @@ public class AddDrinkFragment extends Fragment {
         addDrinkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO store record on cloud
+                // TODO store drink in the database
+                // TODO get current value of the input data (manage the custom drink add)
+                Date date = new GregorianCalendar(year, month - 1, day, hour, minute).getTime();
+                Log.i("TEST", "drinkType:"+drinkType+ " alcoholContent:"+alcoholContent+" drinkSize:"+drinkSize +" date:"+date);
+                // Date currentDate = new Date(System.currentTimeMillis());
+                //DatabaseManager.addFriend("Riccardo", "Saltarel", currentDate);
 
             }
         });

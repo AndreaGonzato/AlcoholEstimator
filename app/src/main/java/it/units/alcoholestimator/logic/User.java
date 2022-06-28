@@ -3,6 +3,7 @@ package it.units.alcoholestimator.logic;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 
 public class User {
+    private static String email;
     private static Gender gender;
     private static int weight;
     private static boolean isSignedIn = false;
@@ -29,5 +30,13 @@ public class User {
 
     public static void setIsSignedIn(boolean isSignedIn) {
         User.isSignedIn = isSignedIn;
+    }
+
+    public static String getEmail() {
+        return email;
+    }
+
+    public static void setEmail(String email) {
+        User.email = email;
     }
 }
