@@ -23,4 +23,9 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("it.units.alcoholestimator", appContext.getPackageName());
     }
+
+    @Test
+    public void test(){
+        assertTrue(true);
+    }
 }

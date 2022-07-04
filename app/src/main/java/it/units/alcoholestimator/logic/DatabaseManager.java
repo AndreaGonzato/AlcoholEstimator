@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +31,7 @@ public class DatabaseManager {
     public static final String WEIGHT_KEY = "weight";
     public static final String USERS = "users";
     public static final String DRINKS = "drinks";
+    public static final long MILLISECONDS_IN_DAY = 86400000L;
 
     public static FirebaseFirestore getDatabase(){
         return FirebaseFirestore.getInstance();
@@ -105,14 +107,11 @@ public class DatabaseManager {
                 });
     }
 
-    public static boolean isRecent(Date date){
-        // TODO continue here, check that it work
-        Date now = new Date();
-        if (now.getTime() - date.getTime() < 86400000L){
-            return true;
-        }else {
-            return false;
-        }
+    public static boolean isRecent(Calendar calendar){
+        long now = System.currentTimeMillis();
+        long time = calendar.getTimeInMillis();
+        long deltaTime = Math.abs(now - time);
+        return deltaTime <= MILLISECONDS_IN_DAY;
     }
 
 
