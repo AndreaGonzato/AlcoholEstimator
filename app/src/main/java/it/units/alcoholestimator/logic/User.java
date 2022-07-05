@@ -17,7 +17,6 @@ public class User {
         if(cursor.getCount() == 0){
             throw new SQLException("Error: No data found for the local user");
         }else {
-            StringBuffer buffer = new StringBuffer();
             while (cursor.moveToNext()){
                 User.setCloudID(cursor.getString(1));
                 User.setEmail(cursor.getString(2));
