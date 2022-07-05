@@ -8,16 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import it.units.alcoholestimator.R;
-import it.units.alcoholestimator.logic.DatabaseHelper;
-import it.units.alcoholestimator.logic.DatabaseManager;
-import it.units.alcoholestimator.logic.User;
+import it.units.alcoholestimator.logic.LocalDatabaseHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,7 +78,7 @@ public class DashboardFragment extends Fragment {
         fetchDrinksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Cursor cursor = DatabaseHelper.getAllData();
+                Cursor cursor = LocalDatabaseHelper.getAllData();
                 if(cursor.getCount() == 0){
                     // show message
                     showMessage("Error", "No data found");
@@ -99,7 +96,7 @@ public class DashboardFragment extends Fragment {
 
                     // show all data
                     showMessage("Data", buffer.toString());
-                    DatabaseHelper.emptyUserTable(); // TODO remove this line
+
                 }
                 //DatabaseManager.fetchUserDrinks(); // TODO remove this comment
             }

@@ -1,13 +1,48 @@
 package it.units.alcoholestimator.logic;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import android.database.Cursor;
+import android.util.Log;
+
+import java.sql.SQLException;
 
 public class User {
-    private static String id;
+    private static String cloudID;
     private static String email;
     private static Gender gender;
     private static int weight;
-    private static boolean isSignedIn = false;
+    private static boolean isSignedInWithGoogle = false;
+
+    public static void loadUserFromLocalDatabase() throws SQLException {
+        Cursor cursor = LocalDatabaseHelper.getAllData();
+        if(cursor.getCount() == 0){
+            throw new SQLException("Error: No data found for the local user");
+        }else {
+            StringBuffer buffer = new StringBuffer();
+            while (cursor.moveToNext()){
+                User.setCloudID(cursor.getString(1));
+                User.setEmail(cursor.getString(2));
+                switch (cursor.getString(3)){
+                    case "MALE":
+                        User.setGender(Gender.MALE);
+                        break;
+                    case "FEMALE":
+                        User.setGender(Gender.FEMALE);
+                        break;
+                }
+
+                User.setWeight(Integer.parseInt(cursor.getString(4)));
+                switch (cursor.getString(5)){
+                    case "true":
+                        User.setIsSignedInWithGoogle(true);
+                        break;
+                    case "false":
+                        User.setIsSignedInWithGoogle(false);
+                        break;
+                }
+            }
+
+        }
+    }
 
     public static void setGender(Gender gender) {
         User.gender = gender;
@@ -25,12 +60,12 @@ public class User {
         return User.weight;
     }
 
-    public static boolean isIsSignedIn() {
-        return isSignedIn;
+    public static boolean isIsSignedInWithGoogle() {
+        return isSignedInWithGoogle;
     }
 
-    public static void setIsSignedIn(boolean isSignedIn) {
-        User.isSignedIn = isSignedIn;
+    public static void setIsSignedInWithGoogle(boolean isSignedInWithGoogle) {
+        User.isSignedInWithGoogle = isSignedInWithGoogle;
     }
 
     public static String getEmail() {
@@ -41,11 +76,11 @@ public class User {
         User.email = email;
     }
 
-    public static String getId() {
-        return id;
+    public static String getCloudID() {
+        return cloudID;
     }
 
-    public static void setId(String id) {
-        User.id = id;
+    public static void setCloudID(String cloudID) {
+        User.cloudID = cloudID;
     }
 }

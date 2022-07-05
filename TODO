@@ -1,6 +1,12 @@
-FireBase
+non permettere di tornare indietro nella schermata di login
+
+quando chiudi applicazione dopo aver fatto il google sigIn non si ricorda che hai fatto il signin
+
+controlla che peso e sesso siano sempre corretti
+
+FireBase structure per presentazione:
 Cro una Users collection
-Per ognmi user creo dei documenti diversi(drinks)
+Per ognmi user creo dei documenti diversi (drinks)
 
 Le collection sono l'equivalente delle tabelle nei relazionali
 I documenti sono l'equivalente dei records nei DB relazionali

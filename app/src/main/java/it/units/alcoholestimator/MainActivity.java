@@ -6,12 +6,10 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -29,13 +27,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.util.Objects;
-import java.util.concurrent.Executor;
 
-import it.units.alcoholestimator.logic.DatabaseHelper;
+import it.units.alcoholestimator.logic.LocalDatabaseHelper;
 import it.units.alcoholestimator.logic.DatabaseManager;
 import it.units.alcoholestimator.logic.Gender;
 import it.units.alcoholestimator.logic.SignIn;
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(GoogleSignInAccount account) {
-        if(account == null || !User.isIsSignedIn()){
+        if(account == null || !User.isIsSignedInWithGoogle()){
             // first time that the user is doing the log in
             Log.i("TEST", "welcome for the first time");
         }else {
@@ -181,12 +179,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        DatabaseHelper localDB = new DatabaseHelper(this);
+        LocalDatabaseHelper localDB = new LocalDatabaseHelper(this);
+
+        try {
+            User.loadUserFromLocalDatabase();
+        }catch (SQLException e){
+            // there are no data to load for the user in the local database
+            // TODO do I need to do something?
+        }
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isInserted = localDB.insertData("fake_cloud_id", "fake_email@gmail.com", Gender.MALE.representation, User.getWeight(), "y");
+                boolean isInserted;
+                if(User.isIsSignedInWithGoogle()){
+                    isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), User.getEmail(), User.getGender().representation, User.getWeight(), "true");
+                }else {
+                    isInserted = LocalDatabaseHelper.insertData("fake_cloud_id", "fake_email@gmail.com", User.getGender().representation, User.getWeight(), "false");
+                }
+
                 if(isInserted){
                     Log.i("DATABASE:", "inserted");
                 }else {
@@ -204,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void signIn() {
-        User.setIsSignedIn(true);
+        User.setIsSignedInWithGoogle(true);
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityIntent.launch(signInIntent);
 
@@ -255,9 +266,9 @@ public class MainActivity extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode()==RESULT_CANCELED){
                     Log.i("IMPORTANT", "CANCELED Intent");
-                        User.setIsSignedIn(false);
+                        User.setIsSignedInWithGoogle(false);
                     }else {
-                        User.setIsSignedIn(true);
+                        User.setIsSignedInWithGoogle(true);
 
                         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
                         assert account != null;

@@ -1,7 +1,6 @@
 package it.units.alcoholestimator.fragments;
 
 import android.app.Activity;
-import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,9 +21,8 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.concurrent.Executor;
 
-import it.units.alcoholestimator.DashboardActivity;
-import it.units.alcoholestimator.MainActivity;
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.logic.LocalDatabaseHelper;
 import it.units.alcoholestimator.logic.SignIn;
 import it.units.alcoholestimator.logic.User;
 
@@ -96,8 +94,9 @@ public class SettingsFragment extends Fragment {
     }
 
     private void signOut() {
+        LocalDatabaseHelper.emptyUserTable();
+        User.setIsSignedInWithGoogle(false);
         // TODO there is a problem here
-        User.setIsSignedIn(false);
         Activity activity = getActivity();
         GoogleSignInOptions googleOptions = SignIn.getGoogleSignInOptions();
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(activity, googleOptions);

@@ -51,7 +51,7 @@ public class DatabaseManager {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                        User.setId(documentReference.getId());
+                        User.setCloudID(documentReference.getId());
 
                     }
                 })
@@ -72,7 +72,7 @@ public class DatabaseManager {
         drink.put(DATE_KEY, date);
 
         // Add a new document with a generated ID
-        getDatabase().collection(USERS+"/" + User.getId() + "/" + DRINKS)
+        getDatabase().collection(USERS+"/" + User.getCloudID() + "/" + DRINKS)
                 .add(drink)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -89,7 +89,7 @@ public class DatabaseManager {
     }
 
     public static void fetchUserDrinks(){
-        getDatabase().collection(USERS+"/"+User.getId()+"/"+DRINKS)
+        getDatabase().collection(USERS+"/"+User.getCloudID()+"/"+DRINKS)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
