@@ -37,6 +37,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    public static void emptyUserTable(){
+        // TODO this is not secure
+        SQLiteDatabase db = instance.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
+        db.execSQL("CREATE table " + TABLE_NAME + "( ID INTEGER PRIMARY KEY AUTOINCREMENT, CLOUD_ID TEXT, EMAIL TEXT, GENDER TEXT, WEIGHT INTEGER, IS_SIGNED_IN TEXT)");
+    }
+
+
     public static boolean insertData(String cloudId, String email, String gender, int weight, String isSignedIn){
         SQLiteDatabase db = instance.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

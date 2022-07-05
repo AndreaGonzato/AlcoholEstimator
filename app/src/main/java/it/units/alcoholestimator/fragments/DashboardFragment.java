@@ -99,6 +99,7 @@ public class DashboardFragment extends Fragment {
 
                     // show all data
                     showMessage("Data", buffer.toString());
+                    DatabaseHelper.emptyUserTable(); // TODO remove this line
                 }
                 //DatabaseManager.fetchUserDrinks(); // TODO remove this comment
             }
