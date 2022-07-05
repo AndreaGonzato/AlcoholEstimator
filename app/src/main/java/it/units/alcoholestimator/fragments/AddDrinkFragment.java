@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -137,11 +138,27 @@ public class AddDrinkFragment extends Fragment {
         addDrinkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO store drink in the database
+                // update the input values
+                drinkType = drinkDescriptionEditText.getText().toString();
+
+                if (!alcoholContentEditText.getText().toString().equals("")){
+                    alcoholContent = Integer.parseInt(alcoholContentEditText.getText().toString());
+                }
+                if (!drinkSizeEditText.getText().toString().equals("")){
+                    drinkSize = Integer.parseInt(drinkSizeEditText.getText().toString());
+                }
+
                 // TODO get current value of the input data (manage the custom drink add)
                 Date date = new GregorianCalendar(year, month - 1, day, hour, minute).getTime();
-                Log.i("TEST", "drinkType:"+drinkType+ " alcoholContent:"+alcoholContent+" drinkSize:"+drinkSize +" date:"+date);
-                DatabaseManager.addDrink(drinkType, alcoholContent, drinkSize, date);
+
+                Log.i("TEST", "drinkType:" + drinkType + " alcoholContent:" + alcoholContent + " drinkSize:" + drinkSize + " date:" + date);
+
+                if (drinkType == null || drinkSize == 0 || alcoholContent == 0){
+                    Toast.makeText(getContext(), "Enter the drink details to add a drink", Toast.LENGTH_SHORT).show();
+                }else {
+                    // store drink in the database
+                    DatabaseManager.addDrink(drinkType, alcoholContent, drinkSize, date);
+                }
 
             }
         });
