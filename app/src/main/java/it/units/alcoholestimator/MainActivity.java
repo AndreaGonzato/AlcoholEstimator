@@ -35,6 +35,7 @@ import com.google.android.gms.tasks.Task;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
+import it.units.alcoholestimator.logic.DatabaseHelper;
 import it.units.alcoholestimator.logic.DatabaseManager;
 import it.units.alcoholestimator.logic.Gender;
 import it.units.alcoholestimator.logic.SignIn;
@@ -180,9 +181,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        DatabaseHelper localDB = new DatabaseHelper(this);
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean isInserted = localDB.insertData("fake_cloud_id", "fake_email@gmail.com", Gender.MALE.representation, User.getWeight(), "y");
+                if(isInserted){
+                    Log.i("DATABASE:", "inserted");
+                }else {
+                    Log.i("DATABASE:", "NOT inserted");
+                }
                 if (User.getGender() != null){
                     startActivity(new Intent(MainActivity.this, DashboardActivity.class));
                 }else {

@@ -31,7 +31,7 @@ public class DatabaseManager {
     public static final String WEIGHT_KEY = "weight";
     public static final String USERS = "users";
     public static final String DRINKS = "drinks";
-    public static final long MILLISECONDS_IN_DAY = 86400000L;
+    public static final long MILLISECODS_PER_DAY = 86400000L;
 
     public static FirebaseFirestore getDatabase(){
         return FirebaseFirestore.getInstance();
@@ -111,7 +111,7 @@ public class DatabaseManager {
         long now = System.currentTimeMillis();
         long time = calendar.getTimeInMillis();
         long deltaTime = Math.abs(now - time);
-        return deltaTime <= MILLISECONDS_IN_DAY;
+        return deltaTime <= MILLISECODS_PER_DAY;
     }
 
 

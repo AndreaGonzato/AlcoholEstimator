@@ -1,18 +1,23 @@
 package it.units.alcoholestimator.fragments;
 
+import android.app.AlertDialog;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.logic.DatabaseHelper;
 import it.units.alcoholestimator.logic.DatabaseManager;
+import it.units.alcoholestimator.logic.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,8 +81,36 @@ public class DashboardFragment extends Fragment {
         fetchDrinksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseManager.fetchUserDrinks();
+                Cursor cursor = DatabaseHelper.getAllData();
+                if(cursor.getCount() == 0){
+                    // show message
+                    showMessage("Error", "No data found");
+                    return;
+                }else {
+                    StringBuffer buffer = new StringBuffer();
+                    while (cursor.moveToNext()){
+                        buffer.append("ID: "+ cursor.getString(0)+ "\n");
+                        buffer.append("CLOUD_ID: "+ cursor.getString(1)+ "\n");
+                        buffer.append("EMAIL: "+ cursor.getString(2)+ "\n");
+                        buffer.append("GENDER: "+ cursor.getString(3)+ "\n");
+                        buffer.append("WEIGHT: "+ cursor.getString(4)+ "\n");
+                        buffer.append("IS_SIGNED_IN: "+ cursor.getString(5)+ "\n\n");
+                    }
+
+                    // show all data
+                    showMessage("Data", buffer.toString());
+                }
+                //DatabaseManager.fetchUserDrinks(); // TODO remove this comment
             }
         });
+    }
+
+    public void showMessage(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+
     }
 }
