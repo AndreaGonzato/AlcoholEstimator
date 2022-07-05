@@ -110,8 +110,12 @@ public class AddDrinkFragment extends Fragment {
         initDatePicker();
         Button dateButton = requireView().findViewById(R.id.datePickerButton);
         dateButton.setText(getTodayDate());
-
-        dateButton.setOnClickListener(view1 -> datePickerDialog.show());
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePickerDialog.show();
+            }
+        });
 
         timeButton = requireView().findViewById(R.id.timePickerButton);
         setCurrentTime();
@@ -148,7 +152,6 @@ public class AddDrinkFragment extends Fragment {
                     drinkSize = Integer.parseInt(drinkSizeEditText.getText().toString());
                 }
 
-                // TODO get current value of the input data (manage the custom drink add)
                 Date date = new GregorianCalendar(year, month - 1, day, hour, minute).getTime();
 
                 Log.i("TEST", "drinkType:" + drinkType + " alcoholContent:" + alcoholContent + " drinkSize:" + drinkSize + " date:" + date);
@@ -177,9 +180,10 @@ public class AddDrinkFragment extends Fragment {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
         {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day)
-            {
-                month = month + 1;
+            public void onDateSet(DatePicker datePicker, int y, int m, int d){
+                year = y;
+                month = m + 1;
+                day = d;
                 String date = makeDateString(day, month, year);
                 Button button = requireView().findViewById(R.id.datePickerButton);
                 button.setText(date);
