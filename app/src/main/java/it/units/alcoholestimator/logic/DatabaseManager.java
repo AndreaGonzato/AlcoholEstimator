@@ -40,12 +40,6 @@ public class DatabaseManager {
     public static final String USERS = "users";
     public static final String DRINKS = "drinks";
 
-    public static DatabaseManager instance;
-
-    public DatabaseManager() {
-        instance = this;
-    }
-
     public static FirebaseFirestore getDatabase(){
         return FirebaseFirestore.getInstance();
     }
@@ -137,9 +131,5 @@ public class DatabaseManager {
                         }
                     }
                 });
-    }
-
-    public static DatabaseManager getInstance() {
-        return instance;
     }
 }
