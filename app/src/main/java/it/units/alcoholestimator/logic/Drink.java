@@ -3,12 +3,14 @@ package it.units.alcoholestimator.logic;
 import java.util.Date;
 
 public class Drink {
+    private final String cloudId;
     private final String description;
     private final int sizeMl;
     private final float alcoholContentPercentage;
     private final Date assumption;
 
-    public Drink(String description, int sizeMl, float alcoholContentPercentage, Date assumption) {
+    public Drink(String cloudId, String description, int sizeMl, float alcoholContentPercentage, Date assumption) {
+        this.cloudId = cloudId;
         this.description = description;
         this.sizeMl = sizeMl;
         this.alcoholContentPercentage = alcoholContentPercentage;
@@ -29,6 +31,10 @@ public class Drink {
 
     public Date getAssumption() {
         return assumption;
+    }
+
+    public String getCloudId() {
+        return cloudId;
     }
 
     @Override

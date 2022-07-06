@@ -83,13 +83,24 @@ public class FirebaseDatabaseManager {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId()); // TODO remove this log?
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error adding document", e);
+                    }
+                });
+    }
+
+    public static void deleteDrink(String idDrinkDocumentToDelete){
+        getDatabase().collection(USERS+"/"+User.getCloudID()+"/"+DRINKS).document(idDrinkDocumentToDelete)
+                .delete()
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
                     }
                 });
     }
@@ -109,6 +120,8 @@ public class FirebaseDatabaseManager {
 
                                 // filter the drinks (documents) that are recent (24 hours old at max)
                                 if (StaticUtils.isRecent(date)){
+                                    String id = document.getId();
+
                                     String description = (String) document.getData().get(DRINK_TYPE_KEY);
 
                                     int size = Objects.requireNonNull((Long) document.getData().get(DRINK_SIZE_KEY)).intValue();
@@ -116,7 +129,7 @@ public class FirebaseDatabaseManager {
                                     float alcoholContent = Objects.requireNonNull((Long) document.getData().get(ALCOHOL_CONTENT_KEY)).floatValue();
                                     Log.i("TEST", "fetched drink: {description:" + description + " size:" + size + " alcoholContent: "+alcoholContent + " date:"+date + " }");
 
-                                    Drink drink = new Drink(description, size, alcoholContent, date);
+                                    Drink drink = new Drink(id, description, size, alcoholContent, date);
                                     Log.i("TEST", "drink: "+drink);
                                     recentDrinks.add(drink);
                                 }

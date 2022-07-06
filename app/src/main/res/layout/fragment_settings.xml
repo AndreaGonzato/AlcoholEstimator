@@ -34,6 +34,16 @@
             app:layout_constraintTop_toBottomOf="@id/signOutButton"
             app:layout_constraintStart_toStartOf="@id/signOutButton"
             android:layout_marginTop="20dp"/>
+
+        <android.widget.Button
+            android:id="@+id/deleteDrinksButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_all_the_drinks"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/showUserInfoButton"
+            android:layout_marginTop="20dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

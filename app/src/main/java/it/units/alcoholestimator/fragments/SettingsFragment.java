@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.Task;
 import java.util.concurrent.Executor;
 
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.logic.Drink;
+import it.units.alcoholestimator.logic.FirebaseDatabaseManager;
 import it.units.alcoholestimator.logic.LocalDatabaseHelper;
 import it.units.alcoholestimator.logic.SignIn;
 import it.units.alcoholestimator.logic.StaticUtils;
@@ -116,6 +118,16 @@ public class SettingsFragment extends Fragment {
                     // show all data
                     StaticUtils.showMessage("User", buffer.toString(), getContext());
 
+                }
+            }
+        });
+
+        Button deleteDrinksButton = requireView().findViewById(R.id.deleteDrinksButton);
+        deleteDrinksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (Drink drink : User.getRecentDrinks()){
+                    FirebaseDatabaseManager.deleteDrink(drink.getCloudId());
                 }
             }
         });
