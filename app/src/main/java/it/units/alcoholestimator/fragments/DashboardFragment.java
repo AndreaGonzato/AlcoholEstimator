@@ -14,11 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.logic.DatabaseManager;
+import it.units.alcoholestimator.logic.Drink;
 import it.units.alcoholestimator.logic.LocalDatabaseHelper;
 import it.units.alcoholestimator.logic.StaticUtils;
+import it.units.alcoholestimator.logic.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,14 +81,35 @@ public class DashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // download all the drinks of the last 24 of the user from cloud
+        DatabaseManager.fetchUserDrinks();
+
         Button fetchDrinksButton = requireView().findViewById(R.id.fetchDrinksButton);
         fetchDrinksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatabaseManager.fetchUserDrinks(); // TODO remove this comment
-                Log.i("TEST", "after the fetch in dashboard fragment");
+                Log.i("TEST", "after fetch");
             }
         });
+
+        // TODO remove showDrinksButton var and xml code
+        Button showDrinksButton = requireView().findViewById(R.id.showDrinksButton);
+        showDrinksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (Drink drink: User.getRecentDrinks()){
+                    Log.i("TEST", drink.toString());
+                }
+            }
+        });
+
+    }
+
+    public void updateGUI(){
+        // TODO continue her to code
+        TextView numberOfDrink = requireView().findViewById(R.id.numberOfDrinksTextView);
+        numberOfDrink.setText(String.valueOf(User.getRecentDrinks().size()));
     }
 
 }

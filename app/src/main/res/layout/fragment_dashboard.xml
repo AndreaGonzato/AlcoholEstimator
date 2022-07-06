@@ -30,6 +30,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/introEstimatedTextView" />
 
+    <TextView
+        android:id="@+id/introNumberOfDrinksTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number_of_drinks_in_the_last_24_hours"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@id/alcoholContentTextView"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/numberOfDrinksTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/introEstimatedTextView"
+        android:text="@string/default_number_of_drinks_in_the_last_24_hours"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/introNumberOfDrinksTextView" />
+
     <android.widget.Button
         android:id="@+id/fetchDrinksButton"
         android:layout_width="wrap_content"
@@ -48,6 +73,24 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="100dp"
         app:layout_constraintTop_toBottomOf="@id/alcoholContentTextView"
+        app:layout_constraintHorizontal_bias="0.5" />
+
+    <android.widget.Button
+        android:id="@+id/showDrinksButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show drinks"
+        android:textSize="30sp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/black"
+        android:background="@color/blueGoogle"
+        style="?android:spinnerStyle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toBottomOf="@id/fetchDrinksButton"
         app:layout_constraintHorizontal_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

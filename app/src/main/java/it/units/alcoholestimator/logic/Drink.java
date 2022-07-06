@@ -30,4 +30,14 @@ public class Drink {
     public Date getAssumption() {
         return assumption;
     }
+
+    @Override
+    public String toString() {
+        return "Drink{" +
+                "description='" + description + '\'' +
+                ", sizeMl=" + sizeMl +
+                ", alcoholContentPercentage=" + alcoholContentPercentage +
+                ", assumption=" + assumption +
+                '}';
+    }
 }

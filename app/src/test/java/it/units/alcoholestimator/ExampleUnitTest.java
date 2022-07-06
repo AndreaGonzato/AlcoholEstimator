@@ -12,6 +12,7 @@ import java.util.GregorianCalendar;
 
 import it.units.alcoholestimator.logic.DatabaseManager;
 import it.units.alcoholestimator.logic.Gender;
+import it.units.alcoholestimator.logic.StaticUtils;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -21,15 +22,20 @@ import it.units.alcoholestimator.logic.Gender;
 public class ExampleUnitTest {
 
     @Test
-    public void isNowRecent() {
-        assertTrue(DatabaseManager.isRecent(new GregorianCalendar()));
+    public void isNowCalendarRecent() {
+        assertTrue(StaticUtils.isRecent(new GregorianCalendar()));
     }
 
     @Test
-    public void isTodayRecent() {
+    public void isNowDateRecent() {
+        assertTrue(StaticUtils.isRecent(new Date()));
+    }
+
+    @Test
+    public void isTodayCalendarRecent() {
         Calendar todayCalendar = Calendar.getInstance();
         todayCalendar.set(todayCalendar.get(Calendar.YEAR), todayCalendar.get(Calendar.MONTH), todayCalendar.get(Calendar.DATE));
-        assertTrue(DatabaseManager.isRecent(todayCalendar));
+        assertTrue(StaticUtils.isRecent(todayCalendar));
     }
 
 

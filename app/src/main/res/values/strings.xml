@@ -48,4 +48,6 @@
     <string name="add_drink">Add Drink</string>
     <string name="sign_out">Sign Out</string>
     <string name="user_info">user info</string>
+    <string name="number_of_drinks_in_the_last_24_hours">Number of drinks in the last 24 hours:</string>
+    <string name="default_number_of_drinks_in_the_last_24_hours">0</string>
 </resources>

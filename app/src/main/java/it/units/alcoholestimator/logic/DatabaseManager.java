@@ -19,8 +19,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import it.units.alcoholestimator.fragments.DashboardFragment;
 
 public class DatabaseManager {
 
@@ -28,12 +32,13 @@ public class DatabaseManager {
     public static final String ALCOHOL_CONTENT_KEY = "alcoholContent";
     public static final String DRINK_SIZE_KEY = "drinkSize";
     public static final String DATE_KEY = "date";
+
     public static final String EMAIL_KEY = "email";
     public static final String GENDER_KEY = "gender";
     public static final String WEIGHT_KEY = "weight";
+
     public static final String USERS = "users";
     public static final String DRINKS = "drinks";
-    public static final long MILLISECODS_PER_DAY = 86400000L;
 
     public static FirebaseFirestore getDatabase(){
         return FirebaseFirestore.getInstance();
@@ -97,29 +102,35 @@ public class DatabaseManager {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            List<Drink> recentDrinks = new LinkedList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 Timestamp timestamp = (Timestamp) document.getData().get(DATE_KEY);
                                 Date date = Objects.requireNonNull(timestamp).toDate();
 
-                                // TODO filter the drinks (documents) that are recent (24 hours old at max)
-                                Log.i("TEST", "date: "+ date); // TODO remove this log
+                                // filter the drinks (documents) that are recent (24 hours old at max)
+                                if (StaticUtils.isRecent(date)){
+                                    String description = (String) document.getData().get(DRINK_TYPE_KEY);
 
-                                // TODO fetch only date of the previous 24 hours
-                                Log.d("TEST", document.getId() + " => " + document.getData());
+                                    int size = Objects.requireNonNull((Long) document.getData().get(DRINK_SIZE_KEY)).intValue();
+
+                                    float alcoholContent = Objects.requireNonNull((Long) document.getData().get(ALCOHOL_CONTENT_KEY)).floatValue();
+                                    Log.i("TEST", "fetched drink: {description:" + description + " size:" + size + " alcoholContent: "+alcoholContent + " date:"+date + " }");
+
+                                    Drink drink = new Drink(description, size, alcoholContent, date);
+                                    Log.i("TEST", "drink: "+drink);
+                                    recentDrinks.add(drink);
+                                }
+
+                                //Log.d("TEST", document.getId() + " => " + document.getData());
                             }
+                            User.setRecentDrinks(recentDrinks);
+                            //DashboardFragment.updateGUI();
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
-    }
-
-    public static boolean isRecent(Calendar calendar){
-        long now = System.currentTimeMillis();
-        long time = calendar.getTimeInMillis();
-        long deltaTime = Math.abs(now - time);
-        return deltaTime <= MILLISECODS_PER_DAY;
     }
 
 

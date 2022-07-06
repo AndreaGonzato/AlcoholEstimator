@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.util.Log;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class User {
     private static String cloudID;
@@ -11,6 +12,7 @@ public class User {
     private static Gender gender;
     private static int weight;
     private static boolean isSignedInWithGoogle = false;
+    private static List<Drink> recentDrinks;
 
     public static void loadUserFromLocalDatabase() throws SQLException {
         Cursor cursor = LocalDatabaseHelper.getAllData();
@@ -81,5 +83,13 @@ public class User {
 
     public static void setCloudID(String cloudID) {
         User.cloudID = cloudID;
+    }
+
+    public static List<Drink> getRecentDrinks() {
+        return recentDrinks;
+    }
+
+    public static void setRecentDrinks(List<Drink> recentDrinks) {
+        User.recentDrinks = recentDrinks;
     }
 }
