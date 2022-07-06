@@ -1,6 +1,7 @@
 package it.units.alcoholestimator.fragments;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import java.util.concurrent.Executor;
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.logic.LocalDatabaseHelper;
 import it.units.alcoholestimator.logic.SignIn;
+import it.units.alcoholestimator.logic.StaticUtils;
 import it.units.alcoholestimator.logic.User;
 
 /**
@@ -89,6 +91,32 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 signOut();
+            }
+        });
+
+        Button userInfoButton = requireView().findViewById(R.id.showUserInfoButton);
+        userInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Cursor cursor = LocalDatabaseHelper.getAllData();
+                if(cursor.getCount() == 0){
+                    // show message
+                    StaticUtils.showMessage("Error", "No user found in the local database", getContext());
+                }else {
+                    StringBuilder buffer = new StringBuilder();
+                    while (cursor.moveToNext()){
+                        buffer.append("ID: ").append(cursor.getString(0)).append("\n");
+                        buffer.append("CLOUD_ID: ").append(cursor.getString(1)).append("\n");
+                        buffer.append("EMAIL: ").append(cursor.getString(2)).append("\n");
+                        buffer.append("GENDER: ").append(cursor.getString(3)).append("\n");
+                        buffer.append("WEIGHT: ").append(cursor.getString(4)).append("\n");
+                        buffer.append("IS_SIGNED_IN: ").append(cursor.getString(5)).append("\n\n");
+                    }
+
+                    // show all data
+                    StaticUtils.showMessage("User", buffer.toString(), getContext());
+
+                }
             }
         });
     }

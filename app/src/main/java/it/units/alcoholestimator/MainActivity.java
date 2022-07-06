@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         LocalDatabaseHelper localDB = new LocalDatabaseHelper(this);
 
         try {
-            User.loadUserFromLocalDatabase();
+            User.loadUserFromLocalDatabase(); // TODO when start the app need to bo done
         }catch (SQLException e){
             // there are no data to load for the user in the local database
             // TODO do I need to do something?

@@ -1,6 +1,7 @@
 package it.units.alcoholestimator.fragments;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -14,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.logic.DatabaseManager;
 import it.units.alcoholestimator.logic.LocalDatabaseHelper;
+import it.units.alcoholestimator.logic.StaticUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,10 +81,11 @@ public class DashboardFragment extends Fragment {
         fetchDrinksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 Cursor cursor = LocalDatabaseHelper.getAllData();
                 if(cursor.getCount() == 0){
                     // show message
-                    showMessage("Error", "No data found");
+                    StaticUtils.showMessage("Error", "No data found", getContext());
                     return;
                 }else {
                     StringBuffer buffer = new StringBuffer();
@@ -95,20 +99,16 @@ public class DashboardFragment extends Fragment {
                     }
 
                     // show all data
-                    showMessage("Data", buffer.toString());
+                    StaticUtils.showMessage("Data", buffer.toString(), getContext());
 
                 }
-                //DatabaseManager.fetchUserDrinks(); // TODO remove this comment
+                 */
+
+
+
+                DatabaseManager.fetchUserDrinks(); // TODO remove this comment
             }
         });
     }
 
-    public void showMessage(String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
-
-    }
 }
