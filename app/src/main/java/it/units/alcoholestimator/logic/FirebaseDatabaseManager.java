@@ -16,7 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -125,7 +124,7 @@ public class FirebaseDatabaseManager {
                                 //Log.d("TEST", document.getId() + " => " + document.getData());
                             }
                             User.setRecentDrinks(recentDrinks);
-                            dashboardFragment.updateGUI();
+                            dashboardFragment.updateGUIAfterDownloadDataFromCloud();
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

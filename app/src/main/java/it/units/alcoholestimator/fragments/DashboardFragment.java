@@ -92,9 +92,11 @@ public class DashboardFragment extends Fragment {
 
     }
 
-    public void updateGUI(){
+    public void updateGUIAfterDownloadDataFromCloud(){
         TextView numberOfDrink = requireView().findViewById(R.id.numberOfDrinksTextView);
         numberOfDrink.setText(String.valueOf(User.getRecentDrinks().size()));
+
+
     }
 
 }
