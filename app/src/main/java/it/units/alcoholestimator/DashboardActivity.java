@@ -25,8 +25,8 @@ public class DashboardActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         // load the DashboardFragment as default fragment
-        Fragment dashboardFragment = new DashboardFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, dashboardFragment).commit();
+        Fragment defaultDashboardFragment = new DashboardFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, defaultDashboardFragment).commit();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -37,8 +37,8 @@ public class DashboardActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, selectDrinkFragment).commit();
                     break;
                 case "dashboard":
-                    Fragment dashboardFragment1 = new DashboardFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, dashboardFragment1).commit();
+                    Fragment dashboardFragment = new DashboardFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, dashboardFragment).commit();
                     break;
                 case "settings":
                     Fragment settingsFragment = new SettingsFragment();

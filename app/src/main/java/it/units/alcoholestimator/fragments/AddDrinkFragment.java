@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -161,6 +162,10 @@ public class AddDrinkFragment extends Fragment {
                 }else {
                     // store drink in the database
                     DatabaseManager.addDrink(drinkType, alcoholContent, drinkSize, date);
+
+                    // change fragment after selection of a drink and move to the dashboardFragment
+                    Fragment dashboardFragment = new DashboardFragment();
+                    getParentFragmentManager().beginTransaction().replace(R.id.mainFragment, dashboardFragment).commit();
                 }
 
             }
