@@ -1,10 +1,11 @@
 package it.units.alcoholestimator.logic;
 
 import android.database.Cursor;
-import android.util.Log;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import it.units.alcoholestimator.database.LocalDatabaseHelper;
 
 public class User {
     private static String cloudID;

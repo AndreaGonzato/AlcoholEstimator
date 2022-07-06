@@ -1,4 +1,4 @@
-package it.units.alcoholestimator.logic;
+package it.units.alcoholestimator.database;
 
 import android.content.ContentValues;
 import android.content.Context;

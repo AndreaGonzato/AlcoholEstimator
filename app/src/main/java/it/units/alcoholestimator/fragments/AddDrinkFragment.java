@@ -25,7 +25,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import it.units.alcoholestimator.R;
-import it.units.alcoholestimator.logic.FirebaseDatabaseManager;
+import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 import it.units.alcoholestimator.logic.Month;
 
 /**

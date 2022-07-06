@@ -32,8 +32,8 @@ import com.google.android.gms.tasks.Task;
 import java.sql.SQLException;
 import java.util.Objects;
 
-import it.units.alcoholestimator.logic.LocalDatabaseHelper;
-import it.units.alcoholestimator.logic.FirebaseDatabaseManager;
+import it.units.alcoholestimator.database.LocalDatabaseHelper;
+import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 import it.units.alcoholestimator.logic.Gender;
 import it.units.alcoholestimator.logic.SignIn;
 import it.units.alcoholestimator.logic.User;

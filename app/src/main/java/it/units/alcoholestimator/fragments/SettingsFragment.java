@@ -24,8 +24,8 @@ import java.util.concurrent.Executor;
 
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.logic.Drink;
-import it.units.alcoholestimator.logic.FirebaseDatabaseManager;
-import it.units.alcoholestimator.logic.LocalDatabaseHelper;
+import it.units.alcoholestimator.database.FirebaseDatabaseManager;
+import it.units.alcoholestimator.database.LocalDatabaseHelper;
 import it.units.alcoholestimator.logic.SignIn;
 import it.units.alcoholestimator.logic.StaticUtils;
 import it.units.alcoholestimator.logic.User;

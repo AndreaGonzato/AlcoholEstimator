@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import it.units.alcoholestimator.R;
-import it.units.alcoholestimator.logic.FirebaseDatabaseManager;
+import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 import it.units.alcoholestimator.logic.Drink;
 import it.units.alcoholestimator.logic.User;
 
