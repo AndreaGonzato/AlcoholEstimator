@@ -116,31 +116,30 @@ public class FirebaseDatabaseManager {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            List<Drink> recentDrinks = new LinkedList<>();
+                            List<Drink> drinks = new LinkedList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 Timestamp timestamp = (Timestamp) document.getData().get(DATE_KEY);
                                 Date date = Objects.requireNonNull(timestamp).toDate();
 
-                                // filter the drinks (documents) that are recent (24 hours old at max)
-                                if (StaticUtils.isRecent(date)){
-                                    String id = document.getId();
+                                // TODO do i need to optimize the download of only the drink in the last 24 hours?
+                                String id = document.getId();
 
-                                    String description = (String) document.getData().get(DRINK_TYPE_KEY);
+                                String description = (String) document.getData().get(DRINK_TYPE_KEY);
 
-                                    int size = Objects.requireNonNull((Long) document.getData().get(DRINK_SIZE_KEY)).intValue();
+                                int size = Objects.requireNonNull((Long) document.getData().get(DRINK_SIZE_KEY)).intValue();
 
-                                    float alcoholContent = Objects.requireNonNull((Long) document.getData().get(ALCOHOL_CONTENT_KEY)).floatValue();
-                                    Log.i("TEST", "fetched drink: {description:" + description + " size:" + size + " alcoholContent: "+alcoholContent + " date:"+date + " }");
+                                float alcoholContent = Objects.requireNonNull((Long) document.getData().get(ALCOHOL_CONTENT_KEY)).floatValue();
+                                Log.i("TEST", "fetched drink: {description:" + description + " size:" + size + " alcoholContent: "+alcoholContent + " date:"+date + " }");
 
-                                    Drink drink = new Drink(id, description, size, alcoholContent, date);
-                                    Log.i("TEST", "drink: "+drink);
-                                    recentDrinks.add(drink);
-                                }
+                                Drink drink = new Drink(id, description, size, alcoholContent, date);
+                                Log.i("TEST", "drink: "+drink);
+                                drinks.add(drink);
 
-                                //Log.d("TEST", document.getId() + " => " + document.getData());
                             }
-                            User.setRecentDrinks(recentDrinks);
+
+                            User.setDrinks(drinks);
+
                             dashboardFragment.updateGUIAfterDownloadDataFromCloud();
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());

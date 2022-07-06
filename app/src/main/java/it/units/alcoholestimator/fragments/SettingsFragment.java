@@ -126,7 +126,7 @@ public class SettingsFragment extends Fragment {
         deleteDrinksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (Drink drink : User.getRecentDrinks()){
+                for (Drink drink : User.getDrinks()){
                     FirebaseDatabaseManager.deleteDrink(drink.getCloudId());
                 }
             }

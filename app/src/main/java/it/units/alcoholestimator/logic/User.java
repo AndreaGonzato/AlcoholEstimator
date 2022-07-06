@@ -1,9 +1,13 @@
 package it.units.alcoholestimator.logic;
 
 import android.database.Cursor;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import it.units.alcoholestimator.database.LocalDatabaseHelper;
 
@@ -13,7 +17,7 @@ public class User {
     private static Gender gender;
     private static int weight;
     private static boolean isSignedInWithGoogle = false;
-    private static List<Drink> recentDrinks;
+    private static List<Drink> drinks;
 
     public static void loadUserFromLocalDatabase() throws SQLException {
         Cursor cursor = LocalDatabaseHelper.getAllData();
@@ -86,11 +90,16 @@ public class User {
         User.cloudID = cloudID;
     }
 
-    public static List<Drink> getRecentDrinks() {
-        return recentDrinks;
+    public static List<Drink> getDrinks() {
+        return drinks;
     }
 
-    public static void setRecentDrinks(List<Drink> recentDrinks) {
-        User.recentDrinks = recentDrinks;
+    public static void setDrinks(List<Drink> drinks) {
+        User.drinks = drinks;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static List<Drink> getRecentDrinks(){
+        return drinks.stream().filter(drink -> StaticUtils.isRecent(drink.getAssumption())).collect(Collectors.toList());
     }
 }

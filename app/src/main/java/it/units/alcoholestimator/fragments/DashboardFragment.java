@@ -84,7 +84,7 @@ public class DashboardFragment extends Fragment {
         showDrinksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (Drink drink: User.getRecentDrinks()){
+                for (Drink drink: User.getDrinks()){
                     Log.i("TEST", drink.toString());
                 }
             }
@@ -94,7 +94,7 @@ public class DashboardFragment extends Fragment {
 
     public void updateGUIAfterDownloadDataFromCloud(){
         TextView numberOfDrink = requireView().findViewById(R.id.numberOfDrinksTextView);
-        numberOfDrink.setText(String.valueOf(User.getRecentDrinks().size()));
+        numberOfDrink.setText(String.valueOf(User.getDrinks().size()));
 
 
     }
