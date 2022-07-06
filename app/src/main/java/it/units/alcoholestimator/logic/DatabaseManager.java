@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -19,6 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class DatabaseManager {
 
@@ -96,9 +98,15 @@ public class DatabaseManager {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Date date = (Date) document.get(DATE_KEY);
+
+                                Timestamp timestamp = (Timestamp) document.getData().get(DATE_KEY);
+                                Date date = Objects.requireNonNull(timestamp).toDate();
+
+                                // TODO filter the drinks (documents) that are recent (24 hours old at max)
+                                Log.i("TEST", "date: "+ date); // TODO remove this log
+
                                 // TODO fetch only date of the previous 24 hours
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Log.d("TEST", document.getId() + " => " + document.getData());
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());

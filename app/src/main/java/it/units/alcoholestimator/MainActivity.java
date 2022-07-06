@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
             User.loadUserFromLocalDatabase(); // TODO when start the app need to bo done
         }catch (SQLException e){
             // there are no data to load for the user in the local database
+            Log.i("TEST", "no data for the user in the database");
             // TODO do I need to do something?
         }
 

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,32 +82,8 @@ public class DashboardFragment extends Fragment {
         fetchDrinksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Cursor cursor = LocalDatabaseHelper.getAllData();
-                if(cursor.getCount() == 0){
-                    // show message
-                    StaticUtils.showMessage("Error", "No data found", getContext());
-                    return;
-                }else {
-                    StringBuffer buffer = new StringBuffer();
-                    while (cursor.moveToNext()){
-                        buffer.append("ID: "+ cursor.getString(0)+ "\n");
-                        buffer.append("CLOUD_ID: "+ cursor.getString(1)+ "\n");
-                        buffer.append("EMAIL: "+ cursor.getString(2)+ "\n");
-                        buffer.append("GENDER: "+ cursor.getString(3)+ "\n");
-                        buffer.append("WEIGHT: "+ cursor.getString(4)+ "\n");
-                        buffer.append("IS_SIGNED_IN: "+ cursor.getString(5)+ "\n\n");
-                    }
-
-                    // show all data
-                    StaticUtils.showMessage("Data", buffer.toString(), getContext());
-
-                }
-                 */
-
-
-
                 DatabaseManager.fetchUserDrinks(); // TODO remove this comment
+                Log.i("TEST", "after the fetch in dashboard fragment");
             }
         });
     }
