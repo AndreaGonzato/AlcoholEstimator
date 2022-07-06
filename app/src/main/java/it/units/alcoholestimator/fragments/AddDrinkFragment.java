@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +25,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import it.units.alcoholestimator.R;
-import it.units.alcoholestimator.logic.DatabaseManager;
+import it.units.alcoholestimator.logic.FirebaseDatabaseManager;
 import it.units.alcoholestimator.logic.Month;
 
 /**
@@ -161,7 +160,7 @@ public class AddDrinkFragment extends Fragment {
                     Toast.makeText(getContext(), "Enter the drink details to add a drink", Toast.LENGTH_SHORT).show();
                 }else {
                     // store drink in the database
-                    DatabaseManager.addDrink(drinkType, alcoholContent, drinkSize, date);
+                    FirebaseDatabaseManager.addDrink(drinkType, alcoholContent, drinkSize, date);
 
                     // change fragment after selection of a drink and move to the dashboardFragment
                     Fragment dashboardFragment = new DashboardFragment();

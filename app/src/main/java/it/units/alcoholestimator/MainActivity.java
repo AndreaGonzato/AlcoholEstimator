@@ -29,12 +29,11 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.Objects;
 
 import it.units.alcoholestimator.logic.LocalDatabaseHelper;
-import it.units.alcoholestimator.logic.DatabaseManager;
+import it.units.alcoholestimator.logic.FirebaseDatabaseManager;
 import it.units.alcoholestimator.logic.Gender;
 import it.units.alcoholestimator.logic.SignIn;
 import it.units.alcoholestimator.logic.User;
@@ -274,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
                         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
                         assert account != null;
                         User.setEmail(account.getEmail());
-                        DatabaseManager.addUser(User.getEmail(), User.getGender(), User.getWeight());
+                        FirebaseDatabaseManager.addUser(User.getEmail(), User.getGender(), User.getWeight());
                     }
                 }
 

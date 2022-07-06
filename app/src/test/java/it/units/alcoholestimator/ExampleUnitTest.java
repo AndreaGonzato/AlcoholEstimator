@@ -4,14 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import android.util.Log;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import it.units.alcoholestimator.logic.DatabaseManager;
-import it.units.alcoholestimator.logic.Gender;
 import it.units.alcoholestimator.logic.StaticUtils;
 
 /**

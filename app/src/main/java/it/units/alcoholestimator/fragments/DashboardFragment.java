@@ -1,8 +1,5 @@
 package it.units.alcoholestimator.fragments;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,10 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import it.units.alcoholestimator.R;
-import it.units.alcoholestimator.logic.DatabaseManager;
+import it.units.alcoholestimator.logic.FirebaseDatabaseManager;
 import it.units.alcoholestimator.logic.Drink;
-import it.units.alcoholestimator.logic.LocalDatabaseHelper;
-import it.units.alcoholestimator.logic.StaticUtils;
 import it.units.alcoholestimator.logic.User;
 
 /**
@@ -82,7 +77,7 @@ public class DashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // download all the drinks of the last 24 of the user from cloud
-        DatabaseManager.fetchUserDrinks(this);
+        FirebaseDatabaseManager.fetchUserDrinks(this);
 
         // TODO remove showDrinksButton var and xml code
         Button showDrinksButton = requireView().findViewById(R.id.showDrinksButton);

@@ -26,7 +26,7 @@ import java.util.Objects;
 
 import it.units.alcoholestimator.fragments.DashboardFragment;
 
-public class DatabaseManager {
+public class FirebaseDatabaseManager {
 
     public static final String DRINK_TYPE_KEY = "drinkType";
     public static final String ALCOHOL_CONTENT_KEY = "alcoholContent";
