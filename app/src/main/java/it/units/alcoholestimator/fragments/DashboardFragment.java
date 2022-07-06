@@ -82,16 +82,7 @@ public class DashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // download all the drinks of the last 24 of the user from cloud
-        DatabaseManager.fetchUserDrinks();
-
-        Button fetchDrinksButton = requireView().findViewById(R.id.fetchDrinksButton);
-        fetchDrinksButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatabaseManager.fetchUserDrinks(); // TODO remove this comment
-                Log.i("TEST", "after fetch");
-            }
-        });
+        DatabaseManager.fetchUserDrinks(this);
 
         // TODO remove showDrinksButton var and xml code
         Button showDrinksButton = requireView().findViewById(R.id.showDrinksButton);
@@ -107,7 +98,6 @@ public class DashboardFragment extends Fragment {
     }
 
     public void updateGUI(){
-        // TODO continue her to code
         TextView numberOfDrink = requireView().findViewById(R.id.numberOfDrinksTextView);
         numberOfDrink.setText(String.valueOf(User.getRecentDrinks().size()));
     }

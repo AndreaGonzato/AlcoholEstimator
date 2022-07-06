@@ -40,6 +40,12 @@ public class DatabaseManager {
     public static final String USERS = "users";
     public static final String DRINKS = "drinks";
 
+    public static DatabaseManager instance;
+
+    public DatabaseManager() {
+        instance = this;
+    }
+
     public static FirebaseFirestore getDatabase(){
         return FirebaseFirestore.getInstance();
     }
@@ -95,7 +101,7 @@ public class DatabaseManager {
                 });
     }
 
-    public static void fetchUserDrinks(){
+    public static void fetchUserDrinks(DashboardFragment dashboardFragment){
         getDatabase().collection(USERS+"/"+User.getCloudID()+"/"+DRINKS)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -125,7 +131,7 @@ public class DatabaseManager {
                                 //Log.d("TEST", document.getId() + " => " + document.getData());
                             }
                             User.setRecentDrinks(recentDrinks);
-                            //DashboardFragment.updateGUI();
+                            dashboardFragment.updateGUI();
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
@@ -133,5 +139,7 @@ public class DatabaseManager {
                 });
     }
 
-
+    public static DatabaseManager getInstance() {
+        return instance;
+    }
 }
