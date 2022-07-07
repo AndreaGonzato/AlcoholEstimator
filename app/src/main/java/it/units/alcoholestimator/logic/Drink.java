@@ -2,7 +2,7 @@ package it.units.alcoholestimator.logic;
 
 import java.util.Date;
 
-public class Drink {
+public class Drink implements Comparable<Drink>{
     private final String cloudId;
     private final String description;
     private final int sizeMl;
@@ -45,5 +45,13 @@ public class Drink {
                 ", alcoholContentPercentage=" + alcoholContentPercentage +
                 ", assumption=" + assumption +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Drink otherDrink) {
+        if (assumption == null || otherDrink.getAssumption() == null) {
+            return 0;
+        }
+        return assumption.compareTo(otherDrink.getAssumption());
     }
 }
