@@ -103,7 +103,7 @@ public class DashboardFragment extends Fragment {
         numberOfDrink.setText(String.valueOf(User.getDrinks().size()));
 
         TextView alcoholContentTextView = requireView().findViewById(R.id.alcoholContentTextView);
-        alcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", AlcoholContentCalculator.calculateAlcoholContent(User.getGender(), User.getRecentDrinks())));
+        alcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", AlcoholContentCalculator.calculateAlcoholContent(User.getGender(), User.getWeight(), User.getRecentDrinks())));
     }
 
 }
