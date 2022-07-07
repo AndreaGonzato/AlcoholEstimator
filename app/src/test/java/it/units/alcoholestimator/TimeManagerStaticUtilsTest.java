@@ -16,7 +16,7 @@ import it.units.alcoholestimator.logic.TimeManagerStaticUtils;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class TimeManagerStaticUtilsTest {
 
     @Test
     public void isNowCalendarRecent() {
@@ -36,16 +36,16 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void isThisIntervalLong5Minutes() {
+    public void isThisIntervalLong65Minutes() {
         Calendar nowCalendar = Calendar.getInstance();
         nowCalendar.set(nowCalendar.get(Calendar.YEAR), nowCalendar.get(Calendar.MONTH), nowCalendar.get(Calendar.DATE), nowCalendar.get(Calendar.HOUR), nowCalendar.get(Calendar.MINUTE));
 
-        Calendar next5MinutesCalendar = Calendar.getInstance();
-        next5MinutesCalendar.set(next5MinutesCalendar.get(Calendar.YEAR), next5MinutesCalendar.get(Calendar.MONTH), next5MinutesCalendar.get(Calendar.DATE), next5MinutesCalendar.get(Calendar.HOUR), next5MinutesCalendar.get(Calendar.MINUTE)+5);
+        Calendar next65MinutesCalendar = Calendar.getInstance();
+        next65MinutesCalendar.set(next65MinutesCalendar.get(Calendar.YEAR), next65MinutesCalendar.get(Calendar.MONTH), next65MinutesCalendar.get(Calendar.DATE), next65MinutesCalendar.get(Calendar.HOUR), next65MinutesCalendar.get(Calendar.MINUTE) + 65);
         Date nowDate = new Date(nowCalendar.getTimeInMillis());
-        Date next5MinutesDate = new Date(next5MinutesCalendar.getTimeInMillis());
+        Date next5MinutesDate = new Date(next65MinutesCalendar.getTimeInMillis());
 
-        assertEquals(5, TimeManagerStaticUtils.getDuration(nowDate, next5MinutesDate).toMinutes());
+        assertEquals(65, TimeManagerStaticUtils.getDuration(nowDate, next5MinutesDate).toMinutes());
 
     }
 
