@@ -4,9 +4,9 @@ import java.util.List;
 
 public class AlcoholContentCalculator {
 
-    public float calculateAlcoholContent(User user, List<Drink> recentDrinks){
+    public static float calculateAlcoholContent(Gender userGender, List<Drink> recentDrinks){
         // TODO implement this
 
-        return -1f;
+        return 999f;
     }
 }

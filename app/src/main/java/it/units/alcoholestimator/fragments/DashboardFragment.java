@@ -1,9 +1,11 @@
 package it.units.alcoholestimator.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -13,8 +15,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.database.FirebaseDatabaseManager;
+import it.units.alcoholestimator.logic.AlcoholContentCalculator;
 import it.units.alcoholestimator.logic.Drink;
 import it.units.alcoholestimator.logic.User;
 
@@ -92,11 +97,13 @@ public class DashboardFragment extends Fragment {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void updateGUIAfterDownloadDataFromCloud(){
         TextView numberOfDrink = requireView().findViewById(R.id.numberOfDrinksTextView);
         numberOfDrink.setText(String.valueOf(User.getDrinks().size()));
 
-
+        TextView alcoholContentTextView = requireView().findViewById(R.id.alcoholContentTextView);
+        alcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", AlcoholContentCalculator.calculateAlcoholContent(User.getGender(), User.getRecentDrinks())));
     }
 
 }
