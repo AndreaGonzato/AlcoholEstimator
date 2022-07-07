@@ -27,7 +27,7 @@ import it.units.alcoholestimator.logic.Drink;
 import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 import it.units.alcoholestimator.database.LocalDatabaseHelper;
 import it.units.alcoholestimator.logic.SignIn;
-import it.units.alcoholestimator.logic.StaticUtils;
+import it.units.alcoholestimator.logic.TimeManagerStaticUtils;
 import it.units.alcoholestimator.logic.User;
 
 /**
@@ -103,7 +103,7 @@ public class SettingsFragment extends Fragment {
                 Cursor cursor = LocalDatabaseHelper.getAllData();
                 if(cursor.getCount() == 0){
                     // show message
-                    StaticUtils.showMessage("Error", "No user found in the local database", getContext());
+                    TimeManagerStaticUtils.showMessage("Error", "No user found in the local database", getContext());
                 }else {
                     StringBuilder buffer = new StringBuilder();
                     while (cursor.moveToNext()){
@@ -116,7 +116,7 @@ public class SettingsFragment extends Fragment {
                     }
 
                     // show all data
-                    StaticUtils.showMessage("User", buffer.toString(), getContext());
+                    TimeManagerStaticUtils.showMessage("User", buffer.toString(), getContext());
 
                 }
             }

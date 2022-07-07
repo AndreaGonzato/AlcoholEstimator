@@ -8,12 +8,10 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
 import it.units.alcoholestimator.logic.Drink;
-import it.units.alcoholestimator.logic.StaticUtils;
 
 public class DrinkTest {
     @Test

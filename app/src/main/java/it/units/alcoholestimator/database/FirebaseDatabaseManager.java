@@ -26,7 +26,6 @@ import java.util.Objects;
 import it.units.alcoholestimator.fragments.DashboardFragment;
 import it.units.alcoholestimator.logic.Drink;
 import it.units.alcoholestimator.logic.Gender;
-import it.units.alcoholestimator.logic.StaticUtils;
 import it.units.alcoholestimator.logic.User;
 
 public class FirebaseDatabaseManager {

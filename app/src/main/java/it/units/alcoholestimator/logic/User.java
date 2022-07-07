@@ -100,6 +100,6 @@ public class User {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<Drink> getRecentDrinks(){
-        return drinks.stream().filter(drink -> StaticUtils.isRecent(drink.getAssumption())).collect(Collectors.toList());
+        return drinks.stream().filter(drink -> TimeManagerStaticUtils.isRecent(drink.getAssumption())).collect(Collectors.toList());
     }
 }

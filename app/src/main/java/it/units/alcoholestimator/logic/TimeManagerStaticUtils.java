@@ -6,11 +6,12 @@ import android.content.Context;
 import java.util.Calendar;
 import java.util.Date;
 
-public class StaticUtils {
+public class TimeManagerStaticUtils {
 
     public static final long MILLISECONDS_PER_DAY = 86400000L;
 
     public static void showMessage(String title, String message, Context context){
+        // TODO move this method in another class
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
         builder.setTitle(title);
