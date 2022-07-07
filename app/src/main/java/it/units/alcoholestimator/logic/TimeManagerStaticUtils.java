@@ -24,8 +24,8 @@ public class TimeManagerStaticUtils {
     public static boolean isRecent(Calendar calendar){
         long now = System.currentTimeMillis();
         long time = calendar.getTimeInMillis();
-        long deltaTime = Math.abs(now - time);
-        return deltaTime <= MILLISECONDS_PER_DAY;
+        long deltaTime = now - time;
+        return deltaTime <= MILLISECONDS_PER_DAY && deltaTime >= 0;
     }
 
     public static boolean isRecent(Date date){

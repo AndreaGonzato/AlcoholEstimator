@@ -100,7 +100,7 @@ public class DashboardFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void updateGUIAfterDownloadDataFromCloud(){
         TextView numberOfDrink = requireView().findViewById(R.id.numberOfDrinksTextView);
-        numberOfDrink.setText(String.valueOf(User.getDrinks().size()));
+        numberOfDrink.setText(String.valueOf(User.getRecentDrinks().size()));
 
         TextView alcoholContentTextView = requireView().findViewById(R.id.alcoholContentTextView);
         alcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", AlcoholContentCalculator.calculateAlcoholContent(User.getGender(), User.getWeight(), User.getRecentDrinks())));
