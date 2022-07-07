@@ -2,9 +2,11 @@ package it.units.alcoholestimator.database;
 
 import static android.content.ContentValues.TAG;
 
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -112,6 +114,7 @@ public class FirebaseDatabaseManager {
         getDatabase().collection(USERS+"/"+User.getCloudID()+"/"+DRINKS)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
