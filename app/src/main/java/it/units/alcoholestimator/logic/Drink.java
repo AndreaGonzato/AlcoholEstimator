@@ -1,6 +1,7 @@
 package it.units.alcoholestimator.logic;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Drink implements Comparable<Drink>{
     private final String cloudId;
@@ -53,5 +54,18 @@ public class Drink implements Comparable<Drink>{
             return 0;
         }
         return assumption.compareTo(otherDrink.getAssumption());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Drink drink = (Drink) o;
+        return sizeMl == drink.sizeMl && Float.compare(drink.alcoholContentPercentage, alcoholContentPercentage) == 0 && cloudId.equals(drink.cloudId) && description.equals(drink.description) && assumption.equals(drink.assumption);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cloudId, description, sizeMl, alcoholContentPercentage, assumption);
     }
 }
