@@ -15,15 +15,6 @@ public class TimeManagerStaticUtils {
 
     public static final long MILLISECONDS_PER_DAY = 86400000L;
 
-    public static void showMessage(String title, String message, Context context){
-        // TODO move this method in another class
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
-    }
-
     private static Calendar dateToCalendar(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

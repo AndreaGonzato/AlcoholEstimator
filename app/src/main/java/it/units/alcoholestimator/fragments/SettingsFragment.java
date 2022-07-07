@@ -1,6 +1,8 @@
 package it.units.alcoholestimator.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -103,7 +105,7 @@ public class SettingsFragment extends Fragment {
                 Cursor cursor = LocalDatabaseHelper.getAllData();
                 if(cursor.getCount() == 0){
                     // show message
-                    TimeManagerStaticUtils.showMessage("Error", "No user found in the local database", getContext());
+                    showMessage("Error", "No user found in the local database", getContext());
                 }else {
                     StringBuilder buffer = new StringBuilder();
                     while (cursor.moveToNext()){
@@ -116,7 +118,7 @@ public class SettingsFragment extends Fragment {
                     }
 
                     // show all data
-                    TimeManagerStaticUtils.showMessage("User", buffer.toString(), getContext());
+                    showMessage("User", buffer.toString(), getContext());
 
                 }
             }
@@ -150,5 +152,13 @@ public class SettingsFragment extends Fragment {
                 });
 
         Log.i("TEST", "signOut completed outside listener");
+    }
+
+    public static void showMessage(String title, String message, Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 }
