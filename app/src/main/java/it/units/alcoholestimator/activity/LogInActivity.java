@@ -35,6 +35,21 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
+
+        LocalDatabaseHelper localDB = new LocalDatabaseHelper(this);
+        try {
+            User.loadUserFromLocalDatabase(); // TODO when start the app need to bo done
+        }catch (SQLException e){
+            // there are no data to load for the user in the local database
+            Log.i("TEST", "no data for the user in the database");
+            // TODO do I need to do something?
+        }
+
+        if (User.isIsSignedInWithGoogle()){
+            startActivity(new Intent(LogInActivity.this, DashboardActivity.class));
+        }
+
+
         GoogleSignInOptions googleOptions = SignIn.getGoogleSignInOptions();
         googleSignInClient = GoogleSignIn.getClient(this, googleOptions);
 
@@ -48,15 +63,6 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
-        LocalDatabaseHelper localDB = new LocalDatabaseHelper(this);
-
-        try {
-            User.loadUserFromLocalDatabase(); // TODO when start the app need to bo done
-        }catch (SQLException e){
-            // there are no data to load for the user in the local database
-            Log.i("TEST", "no data for the user in the database");
-            // TODO do I need to do something?
-        }
 
         Button skipLogInButton = findViewById(R.id.skipLogInButton);
         skipLogInButton.setOnClickListener(new View.OnClickListener() {
