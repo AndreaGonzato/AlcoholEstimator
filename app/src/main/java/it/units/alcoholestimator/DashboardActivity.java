@@ -1,9 +1,11 @@
 package it.units.alcoholestimator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -53,7 +55,11 @@ public class DashboardActivity extends AppCompatActivity {
 
     }
 
-    public Context getContex() {
-        return getContex();
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        // TODO solve the rotation app problem
+        super.onConfigurationChanged(newConfig);
+        setContentView(R.layout.activity_dashboard);
     }
+
 }

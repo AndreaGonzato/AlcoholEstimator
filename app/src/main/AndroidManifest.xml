@@ -11,7 +11,8 @@
         android:theme="@style/Theme.AlcoholEstimator">
         <activity
             android:name=".DashboardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
