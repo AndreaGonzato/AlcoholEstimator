@@ -3,6 +3,7 @@ package it.units.alcoholestimator.fragments;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -19,12 +20,19 @@ import android.widget.Button;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Objects;
 import java.util.concurrent.Executor;
 
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.activity.DashboardActivity;
+import it.units.alcoholestimator.activity.LogInActivity;
+import it.units.alcoholestimator.activity.UserDataSettingActivity;
 import it.units.alcoholestimator.logic.Drink;
 import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 import it.units.alcoholestimator.database.LocalDatabaseHelper;
@@ -138,20 +146,42 @@ public class SettingsFragment extends Fragment {
     private void signOut() {
         LocalDatabaseHelper.emptyUserTable();
         User.setIsSignedInWithGoogle(false);
-        // TODO there is a problem here
         Activity activity = getActivity();
         GoogleSignInOptions googleOptions = SignIn.getGoogleSignInOptions();
-        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(activity, googleOptions);
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(Objects.requireNonNull(activity), googleOptions);
 
+        Intent intent = new Intent(getContext(), LogInActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+
+        // TODO why there are no log?
         googleSignInClient.signOut()
                 .addOnCompleteListener((Executor) this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Log.i("TEST", "signOut completed inside listener");
                     }
+                })
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.i("TEST", "on success logout");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("TEST", "on failure logout");
+                    }
+                })
+                .addOnCanceledListener(new OnCanceledListener() {
+                    @Override
+                    public void onCanceled() {
+                        Log.i("TEST", "on cancelled logout");
+                    }
                 });
 
-        Log.i("TEST", "signOut completed outside listener");
+        Log.i("TEST", "signOut completed outside all the listeners");
     }
 
     public static void showMessage(String title, String message, Context context){

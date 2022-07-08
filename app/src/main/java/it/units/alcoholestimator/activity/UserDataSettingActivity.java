@@ -49,7 +49,6 @@ public class UserDataSettingActivity extends AppCompatActivity {
     private Button saveButton;
 
     private static final int RC_SIGN_IN = 9001;
-    private static GoogleSignInClient googleSignInClient;
 
     // constants
     private static final float WEIGHT_FOR_SEX_SELECTED = 2.0f;
@@ -86,20 +85,6 @@ public class UserDataSettingActivity extends AppCompatActivity {
 
         // remove the action bar
         Objects.requireNonNull(getSupportActionBar()).hide();
-
-        // Set the dimensions of the sign-in button.
-        SignInButton signInGoogleButton = findViewById(R.id.signInButton);
-        signInGoogleButton.setSize(SignInButton.SIZE_STANDARD);
-        signInGoogleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signIn();
-            }
-        });
-
-
-        GoogleSignInOptions googleOptions = SignIn.getGoogleSignInOptions();
-        googleSignInClient = GoogleSignIn.getClient(this, googleOptions);
 
         maleButton = findViewById(R.id.male);
         saveButton = findViewById(R.id.saveButton);
@@ -179,15 +164,6 @@ public class UserDataSettingActivity extends AppCompatActivity {
             }
         });
 
-        LocalDatabaseHelper localDB = new LocalDatabaseHelper(this);
-
-        try {
-            User.loadUserFromLocalDatabase(); // TODO when start the app need to bo done
-        }catch (SQLException e){
-            // there are no data to load for the user in the local database
-            Log.i("TEST", "no data for the user in the database");
-            // TODO do I need to do something?
-        }
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,13 +189,6 @@ public class UserDataSettingActivity extends AppCompatActivity {
             }
         });
 
-
-    }
-
-    private void signIn() {
-        User.setIsSignedInWithGoogle(true);
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityIntent.launch(signInIntent);
 
     }
 
@@ -260,25 +229,5 @@ public class UserDataSettingActivity extends AppCompatActivity {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
-
-    ActivityResultLauncher<Intent> startActivityIntent = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode()==RESULT_CANCELED){
-                    Log.i("IMPORTANT", "CANCELED Intent");
-                        User.setIsSignedInWithGoogle(false);
-                    }else {
-                        User.setIsSignedInWithGoogle(true);
-
-                        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-                        assert account != null;
-                        User.setEmail(account.getEmail());
-                        FirebaseDatabaseManager.addUser(User.getEmail(), User.getGender(), User.getWeight());
-                    }
-                }
-
-            });
 
 }
