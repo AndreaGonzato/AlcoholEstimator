@@ -2,10 +2,6 @@ package it.units.alcoholestimator.activity;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -23,20 +19,17 @@ import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-import java.sql.SQLException;
+import org.apache.commons.text.CharacterPredicates;
+import org.apache.commons.text.RandomStringGenerator;
+
 import java.util.Objects;
 
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.database.LocalDatabaseHelper;
-import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 import it.units.alcoholestimator.logic.Gender;
-import it.units.alcoholestimator.logic.SignIn;
 import it.units.alcoholestimator.logic.User;
 
 public class UserDataSettingActivity extends AppCompatActivity {
@@ -81,7 +74,7 @@ public class UserDataSettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_user_data_setting);
 
         // remove the action bar
         Objects.requireNonNull(getSupportActionBar()).hide();
@@ -173,9 +166,16 @@ public class UserDataSettingActivity extends AppCompatActivity {
                     if(User.isIsSignedInWithGoogle()){
                         isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), User.getEmail(), User.getGender().representation, User.getWeight(), "true");
                     }else {
-                        User.setCloudID("fake_cloud_id");
-                        User.setEmail("fake_email@gmail.com");
-                        isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), User.getEmail(), User.getGender().representation, User.getWeight(), "false");
+                        RandomStringGenerator generator = new RandomStringGenerator
+                                .Builder()
+                                .withinRange('0', 'z')
+                                .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
+                                .build();
+
+                        String generatedID = "local-" + generator.generate(14);
+                        User.setCloudID(generatedID);
+                        //User.setEmail("no@email.com"); // TODO if you put the constrain that every user need to have an email put this line otherwise an use can have email = nul
+                        isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), null, User.getGender().representation, User.getWeight(), "false");
                     }
 
                     if(!isInserted){
@@ -219,14 +219,6 @@ public class UserDataSettingActivity extends AppCompatActivity {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             updateUI(null);
         }
-    }
-
-    public static int getScreenWidth() {
-        return Resources.getSystem().getDisplayMetrics().widthPixels;
-    }
-
-    public static int getScreenHeight() {
-        return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
 
