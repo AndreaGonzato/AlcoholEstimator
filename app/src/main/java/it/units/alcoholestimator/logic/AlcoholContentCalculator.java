@@ -21,10 +21,8 @@ public class AlcoholContentCalculator {
     private static final int MINUTES_IN_HOUR = 60;
 
 
-
-
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static float calculateAlcoholContent(Gender userGender, int userWeight, List<Drink> recentDrinks){
+    public static float calculateAlcoholContent(Gender userGender, int userWeight, List<Drink> recentDrinks) {
         // filter and get all the drinks are all recent in the last 24 hours
         recentDrinks = recentDrinks.stream().filter(drink -> TimeManagerStaticUtils.isRecent(drink.getAssumption())).collect(Collectors.toList());
 
@@ -35,31 +33,25 @@ public class AlcoholContentCalculator {
 
         // define the diffusion based on the sex of the user
         float diffusion = MALE_DIFFUSION;
-        if(userGender.equals(Gender.FEMALE)){
+        if (userGender.equals(Gender.FEMALE)) {
             diffusion = FEMALE_DIFFUSION;
         }
 
-        Map<Drink, Float> alcoholContentAtDinkMap = new HashMap<>(); // TODO remove this var?
-
-
         boolean firstDrink = true;
         Date lastProcessedDrinkDate = new Date();
-        // TODO take in consideration the time of assumption
-        for(Drink drink : recentDrinks){
-            if (firstDrink){
+        for (Drink drink : recentDrinks) {
+            if (firstDrink) {
                 alcoholContent = drink.getAlcoholContentPercentage() * drink.getSizeMl() * SCALING_FACTOR / (userWeight * diffusion);
-                alcoholContentAtDinkMap.put(drink, alcoholContent);
                 lastProcessedDrinkDate = drink.getAssumption();
                 firstDrink = false;
-            }else {
+            } else {
                 Duration intervalBetweenLastProcessedDrink = TimeManagerStaticUtils.getDuration(lastProcessedDrinkDate, drink.getAssumption());
                 long minutesFromLastProcessedDrink = intervalBetweenLastProcessedDrink.toMinutes();
 
                 float decreaseOfAlcoholFromLastProcessedDrink = minutesFromLastProcessedDrink * ALCOHOL_DECREASE_PER_HOUR / MINUTES_IN_HOUR;
-                alcoholContent = Math.max(0, alcoholContent-decreaseOfAlcoholFromLastProcessedDrink);
+                alcoholContent = Math.max(0, alcoholContent - decreaseOfAlcoholFromLastProcessedDrink);
 
                 alcoholContent += drink.getAlcoholContentPercentage() * drink.getSizeMl() * SCALING_FACTOR / (userWeight * diffusion);
-                alcoholContentAtDinkMap.put(drink, alcoholContent);
                 lastProcessedDrinkDate = drink.getAssumption();
             }
         }
@@ -68,7 +60,7 @@ public class AlcoholContentCalculator {
         long minutesFromLastDrink = intervalBetweenLastDrink.toMinutes();
 
         float decreaseOfAlcoholFromLastDrink = minutesFromLastDrink * ALCOHOL_DECREASE_PER_HOUR / MINUTES_IN_HOUR;
-        alcoholContent = Math.max(0, alcoholContent-decreaseOfAlcoholFromLastDrink);
+        alcoholContent = Math.max(0, alcoholContent - decreaseOfAlcoholFromLastDrink);
 
         return alcoholContent;
     }

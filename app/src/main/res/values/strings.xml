@@ -8,8 +8,6 @@
     <string name="save">save</string>
     <string name="toast_first_select_sex">select your sex to continue</string>
     <string name="intro_estimated_blood_alcohol_content">Estimated blood alcohol content</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dashboard">dashboard</string>
     <string name="add_a_drink">add a drink</string>
     <string name="settings">settings</string>
