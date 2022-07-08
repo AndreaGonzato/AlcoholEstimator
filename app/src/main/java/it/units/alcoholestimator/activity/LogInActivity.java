@@ -94,6 +94,9 @@ public class LogInActivity extends AppCompatActivity {
                         assert account != null;
                         User.setEmail(account.getEmail());
                         FirebaseDatabaseManager.addUser(User.getEmail(), User.getGender(), User.getWeight());
+
+                        // change activity
+                        startActivity(new Intent(LogInActivity.this, UserDataSettingActivity.class));
                     }
                 }
 
