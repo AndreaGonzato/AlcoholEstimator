@@ -1,4 +1,4 @@
-package it.units.alcoholestimator;
+package it.units.alcoholestimator.activity;
 
 import static android.content.ContentValues.TAG;
 
@@ -32,13 +32,14 @@ import com.google.android.gms.tasks.Task;
 import java.sql.SQLException;
 import java.util.Objects;
 
+import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.database.LocalDatabaseHelper;
 import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 import it.units.alcoholestimator.logic.Gender;
 import it.units.alcoholestimator.logic.SignIn;
 import it.units.alcoholestimator.logic.User;
 
-public class MainActivity extends AppCompatActivity {
+public class UserDataSettingActivity extends AppCompatActivity {
 
     public static final int DEFAULT_WEIGHT = 70;
     // TODO when this class is almost finish decide what to do with the fields. Can i make it local var?
@@ -205,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.w("DATABASE", "User not inserted in the local database SQLite");
                     }
 
-                    startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+                    startActivity(new Intent(UserDataSettingActivity.this, DashboardActivity.class));
                 }else {
                     Toast.makeText(getApplicationContext(), getString(R.string.toast_first_select_sex), Toast.LENGTH_SHORT).show();
                 }

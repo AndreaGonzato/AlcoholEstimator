@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlcoholEstimator">
         <activity
-            android:name=".DashboardActivity"
+            android:name=".activity.DashboardActivity"
             android:exported="false"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.UserDataSettingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

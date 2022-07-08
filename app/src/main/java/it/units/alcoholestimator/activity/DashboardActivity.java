@@ -1,4 +1,4 @@
-package it.units.alcoholestimator;
+package it.units.alcoholestimator.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
 
+import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.fragments.SelectDrinkFragment;
 import it.units.alcoholestimator.fragments.DashboardFragment;
 import it.units.alcoholestimator.fragments.SettingsFragment;
