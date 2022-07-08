@@ -106,8 +106,8 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        Button userInfoButton = requireView().findViewById(R.id.showUserInfoButton);
-        userInfoButton.setOnClickListener(new View.OnClickListener() {
+        Button showUserInfoButton = requireView().findViewById(R.id.showUserInfoButton);
+        showUserInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Cursor cursor = LocalDatabaseHelper.getAllData();
@@ -117,8 +117,9 @@ public class SettingsFragment extends Fragment {
                 }else {
                     StringBuilder buffer = new StringBuilder();
                     while (cursor.moveToNext()){
+                        // TODO do not show all the info in realise software like CLOUD_ID
                         buffer.append("ID: ").append(cursor.getString(0)).append("\n");
-                        buffer.append("CLOUD_ID: ").append(cursor.getString(1)).append("\n");
+                        buffer.append("CLOUD_ID: ").append(cursor.getString(1)).append("\n"); // TODO remove this line for security
                         buffer.append("EMAIL: ").append(cursor.getString(2)).append("\n");
                         buffer.append("GENDER: ").append(cursor.getString(3)).append("\n");
                         buffer.append("WEIGHT: ").append(cursor.getString(4)).append("\n");
@@ -129,6 +130,16 @@ public class SettingsFragment extends Fragment {
                     showMessage("User", buffer.toString(), getContext());
 
                 }
+            }
+        });
+
+        Button changeUserDataButton = requireView().findViewById(R.id.changeUserDataButton);
+        changeUserDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), UserDataSettingActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 
@@ -184,7 +195,7 @@ public class SettingsFragment extends Fragment {
         Log.i("TEST", "signOut completed outside all the listeners");
     }
 
-    public static void showMessage(String title, String message, Context context){
+    private static void showMessage(String title, String message, Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
         builder.setTitle(title);

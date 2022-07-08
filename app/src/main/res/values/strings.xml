@@ -51,4 +51,5 @@
     <string name="delete_all_the_drinks">Delete all the drinks</string>
     <string name="skip_login">Skip LogIn</string>
     <string name="min_estimated_blood_alcohol_content">Min estimated blood alcohol content</string>
+    <string name="change_user_data">Change user data</string>
 </resources>
