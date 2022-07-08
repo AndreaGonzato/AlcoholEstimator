@@ -191,19 +191,20 @@ public class MainActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isInserted;
-                if(User.isIsSignedInWithGoogle()){
-                    isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), User.getEmail(), User.getGender().representation, User.getWeight(), "true");
-                }else {
-                    isInserted = LocalDatabaseHelper.insertData("fake_cloud_id", "fake_email@gmail.com", User.getGender().representation, User.getWeight(), "false");
-                }
-
-                if(isInserted){
-                    Log.i("DATABASE:", "inserted");
-                }else {
-                    Log.i("DATABASE:", "NOT inserted");
-                }
                 if (User.getGender() != null){
+                    boolean isInserted;
+                    if(User.isIsSignedInWithGoogle()){
+                        isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), User.getEmail(), User.getGender().representation, User.getWeight(), "true");
+                    }else {
+                        User.setCloudID("fake_cloud_id");
+                        User.setEmail("fake_email@gmail.com");
+                        isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), User.getEmail(), User.getGender().representation, User.getWeight(), "false");
+                    }
+
+                    if(!isInserted){
+                        Log.w("DATABASE", "User not inserted in the local database SQLite");
+                    }
+
                     startActivity(new Intent(MainActivity.this, DashboardActivity.class));
                 }else {
                     Toast.makeText(getApplicationContext(), getString(R.string.toast_first_select_sex), Toast.LENGTH_SHORT).show();
