@@ -49,7 +49,6 @@ public class LogInActivity extends AppCompatActivity {
             startActivity(new Intent(LogInActivity.this, DashboardActivity.class));
         }
 
-
         GoogleSignInOptions googleOptions = SignIn.getGoogleSignInOptions();
         googleSignInClient = GoogleSignIn.getClient(this, googleOptions);
 

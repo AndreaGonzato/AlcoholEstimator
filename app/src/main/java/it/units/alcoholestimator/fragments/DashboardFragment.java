@@ -102,8 +102,13 @@ public class DashboardFragment extends Fragment {
         TextView numberOfDrink = requireView().findViewById(R.id.numberOfDrinksTextView);
         numberOfDrink.setText(String.valueOf(User.getRecentDrinks().size()));
 
-        TextView alcoholContentTextView = requireView().findViewById(R.id.alcoholContentTextView);
-        alcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", AlcoholContentCalculator.calculateAlcoholContent(User.getGender(), User.getWeight(), User.getRecentDrinks())));
+        float maxBloodAlcoholContent = AlcoholContentCalculator.calculateAlcoholContent(User.getGender(), User.getWeight(), User.getRecentDrinks());
+        float minBloodAlcoholContent = maxBloodAlcoholContent / AlcoholContentCalculator.SCALING_FACTOR_WITHOUT_A_MEAL;
+        TextView maxAlcoholContentTextView = requireView().findViewById(R.id.maxAlcoholContentTextView);
+        maxAlcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", maxBloodAlcoholContent));
+
+        TextView minAlcoholContentTextView = requireView().findViewById(R.id.minAlcoholContentTextView);
+        minAlcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", minBloodAlcoholContent));
     }
 
 }

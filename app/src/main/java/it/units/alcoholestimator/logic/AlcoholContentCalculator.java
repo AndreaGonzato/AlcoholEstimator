@@ -21,6 +21,8 @@ public class AlcoholContentCalculator {
     private static final int MINUTES_IN_HOUR = 60;
 
 
+    public static final float SCALING_FACTOR_WITHOUT_A_MEAL = 1.43164964f;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static float calculateAlcoholContent(Gender userGender, int userWeight, List<Drink> recentDrinks) {
         // filter and get all the drinks are all recent in the last 24 hours

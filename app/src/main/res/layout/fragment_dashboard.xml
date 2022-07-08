@@ -7,28 +7,54 @@
     tools:context=".fragments.DashboardFragment">
 
     <TextView
-        android:id="@+id/introEstimatedTextView"
+        android:id="@+id/introMaxEstimatedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/intro_estimated_blood_alcohol_content"
+        android:text="@string/intro_max_estimated_blood_alcohol_content"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"/>
 
     <TextView
-        android:id="@+id/alcoholContentTextView"
+        android:id="@+id/maxAlcoholContentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/introEstimatedTextView"
+        android:layout_alignTop="@id/introMaxEstimatedTextView"
         android:text="@string/default_blood_alcohol_content"
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/introEstimatedTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/introMaxEstimatedTextView" />
+
+    <TextView
+        android:id="@+id/introEstimatedMinAlcoholContentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/min_estimated_blood_alcohol_content"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/maxAlcoholContentTextView"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/minAlcoholContentTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/introEstimatedMinAlcoholContentTextView"
+        android:text="@string/default_blood_alcohol_content"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/introEstimatedMinAlcoholContentTextView" />
 
     <TextView
         android:id="@+id/introNumberOfDrinksTextView"
@@ -39,14 +65,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/alcoholContentTextView"
+        app:layout_constraintTop_toBottomOf="@id/minAlcoholContentTextView"
         android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/numberOfDrinksTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/introEstimatedTextView"
+        android:layout_alignTop="@id/introNumberOfDrinksTextView"
         android:text="@string/default_number_of_drinks_in_the_last_24_hours"
         android:textColor="@color/black"
         android:textSize="25sp"

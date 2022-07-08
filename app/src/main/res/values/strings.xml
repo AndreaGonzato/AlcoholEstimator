@@ -7,7 +7,7 @@
     <string name="kg">kg</string>
     <string name="save">save</string>
     <string name="toast_first_select_sex">select your sex to continue</string>
-    <string name="intro_estimated_blood_alcohol_content">Estimated blood alcohol content</string>
+    <string name="intro_max_estimated_blood_alcohol_content">Max estimated blood alcohol content</string>
     <string name="dashboard">dashboard</string>
     <string name="add_a_drink">add a drink</string>
     <string name="settings">settings</string>
@@ -50,4 +50,5 @@
     <string name="default_number_of_drinks_in_the_last_24_hours">0</string>
     <string name="delete_all_the_drinks">Delete all the drinks</string>
     <string name="skip_login">Skip LogIn</string>
+    <string name="min_estimated_blood_alcohol_content">Min estimated blood alcohol content</string>
 </resources>
