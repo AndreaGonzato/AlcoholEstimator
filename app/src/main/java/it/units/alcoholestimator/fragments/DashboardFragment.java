@@ -82,18 +82,12 @@ public class DashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // download all the drinks of the last 24 of the user from cloud
-        FirebaseDatabaseManager.fetchUserDrinks(this);
+        FirebaseDatabaseManager.fetchUserDrinks(this); // TODO is this line in the right method?
 
-        // TODO remove showDrinksButton var and xml code
-        Button showDrinksButton = requireView().findViewById(R.id.showDrinksButton);
-        showDrinksButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for (Drink drink: User.getDrinks()){
-                    Log.i("TEST", drink.toString());
-                }
-            }
-        });
+        // load the userDrink fragment
+        Fragment userDrinksFragment = new UserDrinksFragment();
+        getChildFragmentManager().beginTransaction().replace(R.id.userDrinksFrameLayout, userDrinksFragment).commit();
+
 
     }
 

@@ -52,4 +52,6 @@
     <string name="skip_login">Skip LogIn</string>
     <string name="min_estimated_blood_alcohol_content">Min estimated blood alcohol content</string>
     <string name="change_user_data">Change user data</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
