@@ -6,6 +6,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -100,6 +101,9 @@ public class User {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<Drink> getRecentDrinks(){
-        return drinks.stream().filter(drink -> TimeManagerStaticUtils.isRecent(drink.getAssumption())).collect(Collectors.toList());
+        List<Drink> recentDrinks = drinks.stream().filter(drink -> TimeManagerStaticUtils.isRecent(drink.getAssumption())).collect(Collectors.toList());
+        Collections.sort(recentDrinks);
+        return recentDrinks;
+
     }
 }

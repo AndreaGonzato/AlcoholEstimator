@@ -15,7 +15,7 @@ public class TimeManagerStaticUtils {
 
     public static final long MILLISECONDS_PER_DAY = 86400000L;
 
-    private static Calendar dateToCalendar(Date date) {
+    public static Calendar dateToCalendar(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar;

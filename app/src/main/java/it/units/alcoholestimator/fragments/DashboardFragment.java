@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 import it.units.alcoholestimator.logic.AlcoholContentCalculator;
 import it.units.alcoholestimator.logic.Drink;
+import it.units.alcoholestimator.logic.DrinkRecyclerViewAdapter;
 import it.units.alcoholestimator.logic.User;
 
 /**
@@ -103,6 +106,17 @@ public class DashboardFragment extends Fragment {
 
         TextView minAlcoholContentTextView = requireView().findViewById(R.id.minAlcoholContentTextView);
         minAlcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", minBloodAlcoholContent));
+
+        RecyclerView recyclerView = requireView().findViewById(R.id.recycleView);
+
+        for(int i=User.getRecentDrinks().size()-1 ; i >= 0; i--){
+            Drink drink = User.getRecentDrinks().get(i);
+
+        }
+
+        DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), User.getRecentDrinks());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
 }
