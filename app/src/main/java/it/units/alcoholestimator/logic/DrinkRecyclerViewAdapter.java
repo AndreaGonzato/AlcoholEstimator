@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 
 public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecyclerViewAdapter.MyViewHolder> {
 
@@ -42,8 +43,9 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecycler
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         // assign values to the view created in the recycler_view_row layout file based on the position of the recycler view
-        holder.descriptionTextView.setText(recentDrinks.get(position).getDescription());
-        Date date = recentDrinks.get(position).getAssumption();
+        Drink drink = recentDrinks.get(position);
+        holder.descriptionTextView.setText(drink.getDescription());
+        Date date = drink.getAssumption();
         Calendar calendar = TimeManagerStaticUtils.dateToCalendar(date);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
@@ -59,6 +61,14 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecycler
         String time = hourString + ":" + minuteString;
         holder.timeTextView.setText(time); // TODO show only the time and not the day (day month and year)
         holder.deleteButton.setText(R.string.delete_drink);
+
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabaseManager.deleteDrink(drink.getCloudId());
+
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -82,8 +92,6 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecycler
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             timeTextView = itemView.findViewById(R.id.timeTextView);
             deleteButton = itemView.findViewById(R.id.deleteDrinkButton);
-
-
 
         }
     }

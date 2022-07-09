@@ -17,6 +17,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import it.units.alcoholestimator.R;
@@ -109,12 +112,10 @@ public class DashboardFragment extends Fragment {
 
         RecyclerView recyclerView = requireView().findViewById(R.id.recycleView);
 
-        for(int i=User.getRecentDrinks().size()-1 ; i >= 0; i--){
-            Drink drink = User.getRecentDrinks().get(i);
+        List<Drink> reversedRecentDrinks = new ArrayList<>(User.getRecentDrinks());
+        Collections.reverse(reversedRecentDrinks);
 
-        }
-
-        DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), User.getRecentDrinks());
+        DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), reversedRecentDrinks);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
