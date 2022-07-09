@@ -19,15 +19,18 @@ import java.util.List;
 
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.database.FirebaseDatabaseManager;
+import it.units.alcoholestimator.fragments.DashboardFragment;
 
 public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecyclerViewAdapter.MyViewHolder> {
 
     Context context;
     List<Drink> recentDrinks;
+    DashboardFragment dashboardFragment;
 
-    public DrinkRecyclerViewAdapter(Context context, List<Drink> recentDrinks) {
+    public DrinkRecyclerViewAdapter(Context context, List<Drink> recentDrinks, DashboardFragment dashboardFragment) {
         this.context = context;
         this.recentDrinks = recentDrinks;
+        this.dashboardFragment = dashboardFragment;
     }
 
     @NonNull
@@ -66,7 +69,7 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecycler
             @Override
             public void onClick(View view) {
                 FirebaseDatabaseManager.deleteDrink(drink.getCloudId());
-
+                FirebaseDatabaseManager.fetchUserDrinks(dashboardFragment); // TODO is this line in the right method?
             }
         });
     }

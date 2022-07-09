@@ -115,7 +115,7 @@ public class DashboardFragment extends Fragment {
         List<Drink> reversedRecentDrinks = new ArrayList<>(User.getRecentDrinks());
         Collections.reverse(reversedRecentDrinks);
 
-        DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), reversedRecentDrinks);
+        DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), reversedRecentDrinks, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
