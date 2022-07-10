@@ -2,11 +2,14 @@ package it.units.alcoholestimator.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import it.units.alcoholestimator.R;
 
@@ -62,5 +65,26 @@ public class UserDrinksFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_drinks, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Button previousIntervalButton = requireView().findViewById(R.id.previousIntervalButton);
+        previousIntervalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DashboardFragment.iterval = Math.max(0, DashboardFragment.iterval-1);
+            }
+        });
+        Button nextIntervalButton = requireView().findViewById(R.id.nextIntervalButton);
+        nextIntervalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DashboardFragment.iterval += 1;
+            }
+        });
+
     }
 }

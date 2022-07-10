@@ -40,6 +40,7 @@ public class DashboardFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static int iterval = 0;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -115,9 +116,27 @@ public class DashboardFragment extends Fragment {
         List<Drink> reversedRecentDrinks = new ArrayList<>(User.getRecentDrinks());
         Collections.reverse(reversedRecentDrinks);
 
-        DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), reversedRecentDrinks, this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        if(reversedRecentDrinks.size() <= 5){
+            DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), reversedRecentDrinks, this);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        }else {
+
+            List<Drink> drinksToDisplay = new ArrayList<>();
+
+            int count = 0;
+            for(int i= 5 * iterval ; i<reversedRecentDrinks.size() && count < 5 ; i++){
+                drinksToDisplay.add(reversedRecentDrinks.get(i));
+                count++;
+            }
+
+            DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), drinksToDisplay, this);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        }
+
     }
 
 }
