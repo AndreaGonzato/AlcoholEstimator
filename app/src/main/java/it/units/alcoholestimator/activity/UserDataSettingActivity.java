@@ -35,7 +35,6 @@ import it.units.alcoholestimator.logic.User;
 public class UserDataSettingActivity extends AppCompatActivity {
 
     public static final int DEFAULT_WEIGHT = 70;
-    // TODO when this class is almost finish decide what to do with the fields. Can i make it local var?
     private NumberPicker numberPicker;
     private Button maleButton;
     private Button femaleButton;
@@ -65,7 +64,7 @@ public class UserDataSettingActivity extends AppCompatActivity {
             // user has already log in
             Log.i("TEST", "welcome again");
             Log.i("TEST", "" + account.getEmail());
-            User.setEmail(account.getEmail()); // TODO is not in the best place this line
+            User.setEmail(account.getEmail());
             // TODO decide if user has already log in to start a new activity
             // startActivity(new Intent(MainActivity.this, DashboardActivity.class));
         }

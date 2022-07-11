@@ -38,7 +38,7 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public static void emptyUserTable(){
-        // TODO this is not secure how can I do better?
+        // TODO this is not secure how can I do better? (security is not my priority since there are not sensitive data)
         SQLiteDatabase db = instance.getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
         db.execSQL("CREATE table " + TABLE_NAME + "( ID INTEGER PRIMARY KEY AUTOINCREMENT, CLOUD_ID TEXT, EMAIL TEXT, GENDER TEXT, WEIGHT INTEGER, IS_SIGNED_IN TEXT)");

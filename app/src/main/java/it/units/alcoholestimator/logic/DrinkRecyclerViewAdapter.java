@@ -61,14 +61,14 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecycler
             minuteString = "0" + minuteString;
         }
         String time = hourString + ":" + minuteString;
-        holder.timeTextView.setText(time); // TODO show only the time and not the day (day month and year)
+        holder.timeTextView.setText(time);
         holder.deleteButton.setText(R.string.delete_drink);
 
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseDatabaseManager.deleteDrink(drink.getCloudId());
-                FirebaseDatabaseManager.fetchUserDrinks(dashboardFragment); // TODO is this line in the right method?
+                FirebaseDatabaseManager.fetchUserDrinks(dashboardFragment); // TODO can I optimize this line? Probably I do not need to fetch again just do some local logic
             }
         });
     }

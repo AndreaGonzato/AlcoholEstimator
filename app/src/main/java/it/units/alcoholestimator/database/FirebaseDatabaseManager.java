@@ -88,7 +88,7 @@ public class FirebaseDatabaseManager {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId()); // TODO remove this log?
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -124,7 +124,7 @@ public class FirebaseDatabaseManager {
                                 Timestamp timestamp = (Timestamp) document.getData().get(DATE_KEY);
                                 Date date = Objects.requireNonNull(timestamp).toDate();
 
-                                // TODO do i need to optimize the download of only the drink in the last 24 hours?
+                                // TODO do i need to optimize the download of only the drink in the last 24 hours? (since I don't expect lots of drinks for each user at the moment is not a priority this task)
                                 String id = document.getId();
 
                                 String description = (String) document.getData().get(DRINK_TYPE_KEY);
