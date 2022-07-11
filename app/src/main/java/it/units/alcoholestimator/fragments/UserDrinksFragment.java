@@ -25,13 +25,6 @@ import it.units.alcoholestimator.logic.User;
  */
 public class UserDrinksFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    public static final String ARG_PARAM1 = "dashboardFragment";
-
-    // TODO: Rename and change types of parameters
-    private DashboardFragment dashboardFragment;
-
     public UserDrinksFragment() {
         // Required empty public constructor
     }
@@ -40,24 +33,16 @@ public class UserDrinksFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
      * @return A new instance of fragment UserDrinksFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static UserDrinksFragment newInstance(String param1) {
+    public static UserDrinksFragment newInstance() {
         UserDrinksFragment fragment = new UserDrinksFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            dashboardFragment = (DashboardFragment) getArguments().get(ARG_PARAM1);
-        }
     }
 
     @Override

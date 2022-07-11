@@ -47,15 +47,6 @@ import it.units.alcoholestimator.logic.User;
  */
 public class SettingsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -64,27 +55,16 @@ public class SettingsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment SettingsFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static SettingsFragment newInstance(String param1, String param2) {
+    public static SettingsFragment newInstance() {
         SettingsFragment fragment = new SettingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -117,9 +97,6 @@ public class SettingsFragment extends Fragment {
                 }else {
                     StringBuilder buffer = new StringBuilder();
                     while (cursor.moveToNext()){
-                        // TODO do not show all the info in realise software like CLOUD_ID
-                        buffer.append("ID: ").append(cursor.getString(0)).append("\n");
-                        buffer.append("CLOUD_ID: ").append(cursor.getString(1)).append("\n"); // TODO remove this line for security
                         buffer.append("EMAIL: ").append(cursor.getString(2)).append("\n");
                         buffer.append("GENDER: ").append(cursor.getString(3)).append("\n");
                         buffer.append("WEIGHT: ").append(cursor.getString(4)).append("\n");
@@ -167,34 +144,7 @@ public class SettingsFragment extends Fragment {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
-        // TODO why there are no log?
-        googleSignInClient.signOut()
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Log.i("TEST", "signOut completed inside listener");
-                    }
-                })
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Log.i("TEST", "on success logout");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.i("TEST", "on failure logout");
-                    }
-                })
-                .addOnCanceledListener(new OnCanceledListener() {
-                    @Override
-                    public void onCanceled() {
-                        Log.i("TEST", "on cancelled logout");
-                    }
-                });
-
-        Log.i("TEST", "signOut completed outside all the listeners");
+        googleSignInClient.signOut();
     }
 
     private static void showMessage(String title, String message, Context context){
