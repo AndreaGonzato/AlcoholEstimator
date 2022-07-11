@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,46 +19,26 @@ import android.widget.Button;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 
 import java.util.Objects;
-import java.util.concurrent.Executor;
 
 import it.units.alcoholestimator.R;
-import it.units.alcoholestimator.activity.DashboardActivity;
 import it.units.alcoholestimator.activity.LogInActivity;
 import it.units.alcoholestimator.activity.UserDataSettingActivity;
 import it.units.alcoholestimator.logic.Drink;
 import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 import it.units.alcoholestimator.database.LocalDatabaseHelper;
 import it.units.alcoholestimator.logic.SignIn;
-import it.units.alcoholestimator.logic.TimeManagerStaticUtils;
 import it.units.alcoholestimator.logic.User;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SettingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class SettingsFragment extends Fragment {
 
     public SettingsFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment SettingsFragment.
-     */
-    public static SettingsFragment newInstance() {
-        SettingsFragment fragment = new SettingsFragment();
-        return fragment;
     }
 
     @Override
@@ -79,12 +58,7 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button signOutButton = requireView().findViewById(R.id.signOutButton);
-        signOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signOut();
-            }
-        });
+        signOutButton.setOnClickListener(view1 -> signOut());
 
         Button showUserInfoButton = requireView().findViewById(R.id.showUserInfoButton);
         showUserInfoButton.setOnClickListener(new View.OnClickListener() {
