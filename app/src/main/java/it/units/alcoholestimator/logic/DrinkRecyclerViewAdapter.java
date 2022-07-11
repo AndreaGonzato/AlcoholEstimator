@@ -1,6 +1,5 @@
 package it.units.alcoholestimator.logic;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -24,12 +23,12 @@ import it.units.alcoholestimator.fragments.DashboardFragment;
 public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecyclerViewAdapter.MyViewHolder> {
 
     Context context;
-    List<Drink> recentDrinks;
+    List<Drink> drinksToDisplay;
     DashboardFragment dashboardFragment;
 
-    public DrinkRecyclerViewAdapter(Context context, List<Drink> recentDrinks, DashboardFragment dashboardFragment) {
+    public DrinkRecyclerViewAdapter(Context context, List<Drink> drinksToDisplay, DashboardFragment dashboardFragment) {
         this.context = context;
-        this.recentDrinks = recentDrinks;
+        this.drinksToDisplay = drinksToDisplay;
         this.dashboardFragment = dashboardFragment;
     }
 
@@ -46,7 +45,7 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecycler
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         // assign values to the view created in the recycler_view_row layout file based on the position of the recycler view
-        Drink drink = recentDrinks.get(position);
+        Drink drink = drinksToDisplay.get(position);
         holder.descriptionTextView.setText(drink.getDescription());
         Date date = drink.getAssumption();
         Calendar calendar = TimeManagerStaticUtils.dateToCalendar(date);
@@ -78,7 +77,7 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecycler
     @Override
     public int getItemCount() {
         // how many item there are
-        return recentDrinks.size();
+        return drinksToDisplay.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

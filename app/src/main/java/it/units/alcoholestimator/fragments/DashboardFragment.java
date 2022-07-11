@@ -130,6 +130,8 @@ public class DashboardFragment extends Fragment {
                 count++;
             }
 
+            Log.i("TEST drinks to display:", drinksToDisplay.toString());
+
             DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), drinksToDisplay, this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
