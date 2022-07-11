@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -48,7 +47,7 @@ public class DashboardActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, settingsFragment).commit();
                     break;
                 default:
-                    throw new IllegalArgumentException("No menuItem with such name: "+ menuItem.toString());
+                    throw new IllegalArgumentException("No menuItem with such name: "+ menuItem);
             }
             return true;
         });

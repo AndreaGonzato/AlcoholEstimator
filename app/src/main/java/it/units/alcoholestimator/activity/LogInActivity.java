@@ -54,21 +54,11 @@ public class LogInActivity extends AppCompatActivity {
         // Set the dimensions of the sign-in button.
         SignInButton signInGoogleButton = findViewById(R.id.signInButton);
         signInGoogleButton.setSize(SignInButton.SIZE_STANDARD);
-        signInGoogleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signIn();
-            }
-        });
+        signInGoogleButton.setOnClickListener(view -> signIn());
 
 
         Button skipLogInButton = findViewById(R.id.skipLogInButton);
-        skipLogInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LogInActivity.this, UserDataSettingActivity.class));
-            }
-        });
+        skipLogInButton.setOnClickListener(view -> startActivity(new Intent(LogInActivity.this, UserDataSettingActivity.class)));
     }
 
 
@@ -80,13 +70,13 @@ public class LogInActivity extends AppCompatActivity {
 
     ActivityResultLauncher<Intent> startActivityIntent = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
+            new ActivityResultCallback<>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode()==RESULT_CANCELED){
+                    if (result.getResultCode() == RESULT_CANCELED) {
                         Log.i("IMPORTANT", "CANCELED Intent");
                         User.setIsSignedInWithGoogle(false);
-                    }else {
+                    } else {
                         User.setIsSignedInWithGoogle(true);
 
                         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());

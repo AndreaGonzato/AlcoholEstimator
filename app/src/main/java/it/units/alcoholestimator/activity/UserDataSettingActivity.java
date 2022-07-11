@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -38,10 +37,8 @@ import it.units.alcoholestimator.logic.User;
 public class UserDataSettingActivity extends AppCompatActivity {
 
     public static final int DEFAULT_WEIGHT = 70;
-    private NumberPicker numberPicker;
     private Button maleButton;
     private Button femaleButton;
-    private Button saveButton;
 
     private static final int RC_SIGN_IN = 9001;
 
@@ -80,7 +77,7 @@ public class UserDataSettingActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         maleButton = findViewById(R.id.male);
-        saveButton = findViewById(R.id.saveButton);
+        Button saveButton = findViewById(R.id.saveButton);
         femaleButton = findViewById(R.id.female);
 
         maleButton.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +140,7 @@ public class UserDataSettingActivity extends AppCompatActivity {
             }
         });
 
-        numberPicker = findViewById(R.id.weightPicker);
+        NumberPicker numberPicker = findViewById(R.id.weightPicker);
         numberPicker.setMaxValue(200);
         numberPicker.setMinValue(10);
         numberPicker.setValue(DEFAULT_WEIGHT);
