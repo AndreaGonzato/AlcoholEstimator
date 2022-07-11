@@ -30,7 +30,6 @@ import it.units.alcoholestimator.logic.Month;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddDrinkFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class AddDrinkFragment extends Fragment {
@@ -52,25 +51,6 @@ public class AddDrinkFragment extends Fragment {
 
     public AddDrinkFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1 that is a description of the drink as default/suggested value when the new fragment is created
-     * @param param2 Parameter 2 that indicate the alcohol content of the drink as default/suggested value when the new fragment is created
-     * @param param3 Parameter 3 tht indicate the size of the drink as default/suggested value when the new fragment is created
-     * @return A new instance of fragment AddDrinkFragment.
-     */
-    public static AddDrinkFragment newInstance(String param1, String param2, String param3) {
-        AddDrinkFragment fragment = new AddDrinkFragment();
-        Bundle args = new Bundle();
-        args.putString(DRINK_TYPE_KEY, param1);
-        args.putString(ALCOHOL_CONTENT_KEY, param2);
-        args.putString(DRINK_SIZE_KEY, param3);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -108,12 +88,7 @@ public class AddDrinkFragment extends Fragment {
         initDatePicker();
         Button dateButton = requireView().findViewById(R.id.datePickerButton);
         dateButton.setText(getTodayDate());
-        dateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                datePickerDialog.show();
-            }
-        });
+        dateButton.setOnClickListener(view1 -> datePickerDialog.show());
 
         timeButton = requireView().findViewById(R.id.timePickerButton);
         setCurrentTime();
@@ -125,7 +100,7 @@ public class AddDrinkFragment extends Fragment {
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         hour = selectedHour;
                         minute = selectedMinute;
-                        timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
+                        timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
                     }
                 };
 
@@ -143,10 +118,10 @@ public class AddDrinkFragment extends Fragment {
                 // update the input values
                 drinkType = drinkDescriptionEditText.getText().toString();
 
-                if (!alcoholContentEditText.getText().toString().equals("")){
+                if (!alcoholContentEditText.getText().toString().equals("")) {
                     alcoholContent = Integer.parseInt(alcoholContentEditText.getText().toString());
                 }
-                if (!drinkSizeEditText.getText().toString().equals("")){
+                if (!drinkSizeEditText.getText().toString().equals("")) {
                     drinkSize = Integer.parseInt(drinkSizeEditText.getText().toString());
                 }
 
@@ -154,9 +129,9 @@ public class AddDrinkFragment extends Fragment {
 
                 Log.i("TEST", "drinkType:" + drinkType + " alcoholContent:" + alcoholContent + " drinkSize:" + drinkSize + " date:" + date);
 
-                if (drinkType == null || drinkSize == 0 || alcoholContent == 0){
+                if (drinkType == null || drinkSize == 0 || alcoholContent == 0) {
                     Toast.makeText(getContext(), "Enter the drink details to add a drink", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     // store drink in the database
                     FirebaseDatabaseManager.addDrink(drinkType, alcoholContent, drinkSize, date);
 
@@ -174,15 +149,13 @@ public class AddDrinkFragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
         hour = calendar.get(Calendar.HOUR_OF_DAY);
         minute = calendar.get(Calendar.MINUTE);
-        timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
+        timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
     }
 
-    private void initDatePicker()
-    {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
-        {
+    private void initDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int y, int m, int d){
+            public void onDateSet(DatePicker datePicker, int y, int m, int d) {
                 year = y;
                 month = m + 1;
                 day = d;
@@ -203,7 +176,7 @@ public class AddDrinkFragment extends Fragment {
 
     }
 
-    private String getTodayDate(){
+    private String getTodayDate() {
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
@@ -213,7 +186,7 @@ public class AddDrinkFragment extends Fragment {
     }
 
     private String makeDateString(int day, int month, int year) {
-        return getMonthFormat(month) + " " + day + " " +year;
+        return getMonthFormat(month) + " " + day + " " + year;
     }
 
     private String getMonthFormat(int month) {
