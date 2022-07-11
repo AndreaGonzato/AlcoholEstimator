@@ -31,7 +31,6 @@ import it.units.alcoholestimator.logic.User;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DashboardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class DashboardFragment extends Fragment {
@@ -40,17 +39,6 @@ public class DashboardFragment extends Fragment {
 
     public DashboardFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment dashboardFragment.
-     */
-    public static DashboardFragment newInstance() {
-        DashboardFragment fragment = new DashboardFragment();
-        return fragment;
     }
 
     @Override
@@ -91,7 +79,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 DashboardFragment.interval += 1;
-                if (DashboardFragment.interval * 5 >= User.getDrinks().size()){
+                if (DashboardFragment.interval * 5 >= User.getDrinks().size()) {
                     DashboardFragment.interval -= 1;
                 }
                 updateGUIAfterDownloadDataFromCloud();
@@ -103,7 +91,7 @@ public class DashboardFragment extends Fragment {
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void updateGUIAfterDownloadDataFromCloud(){
+    public void updateGUIAfterDownloadDataFromCloud() {
         TextView numberOfDrink = requireView().findViewById(R.id.numberOfDrinksTextView);
         int recentDrinksQuantity = User.getRecentDrinks().size();
         numberOfDrink.setText(String.valueOf(recentDrinksQuantity));
@@ -116,7 +104,7 @@ public class DashboardFragment extends Fragment {
         TextView minAlcoholContentTextView = requireView().findViewById(R.id.minAlcoholContentTextView);
         minAlcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", minBloodAlcoholContent));
 
-        if(recentDrinksQuantity == 0){
+        if (recentDrinksQuantity == 0) {
             // no drink for the user to show
             TextView lastDrinkTextView = requireView().findViewById(R.id.userLastDrinksTextView);
             lastDrinkTextView.setVisibility(View.INVISIBLE);
@@ -129,7 +117,7 @@ public class DashboardFragment extends Fragment {
 
             TextView intervalTextView = requireView().findViewById(R.id.currentIntervalTextView);
             intervalTextView.setVisibility(View.INVISIBLE);
-        }else {
+        } else {
             RecyclerView recyclerView = requireView().findViewById(R.id.recycleView);
 
             List<Drink> reversedRecentDrinks = new ArrayList<>(User.getRecentDrinks());
@@ -140,7 +128,7 @@ public class DashboardFragment extends Fragment {
             int startingValueInterval = 5 * interval + 1;
             int endValueInterval = 1;
             int count = 0;
-            for(int i = 5 * interval; i<reversedRecentDrinks.size() && count < 5 ; i++){
+            for (int i = 5 * interval; i < reversedRecentDrinks.size() && count < 5; i++) {
                 drinksToDisplay.add(reversedRecentDrinks.get(i));
                 count++;
                 endValueInterval = i + 1;

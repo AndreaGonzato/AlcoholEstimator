@@ -20,7 +20,6 @@ import it.units.alcoholestimator.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SelectDrinkFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class SelectDrinkFragment extends Fragment {
@@ -29,20 +28,8 @@ public class SelectDrinkFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment AddDrinkFragment.
-     */
-    public static SelectDrinkFragment newInstance() {
-        SelectDrinkFragment fragment = new SelectDrinkFragment();
-        return fragment;
-    }
 
     @Override
-
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -111,7 +98,7 @@ public class SelectDrinkFragment extends Fragment {
                             .addToBackStack(null);
                     fragmentTransaction.commit();
                 }
-                );
+        );
     }
 
 
@@ -124,8 +111,8 @@ public class SelectDrinkFragment extends Fragment {
         addDrinkFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainFragment, addDrinkFragment)
-                            .setReorderingAllowed(true)
-                            .addToBackStack(null);
+                .setReorderingAllowed(true)
+                .addToBackStack(null);
         fragmentTransaction.commit();
     }
 }

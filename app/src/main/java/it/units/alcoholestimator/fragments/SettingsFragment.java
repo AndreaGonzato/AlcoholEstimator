@@ -65,12 +65,12 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Cursor cursor = LocalDatabaseHelper.getAllData();
-                if(cursor.getCount() == 0){
+                if (cursor.getCount() == 0) {
                     // show message
                     showMessage("Error", "No user found in the local database", getContext());
-                }else {
+                } else {
                     StringBuilder buffer = new StringBuilder();
-                    while (cursor.moveToNext()){
+                    while (cursor.moveToNext()) {
                         buffer.append("EMAIL: ").append(cursor.getString(2)).append("\n");
                         buffer.append("GENDER: ").append(cursor.getString(3)).append("\n");
                         buffer.append("WEIGHT: ").append(cursor.getString(4)).append("\n");
@@ -98,7 +98,7 @@ public class SettingsFragment extends Fragment {
         deleteDrinksButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (Drink drink : User.getDrinks()){
+                for (Drink drink : User.getDrinks()) {
                     FirebaseDatabaseManager.deleteDrink(drink.getCloudId());
                 }
             }
@@ -121,7 +121,7 @@ public class SettingsFragment extends Fragment {
         googleSignInClient.signOut();
     }
 
-    private static void showMessage(String title, String message, Context context){
+    private static void showMessage(String title, String message, Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
         builder.setTitle(title);
