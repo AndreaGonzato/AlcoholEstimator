@@ -15,4 +15,4 @@ This is an Android App that estimates the alcohol content in your blood based on
 
 ## Try it
 
-Download and install in your Android phone this [apk](AlcoholEstimatorApp.pdf)
+Download and install in your Android phone this [apk](https://github.com/AndreaGonzato/AlcoholEstimator/blob/main/AlcoholEstimatorApp.apk)
