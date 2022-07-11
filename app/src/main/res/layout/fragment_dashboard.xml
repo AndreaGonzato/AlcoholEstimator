@@ -81,6 +81,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/introNumberOfDrinksTextView" />
 
+    <TextView
+        android:id="@+id/userLastDrinksTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/introNumberOfDrinksTextView"
+        android:text="@string/your_last_drinks"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberOfDrinksTextView"
+        android:layout_marginTop="10dp"/>
+
     <FrameLayout
         android:id="@+id/userDrinksFrameLayout"
         android:layout_width="match_parent"
@@ -88,7 +102,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numberOfDrinksTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/userLastDrinksTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
