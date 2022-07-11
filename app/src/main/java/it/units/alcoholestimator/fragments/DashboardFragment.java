@@ -101,7 +101,8 @@ public class DashboardFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void updateGUIAfterDownloadDataFromCloud(){
         TextView numberOfDrink = requireView().findViewById(R.id.numberOfDrinksTextView);
-        numberOfDrink.setText(String.valueOf(User.getRecentDrinks().size()));
+        int recentDrinksQuantity = User.getRecentDrinks().size();
+        numberOfDrink.setText(String.valueOf(recentDrinksQuantity));
 
         float maxBloodAlcoholContent = AlcoholContentCalculator.calculateAlcoholContent(User.getGender(), User.getWeight(), User.getRecentDrinks());
         float minBloodAlcoholContent = maxBloodAlcoholContent / AlcoholContentCalculator.SCALING_FACTOR_WITHOUT_A_MEAL;
@@ -111,16 +112,20 @@ public class DashboardFragment extends Fragment {
         TextView minAlcoholContentTextView = requireView().findViewById(R.id.minAlcoholContentTextView);
         minAlcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", minBloodAlcoholContent));
 
-        RecyclerView recyclerView = requireView().findViewById(R.id.recycleView);
+        if(recentDrinksQuantity == 0){
+            TextView lastDrinkTextView = requireView().findViewById(R.id.userLastDrinksTextView);
+            lastDrinkTextView.setVisibility(View.INVISIBLE);
 
-        List<Drink> reversedRecentDrinks = new ArrayList<>(User.getRecentDrinks());
-        Collections.reverse(reversedRecentDrinks);
+            Button previousIntervalButton = requireView().findViewById(R.id.previousIntervalButton);
+            previousIntervalButton.setVisibility(View.INVISIBLE);
 
-        if(reversedRecentDrinks.size() <= 5){
-            DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), reversedRecentDrinks, this);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            Button nextIntervalButton = requireView().findViewById(R.id.nextIntervalButton);
+            nextIntervalButton.setVisibility(View.INVISIBLE);
         }else {
+            RecyclerView recyclerView = requireView().findViewById(R.id.recycleView);
+
+            List<Drink> reversedRecentDrinks = new ArrayList<>(User.getRecentDrinks());
+            Collections.reverse(reversedRecentDrinks);
 
             List<Drink> drinksToDisplay = new ArrayList<>();
 
@@ -137,7 +142,9 @@ public class DashboardFragment extends Fragment {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
+
         }
+
 
     }
 
