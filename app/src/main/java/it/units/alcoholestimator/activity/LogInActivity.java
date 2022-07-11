@@ -80,6 +80,7 @@ public class LogInActivity extends AppCompatActivity {
 
                         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
                         assert account != null;
+                        User.setCloudID(account.getId());
                         User.setEmail(account.getEmail());
                         FirebaseDatabaseManager.addUser(User.getEmail(), User.getGender(), User.getWeight());
 

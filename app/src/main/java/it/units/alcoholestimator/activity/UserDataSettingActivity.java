@@ -62,8 +62,10 @@ public class UserDataSettingActivity extends AppCompatActivity {
             Log.i("TEST", "welcome for the first time");
         }else {
             // user has already log in
-            Log.i("TEST", "welcome again");
-            Log.i("TEST", "" + account.getEmail());
+            Log.i("TEST", "welcome again"); // TODO remove this line
+            Log.i("TEST", "" + account.getEmail()); // TODO remove this line
+            Log.i("TEST getId", account.getId()); // TODO remove this line
+            User.setCloudID(account.getId());
             User.setEmail(account.getEmail());
         }
     }

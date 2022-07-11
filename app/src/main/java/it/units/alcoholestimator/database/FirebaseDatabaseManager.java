@@ -61,8 +61,6 @@ public class FirebaseDatabaseManager {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                        User.setCloudID(documentReference.getId());
-
                     }
                 })
                 .addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
