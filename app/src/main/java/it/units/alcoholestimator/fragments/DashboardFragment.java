@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.database.FirebaseDatabaseManager;
@@ -42,7 +40,7 @@ public class DashboardFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    public static int iterval = 0;
+    public static int interval = 0;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -102,7 +100,7 @@ public class DashboardFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                DashboardFragment.iterval = Math.max(0, DashboardFragment.iterval - 1);
+                DashboardFragment.interval = Math.max(0, DashboardFragment.interval - 1);
                 updateGUIAfterDownloadDataFromCloud();
             }
         });
@@ -111,9 +109,9 @@ public class DashboardFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                DashboardFragment.iterval += 1;
-                if (DashboardFragment.iterval * 5 >= User.getDrinks().size()){
-                    DashboardFragment.iterval -= 1;
+                DashboardFragment.interval += 1;
+                if (DashboardFragment.interval * 5 >= User.getDrinks().size()){
+                    DashboardFragment.interval -= 1;
                 }
                 updateGUIAfterDownloadDataFromCloud();
             }
@@ -158,10 +156,10 @@ public class DashboardFragment extends Fragment {
 
             List<Drink> drinksToDisplay = new ArrayList<>();
 
-            int startingValueInterval = 5 * iterval + 1;
+            int startingValueInterval = 5 * interval + 1;
             int endValueInterval = 1;
             int count = 0;
-            for(int i= 5 * iterval ; i<reversedRecentDrinks.size() && count < 5 ; i++){
+            for(int i = 5 * interval; i<reversedRecentDrinks.size() && count < 5 ; i++){
                 drinksToDisplay.add(reversedRecentDrinks.get(i));
                 count++;
                 endValueInterval = i + 1;

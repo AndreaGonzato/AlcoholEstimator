@@ -44,7 +44,6 @@ public class AddDrinkFragment extends Fragment {
     private Button timeButton;
     private int hour, minute;
 
-    // TODO: Rename and change types of parameters
     private String drinkType;
     private String alcoholContentString;
     private int alcoholContent;
@@ -59,12 +58,11 @@ public class AddDrinkFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @param param3 Parameter 3.
+     * @param param1 Parameter 1 that is a description of the drink as default/suggested value when the new fragment is created
+     * @param param2 Parameter 2 that indicate the alcohol content of the drink as default/suggested value when the new fragment is created
+     * @param param3 Parameter 3 tht indicate the size of the drink as default/suggested value when the new fragment is created
      * @return A new instance of fragment AddDrinkFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static AddDrinkFragment newInstance(String param1, String param2, String param3) {
         AddDrinkFragment fragment = new AddDrinkFragment();
         Bundle args = new Bundle();
