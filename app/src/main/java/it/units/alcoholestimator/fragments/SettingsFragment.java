@@ -157,6 +157,8 @@ public class SettingsFragment extends Fragment {
     private void signOut() {
         LocalDatabaseHelper.emptyUserTable();
         User.setIsSignedInWithGoogle(false);
+        User.setCloudID(null);
+        User.setEmail(null);
         Activity activity = getActivity();
         GoogleSignInOptions googleOptions = SignIn.getGoogleSignInOptions();
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(Objects.requireNonNull(activity), googleOptions);

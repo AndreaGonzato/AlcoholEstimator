@@ -40,14 +40,13 @@ public class LogInActivity extends AppCompatActivity {
         try {
             // when start the app need load the user data from the local database
             User.loadUserFromLocalDatabase();
+            startActivity(new Intent(LogInActivity.this, DashboardActivity.class));
+
         }catch (SQLException e){
             // there are no data to load for the user in the local database
             Log.i("TEST", "no data for the user in the local database");
         }
 
-        if (User.isIsSignedInWithGoogle()){
-            startActivity(new Intent(LogInActivity.this, DashboardActivity.class));
-        }
 
         GoogleSignInOptions googleOptions = SignIn.getGoogleSignInOptions();
         googleSignInClient = GoogleSignIn.getClient(this, googleOptions);

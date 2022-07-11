@@ -22,10 +22,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import org.apache.commons.rng.UniformRandomProvider;
+import org.apache.commons.rng.simple.RandomSource;
 import org.apache.commons.text.CharacterPredicates;
 import org.apache.commons.text.RandomStringGenerator;
 
 import java.util.Objects;
+import java.util.Random;
 
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.database.LocalDatabaseHelper;
@@ -165,13 +168,17 @@ public class UserDataSettingActivity extends AppCompatActivity {
                     if(User.isIsSignedInWithGoogle()){
                         isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), User.getEmail(), User.getGender().representation, User.getWeight(), "true");
                     }else {
+                        long randomSeed = new Random().nextLong();
+                        UniformRandomProvider rng = RandomSource.MT.create(RandomSource.SPLIT_MIX_64, randomSeed);
                         RandomStringGenerator generator = new RandomStringGenerator
                                 .Builder()
                                 .withinRange('0', 'z')
                                 .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
+                                .usingRandom(rng::nextInt)
                                 .build();
 
                         String generatedID = "local-" + generator.generate(14);
+                        Log.i("TEST generatedID:", generatedID);
                         User.setCloudID(generatedID);
                         //User.setEmail("no@email.com"); // TODO if you put the constrain that every user need to have an email put this line otherwise an use can have email = nul
                         isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), null, User.getGender().representation, User.getWeight(), "false");
