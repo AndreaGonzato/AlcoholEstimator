@@ -1,9 +1,11 @@
 package it.units.alcoholestimator.logic;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 import java.util.Objects;
 
-public class Drink implements Comparable<Drink>{
+public class Drink implements Comparable<Drink> {
     private final String cloudId;
     private final String description;
     private final int sizeMl;
@@ -38,6 +40,7 @@ public class Drink implements Comparable<Drink>{
         return cloudId;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Drink{" +

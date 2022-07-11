@@ -17,7 +17,8 @@ public enum Month {
 
     public int monthNumber;
     public String representation;
-    Month(int monthNumber, String representation){
+
+    Month(int monthNumber, String representation) {
         this.monthNumber = monthNumber;
         this.representation = representation;
     }

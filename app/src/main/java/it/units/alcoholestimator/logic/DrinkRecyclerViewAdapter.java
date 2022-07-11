@@ -54,10 +54,10 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecycler
         String hourString = String.valueOf(hour);
         String minuteString = String.valueOf(minute);
 
-        if (hourString.length() == 1){
+        if (hourString.length() == 1) {
             hourString = "0" + hourString;
         }
-        if (minuteString.length() == 1){
+        if (minuteString.length() == 1) {
             minuteString = "0" + minuteString;
         }
         String time = hourString + ":" + minuteString;
@@ -80,7 +80,7 @@ public class DrinkRecyclerViewAdapter extends RecyclerView.Adapter<DrinkRecycler
         return drinksToDisplay.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         // grabbing all the views from the recycler_view_row layout file
         // kinda like in the onCreate method
 

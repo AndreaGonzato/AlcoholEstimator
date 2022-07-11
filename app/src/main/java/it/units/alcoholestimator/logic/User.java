@@ -6,7 +6,6 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,13 +21,13 @@ public class User {
 
     public static void loadUserFromLocalDatabase() throws SQLException {
         Cursor cursor = LocalDatabaseHelper.getAllData();
-        if(cursor.getCount() == 0){
+        if (cursor.getCount() == 0) {
             throw new SQLException("Error: No data found for the local user");
-        }else {
-            while (cursor.moveToNext()){
+        } else {
+            while (cursor.moveToNext()) {
                 User.setCloudID(cursor.getString(1));
                 User.setEmail(cursor.getString(2));
-                switch (cursor.getString(3)){
+                switch (cursor.getString(3)) {
                     case "MALE":
                         User.setGender(Gender.MALE);
                         break;
@@ -38,7 +37,7 @@ public class User {
                 }
 
                 User.setWeight(Integer.parseInt(cursor.getString(4)));
-                switch (cursor.getString(5)){
+                switch (cursor.getString(5)) {
                     case "true":
                         User.setIsSignedInWithGoogle(true);
                         break;
@@ -100,10 +99,7 @@ public class User {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static List<Drink> getRecentDrinks(){
-        List<Drink> recentDrinks = drinks.stream().filter(drink -> TimeManagerStaticUtils.isRecent(drink.getAssumption())).collect(Collectors.toList());
-        Collections.sort(recentDrinks);
-        return recentDrinks;
-
+    public static List<Drink> getRecentDrinks() {
+        return drinks.stream().filter(drink -> TimeManagerStaticUtils.isRecent(drink.getAssumption())).sorted().collect(Collectors.toList());
     }
 }
