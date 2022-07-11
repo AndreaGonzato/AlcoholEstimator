@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fadeScrollbars="true"
     android:isScrollContainer="true"
     app:layout_scrollFlags="scroll"
@@ -26,47 +26,6 @@
             app:layout_constraintTop_toTopOf="parent" >
 
         </androidx.recyclerview.widget.RecyclerView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/recycleView">
-
-                <android.widget.Button
-                    android:id="@+id/previousIntervalButton"
-                    style="?android:spinnerStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/lightGray"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="10dp"
-                    android:text="back"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:gravity="start"
-                    android:layout_weight="1"/>
-
-                <android.widget.Button
-                    android:id="@+id/nextIntervalButton"
-                    style="?android:spinnerStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/lightGray"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="10dp"
-                    android:text="next"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:layout_weight="1"/>
-            </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

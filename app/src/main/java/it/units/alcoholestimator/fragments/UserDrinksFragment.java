@@ -71,29 +71,5 @@ public class UserDrinksFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button previousIntervalButton = requireView().findViewById(R.id.previousIntervalButton);
-        previousIntervalButton.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View view) {
-                DashboardFragment.iterval = Math.max(0, DashboardFragment.iterval - 1);
-                DashboardFragment parentFragment = (DashboardFragment) getParentFragment();
-                Objects.requireNonNull(parentFragment).updateGUIAfterDownloadDataFromCloud();
-            }
-        });
-        Button nextIntervalButton = requireView().findViewById(R.id.nextIntervalButton);
-        nextIntervalButton.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View view) {
-                DashboardFragment.iterval += 1;
-                if (DashboardFragment.iterval * 5 > User.getDrinks().size()){
-                    DashboardFragment.iterval -= 1;
-                }
-                DashboardFragment parentFragment = (DashboardFragment) getParentFragment();
-                Objects.requireNonNull(parentFragment).updateGUIAfterDownloadDataFromCloud();
-            }
-        });
-
     }
 }

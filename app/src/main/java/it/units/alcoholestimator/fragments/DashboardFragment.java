@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import it.units.alcoholestimator.R;
 import it.units.alcoholestimator.database.FirebaseDatabaseManager;
@@ -94,6 +95,28 @@ public class DashboardFragment extends Fragment {
         // load the userDrink fragment
         Fragment userDrinksFragment = new UserDrinksFragment();
         getChildFragmentManager().beginTransaction().replace(R.id.userDrinksFrameLayout, userDrinksFragment).commit();
+
+        Button previousIntervalButton = requireView().findViewById(R.id.previousIntervalButton);
+        previousIntervalButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View view) {
+                DashboardFragment.iterval = Math.max(0, DashboardFragment.iterval - 1);
+                updateGUIAfterDownloadDataFromCloud();
+            }
+        });
+        Button nextIntervalButton = requireView().findViewById(R.id.nextIntervalButton);
+        nextIntervalButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View view) {
+                DashboardFragment.iterval += 1;
+                if (DashboardFragment.iterval * 5 > User.getDrinks().size()){
+                    DashboardFragment.iterval -= 1;
+                }
+                updateGUIAfterDownloadDataFromCloud();
+            }
+        });
 
 
     }
