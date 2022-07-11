@@ -58,4 +58,7 @@
     <string name="last_drink">Last Drink</string>
     <string name="_00_00">00:00</string>
     <string name="your_last_drinks">Your last drinks:</string>
+    <string name="back"><![CDATA[<<]]></string>
+    <string name="next"><![CDATA[>>]]></string>
+    <string name="_1_1">[1, 1]</string>
 </resources>

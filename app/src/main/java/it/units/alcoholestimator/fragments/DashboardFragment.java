@@ -1,5 +1,6 @@
 package it.units.alcoholestimator.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -111,7 +112,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 DashboardFragment.iterval += 1;
-                if (DashboardFragment.iterval * 5 > User.getDrinks().size()){
+                if (DashboardFragment.iterval * 5 >= User.getDrinks().size()){
                     DashboardFragment.iterval -= 1;
                 }
                 updateGUIAfterDownloadDataFromCloud();
@@ -121,6 +122,7 @@ public class DashboardFragment extends Fragment {
 
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void updateGUIAfterDownloadDataFromCloud(){
         TextView numberOfDrink = requireView().findViewById(R.id.numberOfDrinksTextView);
@@ -136,6 +138,7 @@ public class DashboardFragment extends Fragment {
         minAlcoholContentTextView.setText(String.format(Locale.getDefault(), "%.2f g/l", minBloodAlcoholContent));
 
         if(recentDrinksQuantity == 0){
+            // no drink for the user to show
             TextView lastDrinkTextView = requireView().findViewById(R.id.userLastDrinksTextView);
             lastDrinkTextView.setVisibility(View.INVISIBLE);
 
@@ -144,6 +147,9 @@ public class DashboardFragment extends Fragment {
 
             Button nextIntervalButton = requireView().findViewById(R.id.nextIntervalButton);
             nextIntervalButton.setVisibility(View.INVISIBLE);
+
+            TextView intervalTextView = requireView().findViewById(R.id.currentIntervalTextView);
+            intervalTextView.setVisibility(View.INVISIBLE);
         }else {
             RecyclerView recyclerView = requireView().findViewById(R.id.recycleView);
 
@@ -152,15 +158,22 @@ public class DashboardFragment extends Fragment {
 
             List<Drink> drinksToDisplay = new ArrayList<>();
 
+            int startingValueInterval = 5 * iterval + 1;
+            int endValueInterval = 1;
             int count = 0;
             for(int i= 5 * iterval ; i<reversedRecentDrinks.size() && count < 5 ; i++){
                 drinksToDisplay.add(reversedRecentDrinks.get(i));
                 count++;
+                endValueInterval = i + 1;
             }
 
             DrinkRecyclerViewAdapter adapter = new DrinkRecyclerViewAdapter(getContext(), drinksToDisplay, this);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+            TextView intervalTextView = requireView().findViewById(R.id.currentIntervalTextView);
+
+            intervalTextView.setText("[" + startingValueInterval + ", " + endValueInterval + "]");
 
         }
 
