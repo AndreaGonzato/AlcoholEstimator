@@ -163,18 +163,21 @@ public class UserDataSettingActivity extends AppCompatActivity {
                     if(User.isIsSignedInWithGoogle()){
                         isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), User.getEmail(), User.getGender().representation, User.getWeight(), "true");
                     }else {
-                        long randomSeed = new Random().nextLong();
-                        UniformRandomProvider uniformRandomProvider = RandomSource.create(RandomSource.SPLIT_MIX_64, randomSeed);
-                        RandomStringGenerator generator = new RandomStringGenerator
-                                .Builder()
-                                .withinRange('0', 'z')
-                                .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
-                                .usingRandom(uniformRandomProvider::nextInt)
-                                .build();
+                        if (User.getCloudID() == null){
+                            long randomSeed = new Random().nextLong();
+                            UniformRandomProvider uniformRandomProvider = RandomSource.create(RandomSource.SPLIT_MIX_64, randomSeed);
+                            RandomStringGenerator generator = new RandomStringGenerator
+                                    .Builder()
+                                    .withinRange('0', 'z')
+                                    .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
+                                    .usingRandom(uniformRandomProvider::nextInt)
+                                    .build();
 
-                        String generatedID = "local-" + generator.generate(14);
-                        Log.i("TEST generatedID:", generatedID);
-                        User.setCloudID(generatedID);
+                            String generatedID = "local-" + generator.generate(14);
+                            Log.i("TEST generatedID:", generatedID);
+                            User.setCloudID(generatedID);
+                        }
+
                         //User.setEmail("no@email.com"); // TODO if you put the constrain that every user need to have an email put this line otherwise an use can have email = null
                         isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), null, User.getGender().representation, User.getWeight(), "false");
                     }
