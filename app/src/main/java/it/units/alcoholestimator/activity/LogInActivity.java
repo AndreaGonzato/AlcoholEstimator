@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -57,7 +56,7 @@ public class LogInActivity extends AppCompatActivity {
         signInGoogleButton.setOnClickListener(view -> signIn());
 
 
-        Button skipLogInButton = findViewById(R.id.skipLogInButton);
+        Button skipLogInButton = findViewById(R.id.skipLoginButton);
         skipLogInButton.setOnClickListener(view -> startActivity(new Intent(LogInActivity.this, UserDataSettingActivity.class)));
     }
 
