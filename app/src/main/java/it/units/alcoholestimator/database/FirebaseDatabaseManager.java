@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
@@ -44,11 +43,11 @@ public class FirebaseDatabaseManager {
     public static final String USERS = "users";
     public static final String DRINKS = "drinks";
 
-    public static FirebaseFirestore getDatabase(){
+    public static FirebaseFirestore getDatabase() {
         return FirebaseFirestore.getInstance();
     }
 
-    public static void addUser(String email, Gender gender, int weight){
+    public static void addUser(String email, Gender gender, int weight) {
         // Create a new drink with a first and last name
         Map<String, Object> user = new HashMap<>();
         user.put(EMAIL_KEY, email);
@@ -58,7 +57,7 @@ public class FirebaseDatabaseManager {
         // Add a new document with a generated ID
         getDatabase().collection(USERS)
                 .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                .addOnSuccessListener(new OnSuccessListener<>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
@@ -66,15 +65,10 @@ public class FirebaseDatabaseManager {
 
                     }
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
+                .addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
     }
 
-    public static void addDrink(String drinkType, int alcoholContent, int drinkSize, Date date){
+    public static void addDrink(String drinkType, int alcoholContent, int drinkSize, Date date) {
         // Create a new drink with a first and last name
         Map<String, Object> drink = new HashMap<>();
         drink.put(DRINK_TYPE_KEY, drinkType);
@@ -83,35 +77,20 @@ public class FirebaseDatabaseManager {
         drink.put(DATE_KEY, date);
 
         // Add a new document with a generated ID
-        getDatabase().collection(USERS+"/" + User.getCloudID() + "/" + DRINKS)
+        getDatabase().collection(USERS + "/" + User.getCloudID() + "/" + DRINKS)
                 .add(drink)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
+                .addOnSuccessListener(documentReference -> Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId()))
+                .addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
     }
 
-    public static void deleteDrink(String idDrinkDocumentToDelete){
-        getDatabase().collection(USERS+"/"+User.getCloudID()+"/"+DRINKS).document(idDrinkDocumentToDelete)
+    public static void deleteDrink(String idDrinkDocumentToDelete) {
+        getDatabase().collection(USERS + "/" + User.getCloudID() + "/" + DRINKS).document(idDrinkDocumentToDelete)
                 .delete()
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error deleting document", e);
-                    }
-                });
+                .addOnFailureListener(e -> Log.w(TAG, "Error deleting document", e));
     }
 
-    public static void fetchUserDrinks(DashboardFragment dashboardFragment){
-        getDatabase().collection(USERS+"/"+User.getCloudID()+"/"+DRINKS)
+    public static void fetchUserDrinks(DashboardFragment dashboardFragment) {
+        getDatabase().collection(USERS + "/" + User.getCloudID() + "/" + DRINKS)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -132,10 +111,10 @@ public class FirebaseDatabaseManager {
                                 int size = Objects.requireNonNull((Long) document.getData().get(DRINK_SIZE_KEY)).intValue();
 
                                 float alcoholContent = Objects.requireNonNull((Long) document.getData().get(ALCOHOL_CONTENT_KEY)).floatValue();
-                                Log.i("TEST", "fetched drink: {description:" + description + " size:" + size + " alcoholContent: "+alcoholContent + " date:"+date + " }");
+                                Log.i("TEST", "fetched drink: {description:" + description + " size:" + size + " alcoholContent: " + alcoholContent + " date:" + date + " }");
 
                                 Drink drink = new Drink(id, description, size, alcoholContent, date);
-                                Log.i("TEST", "drink: "+drink);
+                                Log.i("TEST", "drink: " + drink);
                                 drinks.add(drink);
 
                             }

@@ -33,19 +33,19 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 
-    public static void emptyUserTable(){
+    public static void emptyUserTable() {
         // TODO this is not secure how can I do better? (security is not my priority since there are not sensitive data)
         SQLiteDatabase db = instance.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("CREATE table " + TABLE_NAME + "( ID INTEGER PRIMARY KEY AUTOINCREMENT, CLOUD_ID TEXT, EMAIL TEXT, GENDER TEXT, WEIGHT INTEGER, IS_SIGNED_IN TEXT)");
     }
 
 
-    public static boolean insertData(String cloudId, String email, String gender, int weight, String isSignedIn){
+    public static boolean insertData(String cloudId, String email, String gender, int weight, String isSignedIn) {
         // this line is to guarantee that in the table there exists only one record
         emptyUserTable();
 
@@ -60,13 +60,13 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public static Cursor getAllData(){
+    public static Cursor getAllData() {
         SQLiteDatabase db = instance.getWritableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
     }
 
-    public static boolean updateData(String id, String cloudId, String email, String gender, int weight, String isSignedIn){
+    public static boolean updateData(String id, String cloudId, String email, String gender, int weight, String isSignedIn) {
         SQLiteDatabase db = instance.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_1, id);
@@ -76,8 +76,7 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_5, weight);
         contentValues.put(COLUMN_6, isSignedIn);
 
-        db.update(TABLE_NAME, contentValues, "ID = ?", new String[] {id});
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
         return true;
-
     }
 }
