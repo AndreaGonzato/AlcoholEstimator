@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/recyclerViewConstraintLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -36,7 +36,7 @@
                 <android.widget.Button
                     android:id="@+id/previousIntervalButton"
                     style="?android:spinnerStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@color/lightGray"
@@ -46,12 +46,14 @@
                     android:paddingBottom="10dp"
                     android:text="back"
                     android:textColor="@color/black"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:gravity="start"
+                    android:layout_weight="1"/>
 
                 <android.widget.Button
                     android:id="@+id/nextIntervalButton"
                     style="?android:spinnerStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@color/lightGray"
@@ -61,7 +63,9 @@
                     android:paddingBottom="10dp"
                     android:text="next"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:gravity="end"
+                    android:layout_weight="1"/>
             </LinearLayout>
 
 

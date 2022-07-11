@@ -16,6 +16,7 @@ import android.widget.Button;
 import java.util.Objects;
 
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.logic.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,6 +87,9 @@ public class UserDrinksFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 DashboardFragment.iterval += 1;
+                if (DashboardFragment.iterval * 5 > User.getDrinks().size()){
+                    DashboardFragment.iterval -= 1;
+                }
                 DashboardFragment parentFragment = (DashboardFragment) getParentFragment();
                 Objects.requireNonNull(parentFragment).updateGUIAfterDownloadDataFromCloud();
             }
