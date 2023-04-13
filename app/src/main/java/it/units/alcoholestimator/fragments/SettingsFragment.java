@@ -23,7 +23,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import java.util.Objects;
 
 import it.units.alcoholestimator.R;
-import it.units.alcoholestimator.activity.LogInActivity;
 import it.units.alcoholestimator.activity.UserDataSettingActivity;
 import it.units.alcoholestimator.logic.Drink;
 import it.units.alcoholestimator.database.FirebaseDatabaseManager;
@@ -116,7 +115,7 @@ public class SettingsFragment extends Fragment {
         GoogleSignInOptions googleOptions = SignIn.getGoogleSignInOptions();
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(Objects.requireNonNull(activity), googleOptions);
 
-        Intent intent = new Intent(getContext(), LogInActivity.class);
+        Intent intent = new Intent(getContext(), UserDataSettingActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 

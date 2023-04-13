@@ -26,6 +26,7 @@ import org.apache.commons.rng.simple.RandomSource;
 import org.apache.commons.text.CharacterPredicates;
 import org.apache.commons.text.RandomStringGenerator;
 
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Random;
 
@@ -74,6 +75,18 @@ public class UserDataSettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_data_setting);
+
+        LocalDatabaseHelper localDB = new LocalDatabaseHelper(this);
+        try {
+            // when start the app need load the user data from the local database
+            User.loadUserFromLocalDatabase();
+            // if there are data go to the dashboard
+            startActivity(new Intent(UserDataSettingActivity.this, DashboardActivity.class));
+
+        }catch (SQLException e){
+            // there are no data to load for the user in the local database
+            Log.i("TEST", "no data for the user in the local database");
+        }
 
         // remove the action bar
         Objects.requireNonNull(getSupportActionBar()).hide();
