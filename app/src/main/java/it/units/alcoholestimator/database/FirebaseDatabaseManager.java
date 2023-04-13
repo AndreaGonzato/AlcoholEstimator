@@ -9,10 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -48,22 +46,37 @@ public class FirebaseDatabaseManager {
     }
 
     public static void addUser(String email, Gender gender, int weight) {
-        // Create a new drink with a first and last name
+        // Create a new user
         Map<String, Object> user = new HashMap<>();
         user.put(EMAIL_KEY, email);
         user.put(GENDER_KEY, gender);
         user.put(WEIGHT_KEY, weight);
 
+        final String[] cloudID = new String[1];
+
         // Add a new document with a generated ID
         getDatabase().collection(USERS)
                 .add(user)
-                .addOnSuccessListener(new OnSuccessListener<>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
+                .onSuccessTask(documentReference -> {
+                    User.setCloudID(documentReference.getId());
+                    LocalDatabaseHelper.insertData(documentReference.getId(), User.getEmail(), User.getGender().representation, User.getWeight(), "false");
+                    return null;
+                });
+    }
+
+    public static void updateUser(String userKey, String email, Gender gender, int weight) {
+        // Create a new user
+        Map<String, Object> user = new HashMap<>();
+        user.put(EMAIL_KEY, email);
+        user.put(GENDER_KEY, gender);
+        user.put(WEIGHT_KEY, weight);
+
+        final String[] cloudID = new String[1];
+
+        // Add a new document with a generated ID
+        getDatabase().collection(USERS)
+                .document(userKey)
+                .update(user);
     }
 
     public static void addDrink(String drinkType, int alcoholContent, int drinkSize, Date date) {

@@ -1,12 +1,11 @@
 package it.units.alcoholestimator.activity;
 
-import static android.content.ContentValues.TAG;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -16,21 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
-
-import org.apache.commons.rng.UniformRandomProvider;
-import org.apache.commons.rng.simple.RandomSource;
-import org.apache.commons.text.CharacterPredicates;
-import org.apache.commons.text.RandomStringGenerator;
-
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.Random;
 
 import it.units.alcoholestimator.R;
+import it.units.alcoholestimator.database.FirebaseDatabaseManager;
 import it.units.alcoholestimator.database.LocalDatabaseHelper;
 import it.units.alcoholestimator.logic.Gender;
 import it.units.alcoholestimator.logic.User;
@@ -41,8 +30,6 @@ public class UserDataSettingActivity extends AppCompatActivity {
     private Button maleButton;
     private Button femaleButton;
 
-    private static final int RC_SIGN_IN = 9001;
-
     // constants
     private static final float WEIGHT_FOR_SEX_SELECTED = 2.0f;
     private static final int SCALAR_PIXEL_SIZE_FOR_PRESSED_BUTTON_SEX = 25;
@@ -51,23 +38,13 @@ public class UserDataSettingActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
-    }
 
-    private void updateUI(GoogleSignInAccount account) {
-        if(account == null || !User.isIsSignedInWithGoogle()){
+        if (User.getCloudID() == null) {
             // first time that the user is doing the log in
             Log.i("TEST", "welcome for the first time");
-        }else {
+        } else {
             // user has already log in
-            Log.i("TEST", "welcome again"); // TODO remove this line
-            Log.i("TEST", "" + account.getEmail()); // TODO remove this line
-            Log.i("TEST getId", account.getId()); // TODO remove this line
-            User.setCloudID(account.getId());
-            User.setEmail(account.getEmail());
+            Log.i("TEST", "welcome again");
         }
     }
 
@@ -75,13 +52,22 @@ public class UserDataSettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_data_setting);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
+        boolean letUserEditInfo = getIntent().getBooleanExtra("letUserEditInfo", false);
+        boolean newUser = true;
 
         LocalDatabaseHelper localDB = new LocalDatabaseHelper(this);
         try {
             // when start the app need load the user data from the local database
             User.loadUserFromLocalDatabase();
-            // if there are data go to the dashboard
-            startActivity(new Intent(UserDataSettingActivity.this, DashboardActivity.class));
+            if ( !letUserEditInfo){
+                startActivity(new Intent(UserDataSettingActivity.this, DashboardActivity.class));
+            }
+            newUser = User.getCloudID() == null;
+
+
 
         }catch (SQLException e){
             // there are no data to load for the user in the local database
@@ -98,6 +84,9 @@ public class UserDataSettingActivity extends AppCompatActivity {
         maleButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 User.setGender(Gender.MALE);
+
+                maleButton.setActivated(true);
+                femaleButton.setActivated(false);
 
                 LinearLayout.LayoutParams paramsForMaleButton = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -129,6 +118,8 @@ public class UserDataSettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 User.setGender(Gender.FEMALE);
 
+                femaleButton.setActivated(true);
+                maleButton.setActivated(false);
                 LinearLayout.LayoutParams paramsForMaleButton = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
@@ -170,36 +161,18 @@ public class UserDataSettingActivity extends AppCompatActivity {
         });
 
 
+        boolean finalNewUser = newUser;
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (User.getGender() != null){
-                    boolean isInserted;
-                    if(User.isIsSignedInWithGoogle()){
-                        isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), User.getEmail(), User.getGender().representation, User.getWeight(), "true");
-                    }else {
-                        if (User.getCloudID() == null){
-                            long randomSeed = new Random().nextLong();
-                            UniformRandomProvider uniformRandomProvider = RandomSource.create(RandomSource.SPLIT_MIX_64, randomSeed);
-                            RandomStringGenerator generator = new RandomStringGenerator
-                                    .Builder()
-                                    .withinRange('0', 'z')
-                                    .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
-                                    .usingRandom(uniformRandomProvider::nextInt)
-                                    .build();
+                if (selectedGender()){
+                        if (finalNewUser){
+                            FirebaseDatabaseManager.addUser(User.getEmail(), User.getGender(), User.getWeight());
 
-                            String generatedID = "local-" + generator.generate(14);
-                            Log.i("TEST generatedID:", generatedID);
-                            User.setCloudID(generatedID);
+                        }else{
+                            // user is already inserted, so need to update it
+                            FirebaseDatabaseManager.updateUser(User.getCloudID(), User.getEmail(), User.getGender(), User.getWeight());
                         }
-
-                        //User.setEmail("no@email.com"); // TODO if you put the constrain that every user need to have an email put this line otherwise an use can have email = null
-                        isInserted = LocalDatabaseHelper.insertData(User.getCloudID(), null, User.getGender().representation, User.getWeight(), "false");
-                    }
-
-                    if(!isInserted){
-                        Log.w("DATABASE", "User not inserted in the local database SQLite");
-                    }
 
                     startActivity(new Intent(UserDataSettingActivity.this, DashboardActivity.class));
                 }else {
@@ -212,33 +185,12 @@ public class UserDataSettingActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-
+    boolean selectedGender(){
+        return femaleButton.isActivated() || maleButton.isActivated();
     }
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
-            // Signed in successfully, show authenticated UI.
-            updateUI(account);
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null);
-        }
-    }
+
 
 
 }

@@ -70,10 +70,11 @@ public class SettingsFragment extends Fragment {
                 } else {
                     StringBuilder buffer = new StringBuilder();
                     while (cursor.moveToNext()) {
-                        buffer.append("EMAIL: ").append(cursor.getString(2)).append("\n");
+                        buffer.append("CLOUD ID: ").append(cursor.getString(1)).append("\n");
+                        //buffer.append("EMAIL: ").append(cursor.getString(2)).append("\n");
                         buffer.append("GENDER: ").append(cursor.getString(3)).append("\n");
-                        buffer.append("WEIGHT: ").append(cursor.getString(4)).append("\n");
-                        buffer.append("IS_SIGNED_IN: ").append(cursor.getString(5)).append("\n\n");
+                        buffer.append("WEIGHT: ").append(cursor.getString(4)).append("\n\n");
+                        //buffer.append("IS_SIGNED_IN: ").append(cursor.getString(5)).append("\n\n");
                     }
 
                     // show all data
@@ -91,6 +92,7 @@ public class SettingsFragment extends Fragment {
                 User.setWeight(70);
                 Intent intent = new Intent(getContext(), UserDataSettingActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("letUserEditInfo", true);
                 startActivity(intent);
             }
         });
